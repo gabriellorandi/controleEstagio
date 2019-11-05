@@ -6,6 +6,8 @@ import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+import java.util.List;
 
 @Repository
 public class AlunoRepository {
@@ -23,6 +25,11 @@ public class AlunoRepository {
 
     public Aluno get(int id) {
         return this.entityManager.find(Aluno.class, id);
+    }
+
+    public List<Aluno> getAll() {
+        Query query = this.entityManager.createQuery("SELECT a FROM Aluno a WHERE valido IS TRUE ");
+        return query.getResultList();
     }
 
 }

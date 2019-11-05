@@ -14,7 +14,7 @@ import javax.servlet.http.HttpSession;
 @RequestMapping("/curriculo")
 public class CurriculoController {
 
-    CurriculoRepository curriculoRepository;
+    private final CurriculoRepository curriculoRepository;
 
     @Autowired
     public CurriculoController(CurriculoRepository curriculoRepository){
@@ -25,8 +25,7 @@ public class CurriculoController {
     @RequestMapping("/cadastrar")
     public String cadastra(Curriculo curriculo, HttpSession session) {
 
-        if(session.getAttribute("usuario") != null &&
-                session.getAttribute("usuario") instanceof Usuario) {
+        if(session.getAttribute("usuario") instanceof Usuario) {
 
             curriculoRepository.add(curriculo);
 

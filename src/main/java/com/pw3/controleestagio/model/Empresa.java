@@ -48,7 +48,13 @@ public class Empresa extends Usuario {
 	public void setEstagios(List<Estagio> estagios) {
 		this.estagios = estagios;
 	}
-	
 
-	
+
+	public boolean isValido() {
+		return valido;
+	}
+
+	public void setValido(boolean valido) {
+		this.valido = valido;
+	}
 }
