@@ -38,12 +38,12 @@ public class LoginController {
             session.setAttribute("usuario", usuariodb);
 
             if(usuariodb instanceof Empresa) {
-                return "redirect:cadastrarVagaEstagio";
+                return "cadastrarVagaEstagio";
             }
 
         }
 
-        return "redirect:login";
+        return "login";
     }
 
 }
