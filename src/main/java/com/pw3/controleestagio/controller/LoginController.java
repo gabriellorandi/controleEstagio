@@ -23,7 +23,7 @@ public class LoginController {
     @RequestMapping("/")
     public String home() {
 
-        return "redirect:login";
+        return "login";
 
     }
 
