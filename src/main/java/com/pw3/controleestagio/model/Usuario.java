@@ -37,4 +37,32 @@ public class Usuario {
 		this.senha = senha;
 	}
 
+	public boolean isAdmin() {
+		if (this instanceof Administrador) {
+			return true;
+		}
+		return false;
+	}
+
+	public boolean isAluno() {
+		if (this instanceof Aluno) {
+			return true;
+		}
+		return false;
+	}
+
+	public boolean isEmpresa() {
+		if (this instanceof Empresa) {
+			return true;
+		}
+		return false;
+	}
+
+	public boolean isSupervisor() {
+		if (this instanceof Supervisor) {
+			return true;
+		}
+		return false;
+	}
+
 }

@@ -1,7 +1,7 @@
 package com.pw3.controleestagio.controller;
 
-import com.pw3.controleestagio.model.Administrador;
 import com.pw3.controleestagio.model.Empresa;
+import com.pw3.controleestagio.model.Usuario;
 import com.pw3.controleestagio.repository.EmpresaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -39,25 +39,27 @@ public class EmpresaController {
     @RequestMapping("/listar")
     public String getAll(HttpSession session, Model model) {
 
-        if(session.getAttribute("usuario") instanceof Administrador) {
+        Usuario usuario = (Usuario) session.getAttribute("usuario");
+
+        if(usuario.isAdmin()) {
 
             List<Empresa> empresas = empresaRepository.getAll();
 
             model.addAttribute("empresas", empresas);
 
             return "";
-
         }
 
         return "";
-
     }
 
     @Transactional
     @RequestMapping("/validar/{empresaId}")
     public String validarEmpresa(HttpSession session, @PathVariable int empresaId) {
 
-        if(session.getAttribute("usuario") instanceof Administrador) {
+        Usuario usuario = (Usuario) session.getAttribute("usuario");
+
+        if(usuario.isAdmin()) {
 
             Empresa empresa = empresaRepository.get(empresaId);
 
@@ -66,11 +68,9 @@ public class EmpresaController {
             empresaRepository.add(empresa);
 
             return "";
-
         }
 
         return "";
-
     }
 
 }

@@ -1,6 +1,5 @@
 package com.pw3.controleestagio.controller;
 
-import com.pw3.controleestagio.model.Administrador;
 import com.pw3.controleestagio.model.Aluno;
 import com.pw3.controleestagio.model.Empresa;
 import com.pw3.controleestagio.model.Usuario;
@@ -49,17 +48,17 @@ public class LoginController {
 
             session.setAttribute("usuario", usuariodb);
 
-            if(usuariodb instanceof Administrador) {
+            if(usuariodb.isAdmin()) {
                 return "redirect:paginaAdmin";
             }
 
-            if(usuariodb instanceof Aluno) {
+            if(usuariodb.isAluno()) {
                 if(((Aluno) usuariodb).isValido()){
                     return "redirect:paginaAluno";
                 }
             }
 
-            if(usuariodb instanceof Empresa) {
+            if(usuariodb.isEmpresa()) {
                 if(((Empresa) usuariodb).isValido()) {
                     return "redirect:paginaEmpresa";
                 }
