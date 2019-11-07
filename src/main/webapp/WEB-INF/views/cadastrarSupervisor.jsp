@@ -6,7 +6,7 @@
 </head>
 <body>
 
-    <h2>Cadastrar vaga de estagio</h2>
+    <h2>Cadastrar Supervisor</h2>
 
 </body>
 </html>

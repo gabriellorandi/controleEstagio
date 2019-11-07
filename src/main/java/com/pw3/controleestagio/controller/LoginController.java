@@ -1,5 +1,7 @@
 package com.pw3.controleestagio.controller;
 
+import com.pw3.controleestagio.model.Administrador;
+import com.pw3.controleestagio.model.Aluno;
 import com.pw3.controleestagio.model.Empresa;
 import com.pw3.controleestagio.model.Usuario;
 import com.pw3.controleestagio.repository.UsuarioRepository;
@@ -27,6 +29,21 @@ public class LoginController {
 
     }
 
+    @RequestMapping("/cadastrarAluno")
+    public String cadastrarAluno() {
+        return "cadastrarAluno";
+    }
+
+    @RequestMapping("/cadastrarAdmin")
+    public String cadastrarAdmin() {
+        return "cadastrarAdministrador";
+    }
+
+    @RequestMapping("/cadastrarEmpresa")
+    public String cadastrarEmpresa() {
+        return "cadastrarEmpresa";
+    }
+
     @Transactional
     @RequestMapping("autentica")
     public String autentica(Usuario usuario, HttpSession session) {
@@ -37,8 +54,16 @@ public class LoginController {
 
             session.setAttribute("usuario", usuariodb);
 
+            if(usuariodb instanceof Administrador) {
+                return "paginaAdmin";
+            }
+
+            if(usuariodb instanceof Aluno) {
+                return "paginaAluno";
+            }
+
             if(usuariodb instanceof Empresa) {
-                return "cadastrarVagaEstagio";
+                return "paginaEmpresa";
             }
 
         }
