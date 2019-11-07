@@ -14,6 +14,8 @@ public class Relatorio {
 	private String descricao;
 	private String observacoes;
 
+	private boolean valido = false;
+
 	public int getId() {
 		return id;
 	}
@@ -38,4 +40,11 @@ public class Relatorio {
 		this.observacoes = observacoes;
 	}
 
+	public boolean isValido() {
+		return valido;
+	}
+
+	public void setValido(boolean valido) {
+		this.valido = valido;
+	}
 }

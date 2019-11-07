@@ -47,12 +47,15 @@ public class AlunoController {
 
     @Transactional
     @RequestMapping("/cadastrar")
-    public String cadastra(Aluno aluno) {
+    public String cadastra(Aluno aluno, String senhaRepetida) {
 
-        alunoRepository.add(aluno);
+        if(aluno.getSenha().equals(senhaRepetida)) {
 
-        return "";
+            alunoRepository.add(aluno);
 
+        }
+
+        return "login";
     }
 
     @Transactional

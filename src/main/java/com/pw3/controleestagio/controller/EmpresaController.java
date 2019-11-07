@@ -26,12 +26,13 @@ public class EmpresaController {
 
     @Transactional
     @RequestMapping("/cadastrar")
-    public String cadastra(Empresa empresa) {
+    public String cadastra(Empresa empresa, String senhaRepetida) {
 
-        empresaRepository.add(empresa);
+        if(empresa.getSenha().equals(senhaRepetida)) {
+            empresaRepository.add(empresa);
+        }
 
-        return "";
-
+        return "login";
     }
 
     @Transactional
