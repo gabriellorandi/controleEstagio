@@ -1,7 +1,6 @@
 package com.pw3.controleestagio.controller;
 
-import com.pw3.controleestagio.model.Aluno;
-import com.pw3.controleestagio.model.Empresa;
+import com.pw3.controleestagio.model.Usuario;
 import com.pw3.controleestagio.model.VagaEstagio;
 import com.pw3.controleestagio.repository.VagaEstagioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,34 +27,34 @@ public class VagaEstagioController {
     @RequestMapping("/cadastrar")
     public String cadastra(VagaEstagio vagaEstagio, HttpSession session) {
 
-        if(session.getAttribute("usuario") instanceof Empresa) {
+        Usuario usuario = (Usuario) session.getAttribute("usuario");
+
+        if(usuario.isEmpresa()) {
 
             vagaEstagioRepository.add(vagaEstagio);
 
             return "";
-
         }
 
         return "";
-
     }
 
     @Transactional
     @RequestMapping("/listar")
     public String getAll(HttpSession session, Model model) {
 
-        if(session.getAttribute("usuario") instanceof Aluno) {
+        Usuario usuario = (Usuario) session.getAttribute("usuario");
+
+        if(usuario.isAluno()) {
 
             List<VagaEstagio> vagaEstagios = vagaEstagioRepository.getAll();
 
             model.addAttribute("vagaEstagios", vagaEstagios);
 
             return "";
-
         }
 
         return "";
-
     }
 
 

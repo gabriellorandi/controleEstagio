@@ -25,16 +25,16 @@ public class CurriculoController {
     @RequestMapping("/cadastrar")
     public String cadastra(Curriculo curriculo, HttpSession session) {
 
-        if(session.getAttribute("usuario") instanceof Usuario) {
+        Usuario usuario = (Usuario) session.getAttribute("usuario");
+
+        if(usuario.isAluno()) {
 
             curriculoRepository.add(curriculo);
 
             return "";
-
         }
 
         return "";
-
     }
 
 

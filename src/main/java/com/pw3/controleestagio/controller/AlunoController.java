@@ -1,8 +1,7 @@
 package com.pw3.controleestagio.controller;
 
-import com.pw3.controleestagio.model.Administrador;
 import com.pw3.controleestagio.model.Aluno;
-import com.pw3.controleestagio.model.Empresa;
+import com.pw3.controleestagio.model.Usuario;
 import com.pw3.controleestagio.repository.AlunoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,7 +28,9 @@ public class AlunoController {
     @RequestMapping("/validar/{alunoId}")
     public String validarAluno(HttpSession session, @PathVariable int alunoId) {
 
-        if(session.getAttribute("usuario") instanceof Administrador) {
+        Usuario usuario = (Usuario) session.getAttribute("usuario");
+
+        if(usuario.isAdmin()) {
 
             Aluno aluno = alunoRepository.get(alunoId);
 
@@ -38,11 +39,9 @@ public class AlunoController {
             alunoRepository.add(aluno);
 
             return "";
-
         }
 
         return "";
-
     }
 
     @Transactional
@@ -62,8 +61,9 @@ public class AlunoController {
     @RequestMapping("/listar")
     public String getAll(HttpSession session, Model model) {
 
-        if(session.getAttribute("usuario") instanceof Empresa ||
-                session.getAttribute("usuario") instanceof Administrador) {
+        Usuario usuario = (Usuario) session.getAttribute("usuario");
+
+        if(usuario.isEmpresa() || usuario.isAdmin()) {
 
             List<Aluno> alunos = alunoRepository.getAll();
 

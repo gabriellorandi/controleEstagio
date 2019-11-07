@@ -1,11 +1,14 @@
 package com.pw3.controleestagio.controller;
 
 import com.pw3.controleestagio.model.Administrador;
+import com.pw3.controleestagio.model.Usuario;
 import com.pw3.controleestagio.repository.AdministradorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import javax.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("/administrador")
@@ -16,6 +19,16 @@ public class AdministradorController {
     @Autowired
     public AdministradorController(AdministradorRepository administradorRepository) {
         this.administradorRepository = administradorRepository;
+    }
+
+    @RequestMapping("/cadastrarAdmin")
+    public String cadastrarAdmin(HttpSession session) {
+        Usuario usuario = (Usuario) session.getAttribute("usuario");
+
+        if(usuario.isAdmin()) {
+            return "redirect:cadastrarAdministrador";
+        }
+        return "redirect:login";
     }
 
     @Transactional

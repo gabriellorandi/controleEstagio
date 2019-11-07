@@ -1,6 +1,5 @@
 package com.pw3.controleestagio.controller;
 
-import com.pw3.controleestagio.model.Administrador;
 import com.pw3.controleestagio.model.Aluno;
 import com.pw3.controleestagio.model.Empresa;
 import com.pw3.controleestagio.model.Usuario;
@@ -34,11 +33,6 @@ public class LoginController {
         return "cadastrarAluno";
     }
 
-    @RequestMapping("/cadastrarAdmin")
-    public String cadastrarAdmin() {
-        return "cadastrarAdministrador";
-    }
-
     @RequestMapping("/cadastrarEmpresa")
     public String cadastrarEmpresa() {
         return "cadastrarEmpresa";
@@ -54,16 +48,20 @@ public class LoginController {
 
             session.setAttribute("usuario", usuariodb);
 
-            if(usuariodb instanceof Administrador) {
-                return "paginaAdmin";
+            if(usuariodb.isAdmin()) {
+                return "redirect:paginaAdmin";
             }
 
-            if(usuariodb instanceof Aluno) {
-                return "paginaAluno";
+            if(usuariodb.isAluno()) {
+                if(((Aluno) usuariodb).isValido()){
+                    return "redirect:paginaAluno";
+                }
             }
 
-            if(usuariodb instanceof Empresa) {
-                return "paginaEmpresa";
+            if(usuariodb.isEmpresa()) {
+                if(((Empresa) usuariodb).isValido()) {
+                    return "redirect:paginaEmpresa";
+                }
             }
 
         }
