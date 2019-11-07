@@ -34,11 +34,6 @@ public class LoginController {
         return "cadastrarAluno";
     }
 
-    @RequestMapping("/cadastrarAdmin")
-    public String cadastrarAdmin() {
-        return "cadastrarAdministrador";
-    }
-
     @RequestMapping("/cadastrarEmpresa")
     public String cadastrarEmpresa() {
         return "cadastrarEmpresa";
@@ -55,15 +50,19 @@ public class LoginController {
             session.setAttribute("usuario", usuariodb);
 
             if(usuariodb instanceof Administrador) {
-                return "paginaAdmin";
+                return "redirect:paginaAdmin";
             }
 
             if(usuariodb instanceof Aluno) {
-                return "paginaAluno";
+                if(((Aluno) usuariodb).isValido()){
+                    return "redirect:paginaAluno";
+                }
             }
 
             if(usuariodb instanceof Empresa) {
-                return "paginaEmpresa";
+                if(((Empresa) usuariodb).isValido()) {
+                    return "redirect:paginaEmpresa";
+                }
             }
 
         }

@@ -15,7 +15,6 @@
     </form> <br/>
 
 
-    <a href=cadastrarAdmin>Cadastrar Administrador</a><br/>
     <a href=cadastrarAluno>Cadastrar Aluno</a><br/>
     <a href=cadastrarEmpresa>Cadastrar Empresa</a><br/>
 

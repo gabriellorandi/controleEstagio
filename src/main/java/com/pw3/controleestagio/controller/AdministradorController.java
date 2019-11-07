@@ -7,6 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpSession;
+
 @Controller
 @RequestMapping("/administrador")
 public class AdministradorController {
@@ -16,6 +18,14 @@ public class AdministradorController {
     @Autowired
     public AdministradorController(AdministradorRepository administradorRepository) {
         this.administradorRepository = administradorRepository;
+    }
+
+    @RequestMapping("/cadastrarAdmin")
+    public String cadastrarAdmin(HttpSession session) {
+        if(session.getAttribute("usuario") instanceof Administrador) {
+            return "redirect:cadastrarAdministrador";
+        }
+        return "redirect:login";
     }
 
     @Transactional
