@@ -6,6 +6,8 @@ import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+import java.util.List;
 
 @Repository
 public class SupervisorRepository {
@@ -25,4 +27,8 @@ public class SupervisorRepository {
         return this.entityManager.find(Supervisor.class, id);
     }
 
+    public List<Supervisor> getAll() {
+        Query query = this.entityManager.createQuery("SELECT s FROM Supervisor s WHERE valido IS TRUE ");
+        return query.getResultList();
+    }
 }
