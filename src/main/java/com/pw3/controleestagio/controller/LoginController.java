@@ -2,6 +2,7 @@ package com.pw3.controleestagio.controller;
 
 import com.pw3.controleestagio.model.Aluno;
 import com.pw3.controleestagio.model.Empresa;
+import com.pw3.controleestagio.model.Supervisor;
 import com.pw3.controleestagio.model.Usuario;
 import com.pw3.controleestagio.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,18 +50,24 @@ public class LoginController {
             session.setAttribute("usuario", usuariodb);
 
             if(usuariodb.isAdmin()) {
-                return "redirect:paginaAdmin";
+                return "paginaAdmin";
             }
 
             if(usuariodb.isAluno()) {
                 if(((Aluno) usuariodb).isValido()){
-                    return "redirect:paginaAluno";
+                    return "paginaAluno";
                 }
             }
 
             if(usuariodb.isEmpresa()) {
                 if(((Empresa) usuariodb).isValido()) {
-                    return "redirect:paginaEmpresa";
+                    return "paginaEmpresa";
+                }
+            }
+
+            if (usuariodb.isSupervisor()){
+                if (((Supervisor) usuariodb).isValido()){
+                    return "paginaSupervisor";
                 }
             }
 

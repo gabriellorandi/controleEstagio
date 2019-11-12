@@ -1,10 +1,12 @@
 package com.pw3.controleestagio.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import org.hibernate.annotations.DiscriminatorFormula;
+
+import javax.persistence.*;
 
 @Entity
+//Coluna DTYPE no banco serve para indicar qual eh a subclasse e precisa dessa anotacao
+@DiscriminatorColumn(discriminatorType = DiscriminatorType.STRING)
 public class Usuario {
 	
 	@Id

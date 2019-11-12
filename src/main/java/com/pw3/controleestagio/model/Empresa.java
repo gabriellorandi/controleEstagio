@@ -1,11 +1,13 @@
 package com.pw3.controleestagio.model;
 
 import javax.persistence.CascadeType;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import java.util.List;
 
 @Entity(name = "empresa")
+@DiscriminatorValue("Empresa")
 public class Empresa extends Usuario {
 	
 	private String razaoSocial;
