@@ -24,9 +24,7 @@ public class LoginController {
 
     @RequestMapping("/")
     public String home() {
-
         return "login";
-
     }
 
     @RequestMapping("/cadastrarAluno")
@@ -73,7 +71,7 @@ public class LoginController {
 
         }
 
-        return "login";
+        return "redirect:/";
     }
 
 }

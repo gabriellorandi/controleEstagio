@@ -8,7 +8,7 @@
 
     <h2>Cadastrar Empresa</h2>
 
-    <form action="/empresa/cadastrar" method="post">
+    <form action="empresa/cadastrar" method="post">
         Nome: <input type="text" name="razaoSocial" /> <br />
         Nome Fantasia: <input type="text" name="nomeFantasia" /> <br />
         CNPJ: <input type="text" name="cnpj" /> <br /><br />

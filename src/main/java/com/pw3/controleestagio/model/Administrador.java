@@ -8,6 +8,15 @@ import javax.persistence.Entity;
 public class Administrador extends Usuario {
 	
 	private String nome;
+	private boolean valido = true;
+
+	public boolean isValido() {
+		return valido;
+	}
+
+	public void setValido(boolean valido) {
+		this.valido = valido;
+	}
 
 	public String getNome() {
 		return nome;

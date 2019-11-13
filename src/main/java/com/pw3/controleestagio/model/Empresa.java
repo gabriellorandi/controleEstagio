@@ -14,7 +14,7 @@ public class Empresa extends Usuario {
 	private String nomeFantasia;
 	private String cnpj;
 
-	private boolean valido = false;
+	private boolean valido = true;
 
 	@OneToMany(cascade = CascadeType.ALL )
 	private List<Estagio> estagios;

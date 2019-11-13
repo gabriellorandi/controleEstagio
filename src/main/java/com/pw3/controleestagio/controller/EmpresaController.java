@@ -9,12 +9,13 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
-@RequestMapping("/empresa")
+@RequestMapping("empresa")
 public class EmpresaController {
 
     private final EmpresaRepository empresaRepository;
@@ -25,14 +26,14 @@ public class EmpresaController {
     }
 
     @Transactional
-    @RequestMapping("/cadastrar")
+    @RequestMapping(value = "/cadastrar", method = RequestMethod.POST)
     public String cadastra(Empresa empresa, String senhaRepetida) {
 
         if(empresa.getSenha().equals(senhaRepetida)) {
             empresaRepository.add(empresa);
         }
 
-        return "login";
+        return "redirect:../";
     }
 
     @Transactional

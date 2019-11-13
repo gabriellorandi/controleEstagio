@@ -8,7 +8,7 @@ import javax.persistence.Entity;
 public class Supervisor extends Usuario {
 	
 	private String nome;
-	private boolean valido = false;
+	private boolean valido = true;
 
 	public boolean isValido() {
 		return valido;

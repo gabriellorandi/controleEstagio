@@ -9,7 +9,7 @@ public class Aluno extends Usuario {
 	private String nome;
 	private String ra;
 
-	private boolean valido = false;
+	private boolean valido = true;
 	
 	@OneToOne(fetch = FetchType.EAGER,
             cascade =  CascadeType.ALL,
