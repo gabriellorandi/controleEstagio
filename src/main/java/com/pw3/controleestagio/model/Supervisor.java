@@ -4,7 +4,6 @@ import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
 @Entity(name = "supervisor")
-@DiscriminatorValue("Supervisor")
 public class Supervisor extends Usuario {
 	
 	private String nome;

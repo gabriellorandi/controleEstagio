@@ -28,7 +28,7 @@ public class AlunoRepository {
     }
 
     public List<Aluno> getAll() {
-        Query query = this.entityManager.createQuery("SELECT a FROM Aluno a WHERE valido IS TRUE ");
+        Query query = this.entityManager.createQuery("SELECT a FROM aluno a WHERE a.valido = true ");
         return query.getResultList();
     }
 

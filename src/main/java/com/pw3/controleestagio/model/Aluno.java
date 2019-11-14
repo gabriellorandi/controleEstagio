@@ -3,7 +3,6 @@ package com.pw3.controleestagio.model;
 import javax.persistence.*;
 
 @Entity(name = "aluno")
-@DiscriminatorValue("Aluno")
 public class Aluno extends Usuario {
 	
 	private String nome;

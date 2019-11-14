@@ -28,7 +28,7 @@ public class EmpresaRepository {
     }
 
     public List<Empresa> getAll() {
-        Query query = this.entityManager.createQuery("SELECT e FROM Empresa e WHERE valido IS TRUE ");
+        Query query = this.entityManager.createQuery("SELECT e FROM empresa e WHERE valido = TRUE ");
         return query.getResultList();
     }
 

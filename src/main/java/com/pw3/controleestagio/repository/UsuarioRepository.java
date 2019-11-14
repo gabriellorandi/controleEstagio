@@ -16,7 +16,7 @@ public class UsuarioRepository {
 
     public Usuario getByLoginAndSenha(String login, String senha) {
 
-        Query query = this.entityManager.createQuery("SELECT c FROM Usuario c WHERE c.login = ?1 AND c.senha = ?2");
+        Query query = this.entityManager.createQuery("SELECT u FROM usuario u WHERE u.login = ?1 AND u.senha = ?2");
         query.setParameter(1, login).setParameter(2, senha);
 
         try {

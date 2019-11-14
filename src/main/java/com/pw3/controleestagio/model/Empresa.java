@@ -7,7 +7,6 @@ import javax.persistence.OneToMany;
 import java.util.List;
 
 @Entity(name = "empresa")
-@DiscriminatorValue("Empresa")
 public class Empresa extends Usuario {
 	
 	private String razaoSocial;
