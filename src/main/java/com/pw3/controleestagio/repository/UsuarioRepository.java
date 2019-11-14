@@ -7,6 +7,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import java.util.List;
 
 @Repository
 public class UsuarioRepository {
@@ -25,6 +26,11 @@ public class UsuarioRepository {
             return null;
         }
 
+    }
+
+    public List<Usuario> getAllValidar(){
+        Query query = this.entityManager.createQuery("SELECT u FROM Usuario u WHERE u.valido = false");
+        return query.getResultList();
     }
 
 }

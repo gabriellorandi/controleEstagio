@@ -28,8 +28,12 @@ public class AlunoRepository {
     }
 
     public List<Aluno> getAll() {
-        Query query = this.entityManager.createQuery("SELECT a FROM Aluno a WHERE valido IS TRUE ");
+        Query query = this.entityManager.createQuery("SELECT a FROM Aluno a WHERE a.id.valido = true");
         return query.getResultList();
     }
 
+    public List<Aluno> getAllValidar(){
+        Query query = this.entityManager.createQuery("SELECT a FROM Aluno a inner join a.id WHERE a.id.valido = false");
+        return query.getResultList();
+    }
 }

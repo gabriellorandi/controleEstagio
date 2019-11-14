@@ -5,16 +5,24 @@ import org.hibernate.annotations.DiscriminatorFormula;
 import javax.persistence.*;
 
 @Entity
-//Coluna DTYPE no banco serve para indicar qual eh a subclasse e precisa dessa anotacao
-@DiscriminatorColumn(discriminatorType = DiscriminatorType.STRING)
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Usuario {
 	
 	@Id
 	@GeneratedValue
-	private int id; 
+	private int id;
 	private String login;
 	private String senha;
-	
+	private boolean valido = false;
+
+	public boolean isValido() {
+		return valido;
+	}
+
+	public void setValido(boolean valido) {
+		this.valido = valido;
+	}
+
 	public int getId() {
 		return id;
 	}

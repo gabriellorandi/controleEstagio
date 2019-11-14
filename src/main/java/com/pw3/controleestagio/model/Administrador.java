@@ -2,21 +2,13 @@ package com.pw3.controleestagio.model;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.PrimaryKeyJoinColumn;
 
 @Entity(name = "administrador")
-@DiscriminatorValue("Administrador")
+@PrimaryKeyJoinColumn(name = "id")
 public class Administrador extends Usuario {
 	
 	private String nome;
-	private boolean valido = true;
-
-	public boolean isValido() {
-		return valido;
-	}
-
-	public void setValido(boolean valido) {
-		this.valido = valido;
-	}
 
 	public String getNome() {
 		return nome;

@@ -3,13 +3,12 @@ package com.pw3.controleestagio.model;
 import javax.persistence.*;
 
 @Entity(name = "aluno")
-@DiscriminatorValue("Aluno")
+@PrimaryKeyJoinColumn(name = "id")
 public class Aluno extends Usuario {
 	
 	private String nome;
 	private String ra;
 
-	private boolean valido = true;
 	
 	@OneToOne(fetch = FetchType.EAGER,
             cascade =  CascadeType.ALL,
@@ -34,14 +33,6 @@ public class Aluno extends Usuario {
 
 	public void setRa(String ra) {
 		this.ra = ra;
-	}
-
-	public boolean isValido() {
-		return valido;
-	}
-
-	public void setValido(boolean valido) {
-		this.valido = valido;
 	}
 
 	public Curriculo getCurriculo() {

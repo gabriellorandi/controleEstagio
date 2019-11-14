@@ -36,6 +36,7 @@ public class AdministradorController {
     public String cadastra(Administrador administrador, String senhaRepetida) {
 
         if(administrador.getSenha().equals(senhaRepetida)) {
+            administrador.setValido(true);
             administradorRepository.add(administrador);
         }
 

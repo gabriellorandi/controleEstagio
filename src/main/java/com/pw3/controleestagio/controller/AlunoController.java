@@ -50,7 +50,7 @@ public class AlunoController {
     public String cadastra(Aluno aluno, String senhaRepetida) {
 
         if(aluno.getSenha().equals(senhaRepetida)) {
-
+            aluno.setId(50);
             alunoRepository.add(aluno);
 
         }
