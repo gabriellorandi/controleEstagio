@@ -8,6 +8,7 @@ import com.pw3.controleestagio.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpSession;
@@ -41,7 +42,7 @@ public class LoginController {
 
     @Transactional
     @RequestMapping("autentica")
-    public String autentica(Usuario usuario, HttpSession session) {
+    public String autentica(Usuario usuario, HttpSession session, Model model) {
 
         Usuario usuariodb = usuarioRepository.getByLoginAndSenha(usuario.getLogin(), usuario.getSenha());
 
@@ -73,6 +74,7 @@ public class LoginController {
 
         }
 
+        model.addAttribute("mensagem", "Login ou Senha inválidos.");
         return "login";
     }
 

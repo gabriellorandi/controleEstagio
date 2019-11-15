@@ -46,7 +46,7 @@ public class AlunoController {
 
     @Transactional
     @RequestMapping("/cadastrar")
-    public String cadastra(Aluno aluno, String senhaRepetida) {
+    public String cadastra(Aluno aluno, String senhaRepetida, Model model) {
 
         if(aluno.getSenha().equals(senhaRepetida)) {
 
@@ -54,6 +54,7 @@ public class AlunoController {
 
         }
 
+        model.addAttribute("mensagem", "Cadastro realizado com sucesso. Aguarde até que o administrador valide o seu cadastro.");
         return "login";
     }
 

@@ -8,7 +8,7 @@
 
     <h2>Cadastrar Aluno</h2>
 
-    <form action="/aluno/cadastrar" method="post">
+    <form action="aluno/cadastrar" method="post">
         Nome: <input type="text" name="nome" /> <br />
         RA: <input type="text" name="ra" /> <br /><br />
 
