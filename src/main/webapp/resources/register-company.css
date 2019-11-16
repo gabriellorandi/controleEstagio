@@ -1,0 +1,9 @@
+.login.company .login-right .title:after {
+    width: 95px;
+}
+
+@media (min-width: 768px) {
+    .login.company {
+        margin: calc((100vh - 594px) / 2) auto;
+    }
+}

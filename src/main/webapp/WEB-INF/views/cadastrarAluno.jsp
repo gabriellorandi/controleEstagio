@@ -33,7 +33,7 @@
                 </div>
                 <div class="register">
                     <p>Já é cadastrado?</p>
-                    <a href="/">Fazer o Login</a>
+                    <a href="${pageContext.request.contextPath}/">Fazer o Login</a>
                 </div>
             </div>
         </div>
