@@ -1,0 +1,9 @@
+.login.student .login-right .title:after {
+    width: 88px;
+}
+
+@media (min-width: 768px) {
+    .login.student {
+        margin: calc((100vh - 547px) / 2) auto;
+    }
+}

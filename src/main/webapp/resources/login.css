@@ -1,5 +1,5 @@
 .login .login-left {
-    background-color: #267dff;
+    background-color: #111832;
     color: #ffffff;
     padding: 40px 0 30px;
 }
@@ -46,7 +46,7 @@
     bottom: -5px;
     left: 50%;
     transform: translateX(-50%);
-    background-color: #3f7ac8;
+    background-color: #111832;
 }
 
 .login .login-right form input {
@@ -64,7 +64,7 @@
 .login .login-right form input[type="submit"] {
     color: white;
     text-transform: uppercase;
-    background-color: #267dff;
+    background-color: #112142;
     border-radius: 20px;
     border: none;
     font-weight: bold;
@@ -76,7 +76,7 @@
 }
 
 .login .login-right form input[type="submit"]:hover {
-    background-color: #044ebb;
+    background-color: #111832;
     transition: all 0.2s ease-in-out;
 }
 
