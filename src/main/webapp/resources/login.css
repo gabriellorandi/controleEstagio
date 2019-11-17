@@ -1,0 +1,171 @@
+.login .login-left {
+    background-color: #111832;
+    color: #ffffff;
+    padding: 40px 0 30px;
+}
+
+.login .login-left h1 {
+    margin-bottom: 15px;
+    font-size: 18px;
+    display: inline-block;
+    font-family: 'Raleway', sans-serif;
+}
+
+.login .login-left h1:after {
+    content: "";
+    height: 2px;
+    width: 20%;
+    margin-top: 5px;
+    display: block;
+    background-color: #ffffff;
+}
+
+.login .login-left p {
+    font-size: 12px;
+}
+
+.login .login-right {
+    text-align: center;
+}
+
+.login .login-right .title {
+    font-family: 'Raleway', sans-serif;
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #606060;
+    position: relative;
+    margin-bottom: 30px;
+}
+
+.login .login-right .title:after {
+    content: "";
+    height: 2px;
+    width: 30px;
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #111832;
+}
+
+.login .login-right form input {
+    width: 100%;
+    display: block;
+    padding: 0 0 10px 15px;
+    border: none;
+    color: #606060;
+    border-bottom: 1px solid #bbbbbb;
+    font-size: 14px;
+    margin-bottom: 20px;
+    outline: none;
+}
+
+.login .login-right form input[type="submit"] {
+    color: white;
+    text-transform: uppercase;
+    background-color: #112142;
+    border-radius: 20px;
+    border: none;
+    font-weight: bold;
+    padding: 10px 40px;
+    width: unset;
+    display: inline-block;
+    margin-top: 40px;
+    cursor: pointer;
+}
+
+.login .login-right form input[type="submit"]:hover {
+    background-color: #111832;
+    transition: all 0.2s ease-in-out;
+}
+
+.login .register {
+    color: #606060;
+    font-size: 12px;
+}
+
+.login .register a {
+    text-decoration: none;
+    text-decoration: underline;
+    font-weight: bold;
+    color: #267dff;
+    font-size: 12px;
+    display: block;
+    margin-bottom: 6px;
+}
+
+.login .form {
+    position: relative;
+}
+
+.login .return-message {
+    position: absolute;
+    font-size: 12px;
+    width: 308px;
+    font-weight: bold;
+    color: #636363;
+    bottom: -29px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+@media(min-width: 768px) {
+    body {
+        background-color: #ebebed;
+    }
+
+    .login {
+        border-radius: 20px;
+        background-color: #ebebed;
+        display: flex;
+        align-items: stretch;
+        max-width: 760px;
+        margin: calc((100vh - 423px) / 2) auto;
+        -webkit-box-shadow: 2px 2px 52px 0px rgba(189,189,189,1);
+        -moz-box-shadow: 2px 2px 52px 0px rgba(189,189,189,1);
+        box-shadow: 2px 2px 52px 0px rgba(189,189,189,1);
+    }
+
+    .login .login-left {
+        border-radius: 20px 0 0 20px;
+        max-width: 25%;
+        padding: 40px 105px 0 50px;
+    }
+
+    .login .login-left h1 {
+        font-size: 24px;
+        margin: 0 0 10px;
+    }
+
+    .login .login-left p {
+        font-size: 14px;
+        margin: 0;
+    }
+
+    .login .login-right {
+        padding: 40px 0;
+        background-color: #ffffff;
+        width: 100%;
+        border-radius: 0 20px 20px 0;
+    }
+
+    .login .login-right form {
+        margin: 0 auto 30px;
+        max-width: 226px;
+    }
+
+    .login .login-right .title {
+        margin-top: 0;
+        font-size: 24px;
+        margin-bottom: 45px;
+    }
+
+    .login .login-right form input[type="submit"] {
+        margin-top: 20px;
+    }
+
+    .login .register a {
+        margin-bottom: 10px;
+    }
+}

@@ -1,0 +1,102 @@
+.dashboard {
+    display: flex;
+}
+
+.dashboard .menu-left {
+    background-color: #111832;
+    height: 100vh;
+    color: #ffffff;
+    min-width: 285px;
+}
+
+.dashboard .menu-left .logo {
+    font-family: 'Raleway';
+    padding: 20px 40px 20px 20px;
+    display: flex;
+    align-items: center;
+}
+
+.dashboard .menu-left .logo svg {
+    margin-right: 12px;
+}
+
+.dashboard .menu-left .logo p {
+    margin: 0;
+}
+
+.dashboard .menu-left .menu-content {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.dashboard .menu-left .menu-item {
+    display: flex;
+    padding: 20px;
+    cursor: pointer;
+    border-left: 5px solid transparent;
+    transition: all 0.1s ease-out;
+    box-sizing: border-box;
+}
+
+.dashboard .menu-left .menu-item.selected {
+    background-color: #112142;
+    border-left: 5px solid #678dec;
+}
+
+.dashboard .menu-left .menu-item:hover {
+    background-color: #112142;
+    transition: all 0.1s ease-in;
+}
+
+.dashboard .menu-left .menu-item svg  {
+    min-height: 20px;
+    min-width: 20px;
+    margin-right: 10px;
+}
+
+.dashboard .menu-left .menu-item p  {
+    margin-bottom: 0;
+}
+
+.dashboard .content-right {
+    width: 100%;
+    background-color: #f7f7f7;
+}
+
+.dashboard .content-right.students,
+.dashboard .content-right.companies,
+.dashboard .content-right.reports,
+.dashboard .content-right.mentors,
+.dashboard .content-right.internships {
+    display: none;
+}
+
+.dashboard .content-right .content-menu-top {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    background-color: #ffffff;
+    padding: 23px 10px;
+}
+
+.dashboard .content-right .content-menu-top .setup {
+    cursor: pointer;
+}
+
+.dashboard .content-right .content-menu-top a {
+    text-decoration: none;
+    color: #0b1126;
+    display: inline-block;
+    margin: 0 20px 0 30px;
+}
+
+.dashboard .content-right.home .content {
+    padding: 30px 20px;
+}
+
+.dashboard .content-right.home .title {
+    color: #0B1126;
+    font-weight: bold;
+    font-size: 24px;
+}

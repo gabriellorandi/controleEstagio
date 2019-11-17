@@ -1,22 +1,40 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
-<head>
-    <title>Login</title>
-</head>
-<body>
+    <head>
+        <link href="https://fonts.googleapis.com/css?family=Raleway:700|Roboto&display=swap" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="<c:url value="/resources/common.css" />">
+        <link rel="stylesheet" type="text/css" href="<c:url value="/resources/login.css" />">
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+        <title>Controle de Estágio - Login</title>
+    </head>
+    <body>
 
-    <h2>Controle Estagio</h2>
+        <div class="login">
+            <div class="login-left">
+                <h1 class="container">Controle de Estágio</h1>
+                <p class="container">Instituto Federal de Educação, Ciência e Tecnologia de São Paulo – IFSP </p>
+            </div>
+            <div class="login-right">
+                <p class="title">Login</p>
+                <div class="form">
+                    <form action="autentica"  class="container" method="post">
+                        <input type="text" name="login" placeholder="login"/>
+                        <input type="password" name="senha" placeholder="senha"/>
+                        <input type="submit" value="Entrar" />
+                    </form>
+                    <c:if test="${not empty mensagem}">
+                        <p class="return-message">${mensagem}</p>
+                    </c:if>
+                </div>
+                <div class="register">
+                    <p>Ainda não é cadastrado?</p>
+                    <a href=cadastrarAluno>Cadastrar Aluno</a>
+                    <a href=cadastrarEmpresa>Cadastrar Empresa</a>
+                </div>
+            </div>
+        </div>
 
-    <form action="autentica" method="post">
-        Login: <input type="text" name="login" /> <br />
-        Senha: <input type="password" name="senha" /> <br />
-        <input type="submit" value="Logar" />
-    </form> <br/>
-
-
-    <a href=cadastrarAluno>Cadastrar Aluno</a><br/>
-    <a href=cadastrarEmpresa>Cadastrar Empresa</a><br/>
-
-</body>
+    </body>
 </html>
