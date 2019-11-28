@@ -1,12 +1,10 @@
 package com.pw3.controleestagio.controller;
 
-import com.pw3.controleestagio.model.Administrador;
-import com.pw3.controleestagio.model.Aluno;
-import com.pw3.controleestagio.model.Empresa;
-import com.pw3.controleestagio.model.Usuario;
+import com.pw3.controleestagio.model.*;
 import com.pw3.controleestagio.repository.AdministradorRepository;
 import com.pw3.controleestagio.repository.AlunoRepository;
 import com.pw3.controleestagio.repository.EmpresaRepository;
+import com.pw3.controleestagio.repository.RelatorioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,20 +22,29 @@ public class AdministradorController {
     private final AdministradorRepository administradorRepository;
     private final AlunoRepository alunoRepository;
     private final EmpresaRepository empresaRepository;
+    private final RelatorioRepository relatorioRepository;
 
     @Autowired
-    public AdministradorController(AdministradorRepository administradorRepository, AlunoRepository alunoRepository, EmpresaRepository empresaRepository) {
+    public AdministradorController(AdministradorRepository administradorRepository, AlunoRepository alunoRepository, EmpresaRepository empresaRepository, RelatorioRepository relatorioRepository) {
         this.administradorRepository = administradorRepository;
         this.alunoRepository = alunoRepository;
         this.empresaRepository = empresaRepository;
+        this.relatorioRepository = relatorioRepository;
     }
 
     @RequestMapping("/iniciarPaginaAdmin")
-    public String iniciarPaginaAdmin(Model model){
+    public String iniciarPaginaAdmin(HttpSession session, Model model){
         List<Aluno> listaAlunos = alunoRepository.getAllValidar();
         List<Empresa> listaEmpresas = empresaRepository.getAllValidar();
+        List<Relatorio> listaRelatorios = relatorioRepository.getAllValidar();
         model.addAttribute("listaAlunos", listaAlunos);
         model.addAttribute("listaEmpresas", listaEmpresas);
+        model.addAttribute("listaRelatorios", listaRelatorios);
+
+        Usuario usuario = (Usuario) session.getAttribute("usuario");
+        if (usuario instanceof Administrador)
+            model.addAttribute("admin", usuario);
+
         return "paginaAdmin";
     }
 

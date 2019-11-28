@@ -57,21 +57,23 @@ public class EmpresaController {
     @Transactional
     @RequestMapping("/validar/{empresaId}")
     public String validarEmpresa(HttpSession session, @PathVariable int empresaId) {
-
         Usuario usuario = (Usuario) session.getAttribute("usuario");
-
         if(usuario.isAdmin()) {
-
             Empresa empresa = empresaRepository.get(empresaId);
-
             empresa.setValido(true);
-
             empresaRepository.add(empresa);
-
-            return "redirect:paginaAdmin";
         }
-
-        return "redirect:paginaAdmin";
+        return "redirect:/iniciarPaginaAdmin";
     }
 
+    @Transactional
+    @RequestMapping("/rejeitar/{empresaId}")
+    public String rejeitarEmpresa(HttpSession session, @PathVariable int empresaId){
+        Usuario usuario = (Usuario) session.getAttribute("usuario");
+        if(usuario.isAdmin()) {
+            Empresa empresa = empresaRepository.get(empresaId);
+            empresaRepository.remove(empresa);
+        }
+        return "redirect:/iniciarPaginaAdmin";
+    }
 }

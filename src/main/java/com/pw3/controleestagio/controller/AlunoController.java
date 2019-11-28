@@ -27,21 +27,24 @@ public class AlunoController {
     @Transactional
     @RequestMapping("/validar/{alunoId}")
     public String validarAluno(HttpSession session, @PathVariable int alunoId) {
-
         Usuario usuario = (Usuario) session.getAttribute("usuario");
-
         if(usuario.isAdmin()) {
-
             Aluno aluno = alunoRepository.get(alunoId);
-
             aluno.setValido(true);
-
             alunoRepository.add(aluno);
-
-            return "redirect:paginaAdmin";
         }
+        return "redirect:/iniciarPaginaAdmin";
+    }
 
-        return "redirect:paginaAdmin";
+    @Transactional
+    @RequestMapping("/rejeitar/{alunoId}")
+    public String rejeitarAluno(HttpSession session, @PathVariable int alunoId){
+        Usuario usuario = (Usuario) session.getAttribute("usuario");
+        if(usuario.isAdmin()) {
+            Aluno aluno = alunoRepository.get(alunoId);
+            alunoRepository.remove(aluno);
+        }
+        return "redirect:/iniciarPaginaAdmin";
     }
 
     @Transactional
