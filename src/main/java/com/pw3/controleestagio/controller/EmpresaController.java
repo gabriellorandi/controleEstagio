@@ -33,7 +33,7 @@ public class EmpresaController {
         }
 
         model.addAttribute("mensagem", "Cadastro realizado com sucesso. Aguarde até que o administrador valide o seu cadastro.");
-        return "login";
+        return "redirect:/";
     }
 
     @Transactional
@@ -68,10 +68,10 @@ public class EmpresaController {
 
             empresaRepository.add(empresa);
 
-            return "";
+            return "redirect:paginaAdmin";
         }
 
-        return "";
+        return "redirect:paginaAdmin";
     }
 
 }

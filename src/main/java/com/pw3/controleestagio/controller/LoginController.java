@@ -51,7 +51,7 @@ public class LoginController {
             session.setAttribute("usuario", usuariodb);
 
             if(usuariodb.isAdmin()) {
-                return "paginaAdmin";
+                return "redirect:administrador/iniciarPaginaAdmin";
             }
 
             if(usuariodb.isAluno()) {

@@ -54,6 +54,21 @@
                 </div>
             </div>
             <div class="content-right students">
+                <table border="1">
+                    <thead>Validação de Alunos</thead>
+                    <tr><th>Nome</th><th>Login</th><th>RA</th></tr>
+                    <c:forEach var="aluno" items="${listaAlunos}">
+                        <tr><td>${aluno.nome}</td><td>${aluno.login}</td><td>${aluno.ra}</td><td><a href="../aluno/validar/${aluno.id}">Validar</a></td></tr>
+                    </c:forEach>
+                </table>
+                <br>
+                <table border="1">
+                    <thead>Validação de Empresas</thead>
+                    <tr><th>Nome Fantasia</th><th>Login</th><th>Razão Social</th><th>CNPJ</th></tr>
+                    <c:forEach var="empresa" items="${listaEmpresas}">
+                        <tr><td>${empresa.nomeFantasia}</td><td>${empresa.login}</td><td>${empresa.razaoSocial}</td><td>${empresa.cnpj}</td><td><a href="../empresa/validar/${empresa.id}">Validar</a></td></tr>
+                    </c:forEach>
+                </table>
             </div>
             <div class="content-right companies">
             </div>

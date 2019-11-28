@@ -2,6 +2,7 @@ package com.pw3.controleestagio.repository;
 
 
 import com.pw3.controleestagio.model.Empresa;
+import com.pw3.controleestagio.model.Usuario;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -29,6 +30,11 @@ public class EmpresaRepository {
 
     public List<Empresa> getAll() {
         Query query = this.entityManager.createQuery("SELECT e FROM empresa e WHERE valido = TRUE ");
+        return query.getResultList();
+    }
+
+    public List<Empresa> getAllValidar(){
+        Query query = this.entityManager.createQuery("SELECT e FROM empresa e WHERE e.valido = false");
         return query.getResultList();
     }
 

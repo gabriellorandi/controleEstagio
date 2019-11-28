@@ -38,10 +38,10 @@ public class AlunoController {
 
             alunoRepository.add(aluno);
 
-            return "";
+            return "redirect:paginaAdmin";
         }
 
-        return "";
+        return "redirect:paginaAdmin";
     }
 
     @Transactional
@@ -55,7 +55,7 @@ public class AlunoController {
         }
 
         model.addAttribute("mensagem", "Cadastro realizado com sucesso. Aguarde até que o administrador valide o seu cadastro.");
-        return "login";
+        return "redirect:/";
     }
 
     @Transactional

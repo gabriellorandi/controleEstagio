@@ -2,11 +2,13 @@ package com.pw3.controleestagio.repository;
 
 
 import com.pw3.controleestagio.model.Aluno;
+import com.pw3.controleestagio.model.Usuario;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 import java.util.List;
 
 @Repository
@@ -32,4 +34,8 @@ public class AlunoRepository {
         return query.getResultList();
     }
 
+    public List<Aluno> getAllValidar(){
+        Query query = this.entityManager.createQuery("SELECT a FROM aluno a WHERE a.valido = false");
+        return query.getResultList();
+    }
 }
