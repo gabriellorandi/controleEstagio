@@ -8,9 +8,10 @@
 
     <h2>Pagina do Aluno</h2><br/>
 
-    <form>
+    <form method="post" action="relatorio/cadastrar">
         <h4>Relatório de estágio</h4>
-        Descrição do relatório<textarea rows="10" cols="40"></textarea>
+        Descrição do relatório<textarea rows="10" cols="40" name="descricao"></textarea>
+        <input type="submit" value="Enviar"/>
     </form>
 
 </body>
