@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpSession;
@@ -33,4 +34,26 @@ public class RelatorioController {
         return "paginaAluno";
     }
 
+    @Transactional
+    @RequestMapping("/validar/{relatorioId}")
+    public String validarRelatorio(HttpSession session, @PathVariable int relatorioId){
+        Usuario usuario = (Usuario) session.getAttribute("usuario");
+        if (usuario.isAdmin()){
+            Relatorio relatorio = relatorioRepository.get(relatorioId);
+            relatorio.setValido(true);
+            relatorioRepository.add(relatorio);
+        }
+        return "redirect:/administrador/iniciarPaginaAdmin";
+    }
+
+    @Transactional
+    @RequestMapping("/rejeitar/{relatorioId}")
+    public String rejeitarRelatorio(HttpSession session, @PathVariable int relatorioId){
+        Usuario usuario = (Usuario) session.getAttribute("usuario");
+        if (usuario.isAdmin()){
+            Relatorio relatorio = relatorioRepository.get(relatorioId);
+            relatorioRepository.remove(relatorio);
+        }
+        return "redirect:/administrador/iniciarPaginaAdmin";
+    }
 }

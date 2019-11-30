@@ -26,6 +26,11 @@ public class RelatorioRepository {
         return this.entityManager.find(Relatorio.class, id);
     }
 
+    public List<Relatorio> getAll(){
+        Query query = this.entityManager.createQuery("SELECT r FROM Relatorio r WHERE r.valido = true");
+        return query.getResultList();
+    }
+
     public List<Relatorio> getAllValidar() {
         Query query = this.entityManager.createQuery("SELECT r FROM Relatorio r WHERE r.valido = false");
         return query.getResultList();

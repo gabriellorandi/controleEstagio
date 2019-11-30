@@ -34,9 +34,16 @@ public class AdministradorController {
 
     @RequestMapping("/iniciarPaginaAdmin")
     public String iniciarPaginaAdmin(HttpSession session, Model model){
-        List<Aluno> listaAlunos = alunoRepository.getAllValidar();
-        List<Empresa> listaEmpresas = empresaRepository.getAllValidar();
-        List<Relatorio> listaRelatorios = relatorioRepository.getAllValidar();
+        List<Aluno> listaAlunosValidar = alunoRepository.getAllValidar();
+        List<Empresa> listaEmpresasValidar = empresaRepository.getAllValidar();
+        List<Relatorio> listaRelatoriosValidar = relatorioRepository.getAllValidar();
+        model.addAttribute("listaAlunosValidar", listaAlunosValidar);
+        model.addAttribute("listaEmpresasValidar", listaEmpresasValidar);
+        model.addAttribute("listaRelatoriosValidar", listaRelatoriosValidar);
+
+        List<Aluno> listaAlunos = alunoRepository.getAll();
+        List<Empresa> listaEmpresas = empresaRepository.getAll();
+        List<Relatorio> listaRelatorios = relatorioRepository.getAll();
         model.addAttribute("listaAlunos", listaAlunos);
         model.addAttribute("listaEmpresas", listaEmpresas);
         model.addAttribute("listaRelatorios", listaRelatorios);
