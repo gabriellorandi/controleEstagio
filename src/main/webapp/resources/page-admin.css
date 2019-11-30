@@ -7,6 +7,7 @@
     height: 100vh;
     color: #ffffff;
     min-width: 285px;
+    position: fixed;
 }
 
 .dashboard .menu-left .logo {
@@ -60,8 +61,9 @@
 }
 
 .dashboard .content-right {
-    width: 100%;
     background-color: #f7f7f7;
+    width: calc(100% - 285px);
+    padding-left: 285px;
 }
 
 .dashboard .content-right.students,
@@ -78,6 +80,11 @@
     justify-content: flex-end;
     background-color: #ffffff;
     padding: 23px 10px;
+    width: calc(100% - 285px);
+    position: fixed;
+    -webkit-box-shadow: 2px 2px 52px 0px #bdbdbd45;
+    -moz-box-shadow: 2px 2px 52px 0px #bdbdbd45;
+    box-shadow: 2px 2px 52px 0px #bdbdbd45;
 }
 
 .dashboard .content-right .content-menu-top .setup {
@@ -91,12 +98,62 @@
     margin: 0 20px 0 30px;
 }
 
-.dashboard .content-right.home .content {
-    padding: 30px 20px;
+.dashboard .content-right .content {
+    padding: 86px 20px 30px;
 }
 
 .dashboard .content-right.home .title {
     color: #0B1126;
     font-weight: bold;
     font-size: 24px;
+}
+
+/* Students */
+
+.dashboard .students-list-wrapper {
+    padding: 30px;
+}
+
+.dashboard .students-list-wrapper .title {
+    font-size: 18px;
+    color: #0B1126;
+}
+
+.dashboard .list {
+    width: 100%;
+    background-color: #ffffff;
+}
+
+.dashboard .list tr {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #717c8e66;
+    padding: 19px 20px;
+}
+
+.dashboard .list tr:last-child {
+    border-bottom: none;
+}
+
+.dashboard .list tr th {
+    text-transform: uppercase;
+    font-weight: bold;
+    color: #717c8e;
+    font-size: 16px;
+}
+
+.dashboard .list tr td {
+    color: #0B1126;
+}
+
+.dashboard .list tr td,
+.dashboard .list tr th {
+    width: 25%;
+    display: block;
+    text-align: left;
+}
+
+.dashboard .list .student-remove {
+    text-align: center;
+    border-left: 1px solid #717c8e66;
 }
