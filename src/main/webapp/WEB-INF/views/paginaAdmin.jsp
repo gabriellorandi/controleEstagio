@@ -56,28 +56,52 @@
             <div class="content-right students">
                 <table border="1">
                     <thead>Validação de Alunos</thead>
-                    <c:if test="${not empty listaAlunos}">
+                    <c:if test="${not empty listaAlunosValidar}">
                     <tr><th>Nome</th><th>Login</th><th>RA</th><th>Validar</th><th>Rejeitar</th></tr>
-                    <c:forEach var="aluno" items="${listaAlunos}">
+                    <c:forEach var="aluno" items="${listaAlunosValidar}">
                         <tr><td>${aluno.nome}</td><td>${aluno.login}</td><td>${aluno.ra}</td><td><a href="../aluno/validar/${aluno.id}">Validar</a></td><td><a href="../aluno/rejeitar/${aluno.id}">Rejeitar</a></td></tr>
                     </c:forEach>
                     </c:if>
-                    <c:if test="${empty listaAlunos}">
+                    <c:if test="${empty listaAlunosValidar}">
                         <p>Não há cadastro de alunos para validar</p>
+                    </c:if>
+                </table>
+                <table border="1">
+                    <thead>Alunos existentes</thead>
+                    <c:if test="${not empty listaAlunos}">
+                        <tr><th>Nome</th><th>Login</th><th>RA</th><th>Remover</th></tr>
+                        <c:forEach var="aluno" items="${listaAlunos}">
+                            <tr><td>${aluno.nome}</td><td>${aluno.login}</td><td>${aluno.ra}</td><td><a href="../aluno/rejeitar/${aluno.id}">Remover</a></td></tr>
+                        </c:forEach>
+                    </c:if>
+                    <c:if test="${empty listaAlunos}">
+                        <p>Não há alunos cadastrados</p>
                     </c:if>
                 </table>
             </div>
             <div class="content-right companies">
                 <table border="1">
                     <thead>Validação de Empresas</thead>
-                    <c:if test="${not empty listaEmpresas}">
+                    <c:if test="${not empty listaEmpresasValidar}">
                     <tr><th>Nome Fantasia</th><th>Login</th><th>Razão Social</th><th>CNPJ</th><th>Validar</th><th>Rejeitar</th></tr>
-                    <c:forEach var="empresa" items="${listaEmpresas}">
+                    <c:forEach var="empresa" items="${listaEmpresasValidar}">
                         <tr><td>${empresa.nomeFantasia}</td><td>${empresa.login}</td><td>${empresa.razaoSocial}</td><td>${empresa.cnpj}</td><td><a href="../empresa/validar/${empresa.id}">Validar</a></td><td><a href="../empresa/rejeitar/${empresa.id}">Rejeitar</a></td></tr>
                     </c:forEach>
                     </c:if>
-                    <c:if test="${empty listaEmpresas}">
+                    <c:if test="${empty listaEmpresasValidar}">
                         <p>Não há cadastro de empresas para validar</p>
+                    </c:if>
+                </table>
+                <table border="1">
+                    <thead>Empresas existentes</thead>
+                    <c:if test="${not empty listaEmpresas}">
+                        <tr><th>Nome Fantasia</th><th>Login</th><th>Razão Social</th><th>CNPJ</th><th>Remover</th></tr>
+                        <c:forEach var="empresa" items="${listaEmpresas}">
+                            <tr><td>${empresa.nomeFantasia}</td><td>${empresa.login}</td><td>${empresa.razaoSocial}</td><td>${empresa.cnpj}</td></td><td><a href="../empresa/rejeitar/${empresa.id}">Remover</a></td></tr>
+                        </c:forEach>
+                    </c:if>
+                    <c:if test="${empty listaEmpresas}">
+                        <p>Não há empresas cadastradas</p>
                     </c:if>
                 </table>
             </div>
@@ -86,14 +110,26 @@
             <div class="content-right reports">
                 <table border="1">
                     <thead>Validação de Relatórios de Estágio</thead>
-                    <c:if test="${not empty listaRelatorios}">
+                    <c:if test="${not empty listaRelatoriosValidar}">
                         <tr><th>Aluno</th><th>Descrição</th><th>Observações</th><th>Validar</th><th>Rejeitar</th></tr>
-                        <c:forEach var="relatorio" items="${listaRelatorios}">
+                        <c:forEach var="relatorio" items="${listaRelatoriosValidar}">
                             <tr><td>aluno tal</td><td>${relatorio.descricao}</td><td>${relatorio.observacoes}</td><td><a href="../relatorio/validar/${relatorio.id}">Validar</a></td><td><a href="../relatorio/rejeitar/${relatorio.id}">Rejeitar</a></td></tr>
                         </c:forEach>
                     </c:if>
-                    <c:if test="${empty listaRelatorios}">
+                    <c:if test="${empty listaRelatoriosValidar}">
                         <p>Não há relatórios para validar</p>
+                    </c:if>
+                </table>
+                <table border="1">
+                    <thead>Relatórios de Estágio existentes</thead>
+                    <c:if test="${not empty listaRelatorios}">
+                        <tr><th>Aluno</th><th>Descrição</th><th>Observações</th><th>Remover</th></tr>
+                        <c:forEach var="relatorio" items="${listaRelatorios}">
+                            <tr><td>aluno tal</td><td>${relatorio.descricao}</td><td>${relatorio.observacoes}</td></td><td><a href="../relatorio/rejeitar/${relatorio.id}">Remover</a></td></tr>
+                        </c:forEach>
+                    </c:if>
+                    <c:if test="${empty listaRelatorios}">
+                        <p>Não há relatórios cadastrados</p>
                     </c:if>
                 </table>
             </div>

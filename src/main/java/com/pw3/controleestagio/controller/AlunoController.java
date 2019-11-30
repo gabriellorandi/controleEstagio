@@ -33,7 +33,7 @@ public class AlunoController {
             aluno.setValido(true);
             alunoRepository.add(aluno);
         }
-        return "redirect:/iniciarPaginaAdmin";
+        return "redirect:/administrador/iniciarPaginaAdmin";
     }
 
     @Transactional
@@ -44,7 +44,7 @@ public class AlunoController {
             Aluno aluno = alunoRepository.get(alunoId);
             alunoRepository.remove(aluno);
         }
-        return "redirect:/iniciarPaginaAdmin";
+        return "redirect:/administrador/iniciarPaginaAdmin";
     }
 
     @Transactional
