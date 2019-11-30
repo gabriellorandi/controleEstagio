@@ -63,7 +63,7 @@ public class EmpresaController {
             empresa.setValido(true);
             empresaRepository.add(empresa);
         }
-        return "redirect:/iniciarPaginaAdmin";
+        return "redirect:/administrador/iniciarPaginaAdmin";
     }
 
     @Transactional
@@ -74,6 +74,6 @@ public class EmpresaController {
             Empresa empresa = empresaRepository.get(empresaId);
             empresaRepository.remove(empresa);
         }
-        return "redirect:/iniciarPaginaAdmin";
+        return "redirect:/administrador/iniciarPaginaAdmin";
     }
 }

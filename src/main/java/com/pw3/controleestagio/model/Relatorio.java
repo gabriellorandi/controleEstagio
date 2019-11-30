@@ -1,8 +1,6 @@
 package com.pw3.controleestagio.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Relatorio {
@@ -15,6 +13,10 @@ public class Relatorio {
 	private String observacoes;
 
 	private boolean valido = false;
+
+	@ManyToOne
+	@JoinColumn(name = "fk_estagio")
+	private Estagio estagio;
 
 	public int getId() {
 		return id;
@@ -46,5 +48,13 @@ public class Relatorio {
 
 	public void setValido(boolean valido) {
 		this.valido = valido;
+	}
+
+	public Estagio getEstagio() {
+		return estagio;
+	}
+
+	public void setEstagio(Estagio estagio) {
+		this.estagio = estagio;
 	}
 }
