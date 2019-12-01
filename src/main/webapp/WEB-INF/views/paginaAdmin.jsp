@@ -53,18 +53,44 @@
                 <div class="content">
                     <p class="title">Olá, ${admin.login}!</p>
                     <div class="home-dash">
-                        <p>Pendências</p>
-                        <div class="students-control">
-                            <p>Alunos</p>
-                            <c:if test="${not empty listaAlunosValidar}">
-                                <p>Você possui <strong>${fn:length(listaAlunosValidar)}</strong> cadastros de alunos para validar.</p>
-                                <div class="menu-item" id="students">
-                                    <p>Ver</p>
-                                </div>
-                            </c:if>
-                            <c:if test="${empty listaAlunosValidar}">
-                                <p>Não há cadastro de alunos para validar.</p>
-                            </c:if>
+                        <p class="home-dash-title">Pendências</p>
+                        <div class="home-dash-wrapper">
+                            <div class="home-dash-control">
+                                <p class="control-title">Alunos</p>
+                                <c:if test="${not empty listaAlunosValidar}">
+                                    <p>Você possui <strong>${fn:length(listaAlunosValidar)}</strong> cadastros de alunos para validar.</p>
+                                    <div class="menu-item" id="students-control">
+                                        <button>Ver</button>
+                                    </div>
+                                </c:if>
+                                <c:if test="${empty listaAlunosValidar}">
+                                    <p>Não há cadastro de alunos para validar.</p>
+                                </c:if>
+                            </div>
+                            <div class="home-dash-control">
+                                <p class="control-title">Empresas</p>
+                                <c:if test="${not empty listaEmpresasValidar}">
+                                    <p>Você possui <strong>${fn:length(listaEmpresasValidar)}</strong> cadastros de empresas para validar.</p>
+                                    <div class="menu-item" id="companies-control">
+                                        <button>Ver</button>
+                                    </div>
+                                </c:if>
+                                <c:if test="${empty listaEmpresasValidar}">
+                                    <p>Não há cadastro de empresas para validar.</p>
+                                </c:if>
+                            </div>
+                            <div class="home-dash-control">
+                                <p class="control-title">Relatórios de Estágio</p>
+                                <c:if test="${not empty listaRelatoriosValidar}">
+                                    <p>Você possui <strong>${fn:length(listaRelatoriosValidar)}</strong> relatórios de estágios para validar.</p>
+                                    <div class="menu-item" id="reports-control">
+                                        <button>Ver</button>
+                                    </div>
+                                </c:if>
+                                <c:if test="${empty listaRelatoriosValidar}">
+                                    <p>Não há relatórios de estágios para validar.</p>
+                                </c:if>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -94,7 +120,7 @@
                                         <td>${aluno.login}</td>
                                         <td>${aluno.ra}</td>
                                         <td class="student-remove">
-                                            <a href="../aluno/alterar/${relatorio.id}"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="16px" height="16px" viewBox="0 0 528.899 528.899" style="enable-background:new 0 0 528.899 528.899;" xml:space="preserve"><path d="M328.883,89.125l107.59,107.589l-272.34,272.34L56.604,361.465L328.883,89.125z M518.113,63.177l-47.981-47.981   c-18.543-18.543-48.653-18.543-67.259,0l-45.961,45.961l107.59,107.59l53.611-53.611   C532.495,100.753,532.495,77.559,518.113,63.177z M0.3,512.69c-1.958,8.812,5.998,16.708,14.811,14.565l119.891-29.069   L27.473,390.597L0.3,512.69z" data-original="#000000" class="active-path" data-old_color="#000000" fill="#111832"/></svg></a>
+                                            <span class="edit" id="student-${aluno.id}"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="16px" height="16px" viewBox="0 0 528.899 528.899" style="enable-background:new 0 0 528.899 528.899;" xml:space="preserve"><path d="M328.883,89.125l107.59,107.589l-272.34,272.34L56.604,361.465L328.883,89.125z M518.113,63.177l-47.981-47.981   c-18.543-18.543-48.653-18.543-67.259,0l-45.961,45.961l107.59,107.59l53.611-53.611   C532.495,100.753,532.495,77.559,518.113,63.177z M0.3,512.69c-1.958,8.812,5.998,16.708,14.811,14.565l119.891-29.069   L27.473,390.597L0.3,512.69z" data-original="#000000" class="active-path" data-old_color="#000000" fill="#111832"/></svg></span>
                                         </td>
                                         <td class="student-remove">
                                             <a href="../aluno/rejeitar/${aluno.id}"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="16px" height="16px" viewBox="0 0 459 459" style="enable-background:new 0 0 459 459;" xml:space="preserve"><path d="M76.5,408c0,28.05,22.95,51,51,51h204c28.05,0,51-22.95,51-51V102h-306V408z M408,25.5h-89.25L293.25,0h-127.5l-25.5,25.5    H51v51h357V25.5z" data-original="#000000" class="active-path" data-old_color="#000000" fill="#C5C8CD"/></svg></a>
@@ -166,7 +192,7 @@
                                         <td>${empresa.razaoSocial}</td>
                                         <td>${empresa.cnpj}</td></td>
                                         <td class="student-remove">
-                                            <a href="../empresa/alterar/${relatorio.id}"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="16px" height="16px" viewBox="0 0 528.899 528.899" style="enable-background:new 0 0 528.899 528.899;" xml:space="preserve"><path d="M328.883,89.125l107.59,107.589l-272.34,272.34L56.604,361.465L328.883,89.125z M518.113,63.177l-47.981-47.981   c-18.543-18.543-48.653-18.543-67.259,0l-45.961,45.961l107.59,107.59l53.611-53.611   C532.495,100.753,532.495,77.559,518.113,63.177z M0.3,512.69c-1.958,8.812,5.998,16.708,14.811,14.565l119.891-29.069   L27.473,390.597L0.3,512.69z" data-original="#000000" class="active-path" data-old_color="#000000" fill="#111832"/></svg></a>
+                                            <span class="edit" id="company-${empresa.id}"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="16px" height="16px" viewBox="0 0 528.899 528.899" style="enable-background:new 0 0 528.899 528.899;" xml:space="preserve"><path d="M328.883,89.125l107.59,107.589l-272.34,272.34L56.604,361.465L328.883,89.125z M518.113,63.177l-47.981-47.981   c-18.543-18.543-48.653-18.543-67.259,0l-45.961,45.961l107.59,107.59l53.611-53.611   C532.495,100.753,532.495,77.559,518.113,63.177z M0.3,512.69c-1.958,8.812,5.998,16.708,14.811,14.565l119.891-29.069   L27.473,390.597L0.3,512.69z" data-original="#000000" class="active-path" data-old_color="#000000" fill="#111832"/></svg></span>
                                         </td>
                                         <td class="student-remove">
                                             <a href="../empresa/rejeitar/${empresa.id}"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="16px" height="16px" viewBox="0 0 459 459" style="enable-background:new 0 0 459 459;" xml:space="preserve"><path d="M76.5,408c0,28.05,22.95,51,51,51h204c28.05,0,51-22.95,51-51V102h-306V408z M408,25.5h-89.25L293.25,0h-127.5l-25.5,25.5    H51v51h357V25.5z" data-original="#000000" class="active-path" data-old_color="#000000" fill="#C5C8CD"/></svg></a>
@@ -252,6 +278,40 @@
                             <input type="submit" name="" value="Cadastrar">
                         </form>
                     </div>
+                    <div class="students-list-wrapper">
+                        <h2 class="title">Todos os Estágios em Andamento</h2>
+                        <table class="list">
+                            <c:if test="${not empty listaEstagios}">
+                                <tr>
+                                    <th>RA do Aluno</th>
+                                    <th>Duração</th>
+                                    <th>Descrição</th>
+                                    <th>Data de Início</th>
+                                    <th>Data de Término</th>
+                                    <th class="student-remove">Alterar</th>
+                                    <th class="student-remove">Remover</th>
+                                </tr>
+                                <c:forEach var="estagio" items="${listaEstagios}">
+                                    <tr>
+                                        <td>${estagio.aluno}</td>
+                                        <td>${estagio.duracao}</td>
+                                        <td>${estagio.descricao}</td>
+                                        <td>${estagio.dataInicio}</td>
+                                        <td>${estagio.dataFim}</td>
+                                        <td class="student-remove">
+                                            <a href="../estagio/alterar/${estagio.id}"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="16px" height="16px" viewBox="0 0 528.899 528.899" style="enable-background:new 0 0 528.899 528.899;" xml:space="preserve"><path d="M328.883,89.125l107.59,107.589l-272.34,272.34L56.604,361.465L328.883,89.125z M518.113,63.177l-47.981-47.981   c-18.543-18.543-48.653-18.543-67.259,0l-45.961,45.961l107.59,107.59l53.611-53.611   C532.495,100.753,532.495,77.559,518.113,63.177z M0.3,512.69c-1.958,8.812,5.998,16.708,14.811,14.565l119.891-29.069   L27.473,390.597L0.3,512.69z" data-original="#000000" class="active-path" data-old_color="#000000" fill="#111832"/></svg></a>
+                                        </td>
+                                        <td class="student-remove">
+                                            <a href="../estagio/rejeitar/${estagio.id}"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="16px" height="16px" viewBox="0 0 459 459" style="enable-background:new 0 0 459 459;" xml:space="preserve"><path d="M76.5,408c0,28.05,22.95,51,51,51h204c28.05,0,51-22.95,51-51V102h-306V408z M408,25.5h-89.25L293.25,0h-127.5l-25.5,25.5    H51v51h357V25.5z" data-original="#000000" class="active-path" data-old_color="#000000" fill="#C5C8CD"/></svg></a>
+                                        </td>
+                                    </tr>
+                                </c:forEach>
+                            </c:if>
+                            <c:if test="${empty listaEstagios}">
+                                <p>Não há estágios em andamento.</p>
+                            </c:if>
+                        </table>
+                    </div>
                 </div>
             </div>
             <div class="content-right reports">
@@ -275,7 +335,7 @@
                                 </tr>
                                 <c:forEach var="relatorio" items="${listaRelatorios}">
                                     <tr>
-                                        <td>aluno tal</td>
+                                        <td>${relatorio.aluno.nome}</td>
                                         <td>${relatorio.descricao}</td>
                                         <td>${relatorio.observacoes}</td>
                                         <td class="student-remove">
@@ -335,7 +395,7 @@
                 <div class="content">
                     <div class="signup">
                         <h2>Cadastrar Supervisor</h2>
-                        <form action="../empresa/cadastrar">
+                        <form action="../supervisor/cadastrar">
                             <div class="form-field-flex">
                                 <div class="form-field">
                                     <label for="supervisor-nome">Nome</label>
@@ -347,9 +407,116 @@
                             <input type="submit" name="" value="Cadastrar">
                         </form>
                     </div>
+                    <div class="students-list-wrapper">
+                        <h2 class="title">Todos os Supervisores</h2>
+                        <table class="list">
+                            <c:if test="${not empty listaSupervisores}">
+                                <tr>
+                                    <th>Nome</th>
+                                    <th class="student-remove">Alterar</th>
+                                    <th class="student-remove">Remover</th>
+                                </tr>
+                                <c:forEach var="supervisor" items="${listaSupervisores}">
+                                    <tr>
+                                        <td>${supervisor.nome}</td>
+                                        <td class="student-remove">
+                                            <a href="../supervisor/alterar/${supervisor.id}"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="16px" height="16px" viewBox="0 0 528.899 528.899" style="enable-background:new 0 0 528.899 528.899;" xml:space="preserve"><path d="M328.883,89.125l107.59,107.589l-272.34,272.34L56.604,361.465L328.883,89.125z M518.113,63.177l-47.981-47.981   c-18.543-18.543-48.653-18.543-67.259,0l-45.961,45.961l107.59,107.59l53.611-53.611   C532.495,100.753,532.495,77.559,518.113,63.177z M0.3,512.69c-1.958,8.812,5.998,16.708,14.811,14.565l119.891-29.069   L27.473,390.597L0.3,512.69z" data-original="#000000" class="active-path" data-old_color="#000000" fill="#111832"/></svg></a>
+                                        </td>
+                                        <td class="student-remove">
+                                            <a href="../supervisor/rejeitar/${supervisor.id}"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="16px" height="16px" viewBox="0 0 459 459" style="enable-background:new 0 0 459 459;" xml:space="preserve"><path d="M76.5,408c0,28.05,22.95,51,51,51h204c28.05,0,51-22.95,51-51V102h-306V408z M408,25.5h-89.25L293.25,0h-127.5l-25.5,25.5    H51v51h357V25.5z" data-original="#000000" class="active-path" data-old_color="#000000" fill="#C5C8CD"/></svg></a>
+                                        </td>
+                                    </tr>
+                                </c:forEach>
+                            </c:if>
+                            <c:if test="${empty listaSupervisores}">
+                                <p>Não há supervisores cadastrados.</p>
+                            </c:if>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
+        <div class="modal" id="signup-admin">
+            <div class="modal-content">
+                <span class="close"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="16px" height="16px" viewBox="0 0 348.333 348.334" style="enable-background:new 0 0 348.333 348.334;" xml:space="preserve"><path d="M336.559,68.611L231.016,174.165l105.543,105.549c15.699,15.705,15.699,41.145,0,56.85   c-7.844,7.844-18.128,11.769-28.407,11.769c-10.296,0-20.581-3.919-28.419-11.769L174.167,231.003L68.609,336.563   c-7.843,7.844-18.128,11.769-28.416,11.769c-10.285,0-20.563-3.919-28.413-11.769c-15.699-15.698-15.699-41.139,0-56.85   l105.54-105.549L11.774,68.611c-15.699-15.699-15.699-41.145,0-56.844c15.696-15.687,41.127-15.687,56.829,0l105.563,105.554   L279.721,11.767c15.705-15.687,41.139-15.687,56.832,0C352.258,27.466,352.258,52.912,336.559,68.611z" data-original="#000000" class="active-path" data-old_color="#000000" fill="#000000"/></svg></span>
+                <h2 class="title">Cadastrar Administrador</h2>
+                <form action="../administrador/cadastrar" method="post">
+                    <div class="form-field-flex">
+                        <div class="form-field">
+                            <label for="admin-nome">Nome</label>
+                            <input type="text" name="nome" id="admin-nome"/>
+                        </div>
+                        <div class="form-field">
+                            <label for="admin-login">Login</label>
+                            <input type="text" name="login" id="admin-login"/>
+                        </div>
+                    </div>
+                    <div class="form-field-flex">
+                        <div class="form-field">
+                            <label for="admin-password">Senha</label>
+                            <input type="password" name="senha" id="admin-password"/>
+                        </div>
+                        <div class="form-field">
+                            <label for="admin-password-repeat">Repita a Senha</label>
+                            <input type="password" name="senhaRepetida" id="admin-password-repeat"/>
+                        </div>
+                    </div>
+                    <input type="submit" value="Cadastrar" />
+                </form>
+            </div>
+        </div>
+        <c:forEach var="aluno" items="${listaAlunos}">
+            <div class="modal" id="student-${aluno.id}modal">
+                <div class="modal-content">
+                    <span class="close"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="16px" height="16px" viewBox="0 0 348.333 348.334" style="enable-background:new 0 0 348.333 348.334;" xml:space="preserve"><path d="M336.559,68.611L231.016,174.165l105.543,105.549c15.699,15.705,15.699,41.145,0,56.85   c-7.844,7.844-18.128,11.769-28.407,11.769c-10.296,0-20.581-3.919-28.419-11.769L174.167,231.003L68.609,336.563   c-7.843,7.844-18.128,11.769-28.416,11.769c-10.285,0-20.563-3.919-28.413-11.769c-15.699-15.698-15.699-41.139,0-56.85   l105.54-105.549L11.774,68.611c-15.699-15.699-15.699-41.145,0-56.844c15.696-15.687,41.127-15.687,56.829,0l105.563,105.554   L279.721,11.767c15.705-15.687,41.139-15.687,56.832,0C352.258,27.466,352.258,52.912,336.559,68.611z" data-original="#000000" class="active-path" data-old_color="#000000" fill="#000000"/></svg></span>
+                    <h2 class="title">Aluno: ${aluno.ra}</h2>
+                    <form action="../aluno/alterar/${aluno.id}" method="post">
+                        <div class="form-field-flex">
+                            <div class="form-field">
+                                <label for="student-nome${aluno.id}">Nome</label>
+                                <input type="text" value="${aluno.nome}" name="nome" id="student-nome${aluno.id}"/>
+                            </div>
+                            <div class="form-field">
+                                <label for="student-login${aluno.id}">Login</label>
+                                <input type="text" value="${aluno.login}" name="login" id="student-login${aluno.id}"/>
+                            </div>
+                        </div>
+                        <input type="submit" value="Alterar" />
+                    </form>
+                </div>
+            </div>
+        </c:forEach>
+        <c:forEach var="empresa" items="${listaEmpresas}">
+            <div class="modal" id="company-${empresa.id}modal">
+                <div class="modal-content">
+                    <span class="close"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="16px" height="16px" viewBox="0 0 348.333 348.334" style="enable-background:new 0 0 348.333 348.334;" xml:space="preserve"><path d="M336.559,68.611L231.016,174.165l105.543,105.549c15.699,15.705,15.699,41.145,0,56.85   c-7.844,7.844-18.128,11.769-28.407,11.769c-10.296,0-20.581-3.919-28.419-11.769L174.167,231.003L68.609,336.563   c-7.843,7.844-18.128,11.769-28.416,11.769c-10.285,0-20.563-3.919-28.413-11.769c-15.699-15.698-15.699-41.139,0-56.85   l105.54-105.549L11.774,68.611c-15.699-15.699-15.699-41.145,0-56.844c15.696-15.687,41.127-15.687,56.829,0l105.563,105.554   L279.721,11.767c15.705-15.687,41.139-15.687,56.832,0C352.258,27.466,352.258,52.912,336.559,68.611z" data-original="#000000" class="active-path" data-old_color="#000000" fill="#000000"/></svg></span>
+                    <h2 class="title">Empresa: ${empresa.nomeFantasia}</h2>
+                    <form action="../empresa/alterar/${empresa.id}" method="post">
+                        <div class="form-field-flex">
+                            <div class="form-field">
+                                <label for="company-nome${empresa.id}">Nome Fantasia</label>
+                                <input type="text" value="${empresa.nomeFantasia}" name="nomeFantasia" id="company-nome${empresa.id}"/>
+                            </div>
+                            <div class="form-field">
+                                <label for="company-login${empresa.id}">Login</label>
+                                <input type="text" value="${empresa.login}" name="login" id="company-login${empresa.id}"/>
+                            </div>
+                        </div>
+                        <div class="form-field-flex">
+                            <div class="form-field">
+                                <label for="company-razao${empresa.id}">Razão Social</label>
+                                <input type="text" value="${empresa.razaoSocial}" name="razaoSocial" id="company-razao${empresa.id}"/>
+                            </div>
+                            <div class="form-field">
+                                <label for="company-cnpj${empresa.id}">CNPJ</label>
+                                <input type="text" value="${empresa.cnpj}" name="razao" id="company-cnpj${empresa.id}"/>
+                            </div>
+                        </div>
+                        <input type="submit" value="Alterar" />
+                    </form>
+                </div>
+            </div>
+        </c:forEach>
         <script src="<c:url value="/resources/inc/pages-dashboard.js" />"></script>
     </body>
 </html>

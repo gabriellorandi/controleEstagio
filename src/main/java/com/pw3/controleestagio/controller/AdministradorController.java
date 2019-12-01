@@ -1,10 +1,7 @@
 package com.pw3.controleestagio.controller;
 
 import com.pw3.controleestagio.model.*;
-import com.pw3.controleestagio.repository.AdministradorRepository;
-import com.pw3.controleestagio.repository.AlunoRepository;
-import com.pw3.controleestagio.repository.EmpresaRepository;
-import com.pw3.controleestagio.repository.RelatorioRepository;
+import com.pw3.controleestagio.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,13 +20,15 @@ public class AdministradorController {
     private final AlunoRepository alunoRepository;
     private final EmpresaRepository empresaRepository;
     private final RelatorioRepository relatorioRepository;
+    private final SupervisorRepository supervisorRepository;
 
     @Autowired
-    public AdministradorController(AdministradorRepository administradorRepository, AlunoRepository alunoRepository, EmpresaRepository empresaRepository, RelatorioRepository relatorioRepository) {
+    public AdministradorController(AdministradorRepository administradorRepository, AlunoRepository alunoRepository, EmpresaRepository empresaRepository, RelatorioRepository relatorioRepository, SupervisorRepository supervisorRepository) {
         this.administradorRepository = administradorRepository;
         this.alunoRepository = alunoRepository;
         this.empresaRepository = empresaRepository;
         this.relatorioRepository = relatorioRepository;
+        this.supervisorRepository = supervisorRepository;
     }
 
     @RequestMapping("/iniciarPaginaAdmin")
@@ -44,9 +43,11 @@ public class AdministradorController {
         List<Aluno> listaAlunos = alunoRepository.getAll();
         List<Empresa> listaEmpresas = empresaRepository.getAll();
         List<Relatorio> listaRelatorios = relatorioRepository.getAll();
+        List<Supervisor> listaSupervisores = supervisorRepository.getAll();
         model.addAttribute("listaAlunos", listaAlunos);
         model.addAttribute("listaEmpresas", listaEmpresas);
         model.addAttribute("listaRelatorios", listaRelatorios);
+        model.addAttribute("listaSupervisores", listaSupervisores);
 
         Usuario usuario = (Usuario) session.getAttribute("usuario");
         if (usuario instanceof Administrador)
