@@ -57,6 +57,8 @@ if(document.querySelector("#reports-control")) {
         document.querySelector(".reports").style.display = "block";
     });
 }
+
+
 //Modal - Cadastrar Admin
 document.querySelectorAll(".setup").forEach(function (value) {
     value.addEventListener("click", function () {
@@ -64,14 +66,30 @@ document.querySelectorAll(".setup").forEach(function (value) {
     })
 });
 
+//Modal
+document.querySelectorAll(".edit").forEach(function (value) {
+    value.addEventListener("click", function () {
+        if (value.id.includes("student")){
+            document.querySelector("#" + value.id + "modal").style.display = "block";
+        }
+        else if (value.id.includes("company")){
+            document.querySelector("#" + value.id + "modal").style.display = "block";
+        }
+    })
+});
+
 document.querySelectorAll(".close").forEach(function (value) {
     value.addEventListener("click",function (evt) {
-        document.querySelector("#signup-admin").style.display = "none";
+        document.querySelectorAll(".modal").forEach(function (value1) {
+            value1.style.display = "none";
+        })
     })
 });
 
 window.onclick = function(event) {
-    if (event.target == document.querySelector("#signup-admin")) {
-        document.querySelector("#signup-admin").style.display = "none";
-    }
-}
+    document.querySelectorAll(".modal").forEach(function (value) {
+        if (event.target === value) {
+            value.style.display = "none";
+        }
+    });
+};
