@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
     <head>
@@ -51,6 +52,21 @@
                 </div>
                 <div class="content">
                     <p class="title">Olá, ${admin.login}!</p>
+                    <div class="home-dash">
+                        <p>Pendências</p>
+                        <div class="students-control">
+                            <p>Alunos</p>
+                            <c:if test="${not empty listaAlunosValidar}">
+                                <p>Você possui <strong>${fn:length(listaAlunosValidar)}</strong> cadastros de alunos para validar.</p>
+                                <div class="menu-item" id="students">
+                                    <p>Ver</p>
+                                </div>
+                            </c:if>
+                            <c:if test="${empty listaAlunosValidar}">
+                                <p>Não há cadastro de alunos para validar.</p>
+                            </c:if>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="content-right students">
@@ -69,6 +85,7 @@
                                     <th>Nome</th>
                                     <th>Login</th>
                                     <th>RA</th>
+                                    <th class="student-remove">Alterar</th>
                                     <th class="student-remove">Remover</th>
                                 </tr>
                                 <c:forEach var="aluno" items="${listaAlunos}">
@@ -76,6 +93,9 @@
                                         <td>${aluno.nome}</td>
                                         <td>${aluno.login}</td>
                                         <td>${aluno.ra}</td>
+                                        <td class="student-remove">
+                                            <a href="../aluno/alterar/${relatorio.id}"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="16px" height="16px" viewBox="0 0 528.899 528.899" style="enable-background:new 0 0 528.899 528.899;" xml:space="preserve"><path d="M328.883,89.125l107.59,107.589l-272.34,272.34L56.604,361.465L328.883,89.125z M518.113,63.177l-47.981-47.981   c-18.543-18.543-48.653-18.543-67.259,0l-45.961,45.961l107.59,107.59l53.611-53.611   C532.495,100.753,532.495,77.559,518.113,63.177z M0.3,512.69c-1.958,8.812,5.998,16.708,14.811,14.565l119.891-29.069   L27.473,390.597L0.3,512.69z" data-original="#000000" class="active-path" data-old_color="#000000" fill="#111832"/></svg></a>
+                                        </td>
                                         <td class="student-remove">
                                             <a href="../aluno/rejeitar/${aluno.id}"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="16px" height="16px" viewBox="0 0 459 459" style="enable-background:new 0 0 459 459;" xml:space="preserve"><path d="M76.5,408c0,28.05,22.95,51,51,51h204c28.05,0,51-22.95,51-51V102h-306V408z M408,25.5h-89.25L293.25,0h-127.5l-25.5,25.5    H51v51h357V25.5z" data-original="#000000" class="active-path" data-old_color="#000000" fill="#C5C8CD"/></svg></a>
                                         </td>
@@ -136,6 +156,7 @@
                                     <th>Login</th>
                                     <th>Razão Social</th>
                                     <th>CNPJ</th>
+                                    <th class="student-remove">Alterar</th>
                                     <th class="student-remove">Remover</th>
                                 </tr>
                                 <c:forEach var="empresa" items="${listaEmpresas}">
@@ -144,6 +165,9 @@
                                         <td>${empresa.login}</td>
                                         <td>${empresa.razaoSocial}</td>
                                         <td>${empresa.cnpj}</td></td>
+                                        <td class="student-remove">
+                                            <a href="../empresa/alterar/${relatorio.id}"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="16px" height="16px" viewBox="0 0 528.899 528.899" style="enable-background:new 0 0 528.899 528.899;" xml:space="preserve"><path d="M328.883,89.125l107.59,107.589l-272.34,272.34L56.604,361.465L328.883,89.125z M518.113,63.177l-47.981-47.981   c-18.543-18.543-48.653-18.543-67.259,0l-45.961,45.961l107.59,107.59l53.611-53.611   C532.495,100.753,532.495,77.559,518.113,63.177z M0.3,512.69c-1.958,8.812,5.998,16.708,14.811,14.565l119.891-29.069   L27.473,390.597L0.3,512.69z" data-original="#000000" class="active-path" data-old_color="#000000" fill="#111832"/></svg></a>
+                                        </td>
                                         <td class="student-remove">
                                             <a href="../empresa/rejeitar/${empresa.id}"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="16px" height="16px" viewBox="0 0 459 459" style="enable-background:new 0 0 459 459;" xml:space="preserve"><path d="M76.5,408c0,28.05,22.95,51,51,51h204c28.05,0,51-22.95,51-51V102h-306V408z M408,25.5h-89.25L293.25,0h-127.5l-25.5,25.5    H51v51h357V25.5z" data-original="#000000" class="active-path" data-old_color="#000000" fill="#C5C8CD"/></svg></a>
                                         </td>
@@ -197,6 +221,38 @@
                     </div>
                     <a href="${pageContext.request.contextPath}/"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve" width="20px" height="20px"><path d="M510.371,226.513c-1.088-2.603-2.645-4.971-4.629-6.955l-63.979-63.979c-8.341-8.32-21.824-8.32-30.165,0     c-8.341,8.341-8.341,21.845,0,30.165l27.584,27.584H320.013c-11.797,0-21.333,9.557-21.333,21.333s9.536,21.333,21.333,21.333     h119.168l-27.584,27.584c-8.341,8.341-8.341,21.845,0,30.165c4.16,4.181,9.621,6.251,15.083,6.251s10.923-2.069,15.083-6.251     l63.979-63.979c1.984-1.963,3.541-4.331,4.629-6.955C512.525,237.606,512.525,231.718,510.371,226.513z" data-original="#000000" class="active-path" data-old_color="#000000" fill="#0B1126"/><path d="M362.68,298.667c-11.797,0-21.333,9.557-21.333,21.333v106.667h-85.333V85.333c0-9.408-6.187-17.728-15.211-20.437     l-74.091-22.229h174.635v106.667c0,11.776,9.536,21.333,21.333,21.333s21.333-9.557,21.333-21.333v-128     C384.013,9.557,374.477,0,362.68,0H21.347c-0.768,0-1.451,0.32-2.197,0.405c-1.003,0.107-1.92,0.277-2.88,0.512     c-2.24,0.576-4.267,1.451-6.165,2.645c-0.469,0.299-1.045,0.32-1.493,0.661C8.44,4.352,8.376,4.587,8.205,4.715     C5.88,6.549,3.939,8.789,2.531,11.456c-0.299,0.576-0.363,1.195-0.597,1.792c-0.683,1.621-1.429,3.2-1.685,4.992     c-0.107,0.64,0.085,1.237,0.064,1.856c-0.021,0.427-0.299,0.811-0.299,1.237V448c0,10.176,7.189,18.923,17.152,20.907     l213.333,42.667c1.387,0.299,2.795,0.427,4.181,0.427c4.885,0,9.685-1.685,13.525-4.843c4.928-4.053,7.808-10.091,7.808-16.491     v-21.333H362.68c11.797,0,21.333-9.557,21.333-21.333V320C384.013,308.224,374.477,298.667,362.68,298.667z" data-original="#000000" class="active-path" data-old_color="#000000" fill="#0B1126"/></svg></a>
                 </div>
+                <div class="content">
+                    <div class="signup">
+                        <h2>Cadastrar Estágio</h2>
+                        <form action="">
+                            <div class="form-field-flex">
+                                <div class="form-field">
+                                    <label for="aluno">RA do Aluno</label>
+                                    <input type="text" name="aluno"  id="aluno">
+                                </div>
+                                <div class="form-field">
+                                    <label for="duracao">Duração</label>
+                                    <input type="text" name="duracao" id="duracao">
+                                </div>
+                            </div>
+                            <div class="form-field">
+                                <label for="descricao-estagio">Descrição</label>
+                                <textarea name="descricao" id="descricao-estagio"></textarea>
+                            </div>
+                            <div class="form-field-flex">
+                                <div class="form-field">
+                                    <label for="data-inicio">Data Início</label>
+                                    <input type="date" name="inicio" id="data-inicio">
+                                </div>
+                                <div class="form-field">
+                                    <label for="data-termino">Data Término</label>
+                                    <input type="date" name="termino" id="data-termino">
+                                </div>
+                            </div>
+                            <input type="submit" name="" value="Cadastrar">
+                        </form>
+                    </div>
+                </div>
             </div>
             <div class="content-right reports">
                 <div class="content-menu-top">
@@ -214,6 +270,7 @@
                                     <th>Aluno</th>
                                     <th>Descrição</th>
                                     <th>Observações</th>
+                                    <th class="student-remove">Alterar</th>
                                     <th class="student-remove">Remover</th>
                                 </tr>
                                 <c:forEach var="relatorio" items="${listaRelatorios}">
@@ -221,6 +278,9 @@
                                         <td>aluno tal</td>
                                         <td>${relatorio.descricao}</td>
                                         <td>${relatorio.observacoes}</td>
+                                        <td class="student-remove">
+                                            <a href="../relatorio/alterar/${relatorio.id}"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="16px" height="16px" viewBox="0 0 528.899 528.899" style="enable-background:new 0 0 528.899 528.899;" xml:space="preserve"><path d="M328.883,89.125l107.59,107.589l-272.34,272.34L56.604,361.465L328.883,89.125z M518.113,63.177l-47.981-47.981   c-18.543-18.543-48.653-18.543-67.259,0l-45.961,45.961l107.59,107.59l53.611-53.611   C532.495,100.753,532.495,77.559,518.113,63.177z M0.3,512.69c-1.958,8.812,5.998,16.708,14.811,14.565l119.891-29.069   L27.473,390.597L0.3,512.69z" data-original="#000000" class="active-path" data-old_color="#000000" fill="#111832"/></svg></a>
+                                        </td>
                                         <td class="student-remove">
                                             <a href="../relatorio/rejeitar/${relatorio.id}"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="16px" height="16px" viewBox="0 0 459 459" style="enable-background:new 0 0 459 459;" xml:space="preserve"><path d="M76.5,408c0,28.05,22.95,51,51,51h204c28.05,0,51-22.95,51-51V102h-306V408z M408,25.5h-89.25L293.25,0h-127.5l-25.5,25.5    H51v51h357V25.5z" data-original="#000000" class="active-path" data-old_color="#000000" fill="#C5C8CD"/></svg></a>
                                         </td>
@@ -271,6 +331,22 @@
                         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="20px" height="20px" viewBox="0 0 340.274 340.274" style="enable-background:new 0 0 340.274 340.274;" xml:space="preserve"><path d="M293.629,127.806l-5.795-13.739c19.846-44.856,18.53-46.189,14.676-50.08l-25.353-24.77l-2.516-2.12h-2.937     c-1.549,0-6.173,0-44.712,17.48l-14.184-5.719c-18.332-45.444-20.212-45.444-25.58-45.444h-35.765     c-5.362,0-7.446-0.006-24.448,45.606l-14.123,5.734C86.848,43.757,71.574,38.19,67.452,38.19l-3.381,0.105L36.801,65.032     c-4.138,3.891-5.582,5.263,15.402,49.425l-5.774,13.691C0,146.097,0,147.838,0,153.33v35.068c0,5.501,0,7.44,46.585,24.127     l5.773,13.667c-19.843,44.832-18.51,46.178-14.655,50.032l25.353,24.8l2.522,2.168h2.951c1.525,0,6.092,0,44.685-17.516     l14.159,5.758c18.335,45.438,20.218,45.427,25.598,45.427h35.771c5.47,0,7.41,0,24.463-45.589l14.195-5.74     c26.014,11,41.253,16.585,45.349,16.585l3.404-0.096l27.479-26.901c3.909-3.945,5.278-5.309-15.589-49.288l5.734-13.702     c46.496-17.967,46.496-19.853,46.496-25.221v-35.029C340.268,146.361,340.268,144.434,293.629,127.806z M170.128,228.474     c-32.798,0-59.504-26.187-59.504-58.364c0-32.153,26.707-58.315,59.504-58.315c32.78,0,59.43,26.168,59.43,58.315     C229.552,202.287,202.902,228.474,170.128,228.474z" data-original="#000000" class="active-path" data-old_color="#000000" fill="#0B1126"/></svg>
                     </div>
                     <a href="${pageContext.request.contextPath}/"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve" width="20px" height="20px"><path d="M510.371,226.513c-1.088-2.603-2.645-4.971-4.629-6.955l-63.979-63.979c-8.341-8.32-21.824-8.32-30.165,0     c-8.341,8.341-8.341,21.845,0,30.165l27.584,27.584H320.013c-11.797,0-21.333,9.557-21.333,21.333s9.536,21.333,21.333,21.333     h119.168l-27.584,27.584c-8.341,8.341-8.341,21.845,0,30.165c4.16,4.181,9.621,6.251,15.083,6.251s10.923-2.069,15.083-6.251     l63.979-63.979c1.984-1.963,3.541-4.331,4.629-6.955C512.525,237.606,512.525,231.718,510.371,226.513z" data-original="#000000" class="active-path" data-old_color="#000000" fill="#0B1126"/><path d="M362.68,298.667c-11.797,0-21.333,9.557-21.333,21.333v106.667h-85.333V85.333c0-9.408-6.187-17.728-15.211-20.437     l-74.091-22.229h174.635v106.667c0,11.776,9.536,21.333,21.333,21.333s21.333-9.557,21.333-21.333v-128     C384.013,9.557,374.477,0,362.68,0H21.347c-0.768,0-1.451,0.32-2.197,0.405c-1.003,0.107-1.92,0.277-2.88,0.512     c-2.24,0.576-4.267,1.451-6.165,2.645c-0.469,0.299-1.045,0.32-1.493,0.661C8.44,4.352,8.376,4.587,8.205,4.715     C5.88,6.549,3.939,8.789,2.531,11.456c-0.299,0.576-0.363,1.195-0.597,1.792c-0.683,1.621-1.429,3.2-1.685,4.992     c-0.107,0.64,0.085,1.237,0.064,1.856c-0.021,0.427-0.299,0.811-0.299,1.237V448c0,10.176,7.189,18.923,17.152,20.907     l213.333,42.667c1.387,0.299,2.795,0.427,4.181,0.427c4.885,0,9.685-1.685,13.525-4.843c4.928-4.053,7.808-10.091,7.808-16.491     v-21.333H362.68c11.797,0,21.333-9.557,21.333-21.333V320C384.013,308.224,374.477,298.667,362.68,298.667z" data-original="#000000" class="active-path" data-old_color="#000000" fill="#0B1126"/></svg></a>
+                </div>
+                <div class="content">
+                    <div class="signup">
+                        <h2>Cadastrar Supervisor</h2>
+                        <form action="../empresa/cadastrar">
+                            <div class="form-field-flex">
+                                <div class="form-field">
+                                    <label for="supervisor-nome">Nome</label>
+                                    <input type="text" name="nome"  id="supervisor-nome">
+                                </div>
+                                <div class="form-field-flex">
+                                </div>
+                            </div>
+                            <input type="submit" name="" value="Cadastrar">
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
