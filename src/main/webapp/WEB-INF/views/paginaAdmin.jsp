@@ -53,18 +53,44 @@
                 <div class="content">
                     <p class="title">Olá, ${admin.login}!</p>
                     <div class="home-dash">
-                        <p>Pendências</p>
-                        <div class="students-control">
-                            <p>Alunos</p>
-                            <c:if test="${not empty listaAlunosValidar}">
-                                <p>Você possui <strong>${fn:length(listaAlunosValidar)}</strong> cadastros de alunos para validar.</p>
-                                <div class="menu-item" id="students">
-                                    <p>Ver</p>
-                                </div>
-                            </c:if>
-                            <c:if test="${empty listaAlunosValidar}">
-                                <p>Não há cadastro de alunos para validar.</p>
-                            </c:if>
+                        <p class="home-dash-title">Pendências</p>
+                        <div class="home-dash-wrapper">
+                            <div class="home-dash-control">
+                                <p class="control-title">Alunos</p>
+                                <c:if test="${not empty listaAlunosValidar}">
+                                    <p>Você possui <strong>${fn:length(listaAlunosValidar)}</strong> cadastros de alunos para validar.</p>
+                                    <div class="menu-item" id="students-control">
+                                        <button>Ver</button>
+                                    </div>
+                                </c:if>
+                                <c:if test="${empty listaAlunosValidar}">
+                                    <p>Não há cadastro de alunos para validar.</p>
+                                </c:if>
+                            </div>
+                            <div class="home-dash-control">
+                                <p class="control-title">Empresas</p>
+                                <c:if test="${not empty listaEmpresasValidar}">
+                                    <p>Você possui <strong>${fn:length(listaEmpresasValidar)}</strong> cadastros de empresas para validar.</p>
+                                    <div class="menu-item" id="companies-control">
+                                        <button>Ver</button>
+                                    </div>
+                                </c:if>
+                                <c:if test="${empty listaEmpresasValidar}">
+                                    <p>Não há cadastro de empresas para validar.</p>
+                                </c:if>
+                            </div>
+                            <div class="home-dash-control">
+                                <p class="control-title">Relatórios de Estágio</p>
+                                <c:if test="${not empty listaRelatoriosValidar}">
+                                    <p>Você possui <strong>${fn:length(listaRelatoriosValidar)}</strong> relatórios de estágios para validar.</p>
+                                    <div class="menu-item" id="reports-control">
+                                        <button>Ver</button>
+                                    </div>
+                                </c:if>
+                                <c:if test="${empty listaRelatoriosValidar}">
+                                    <p>Não há relatórios de estágios para validar.</p>
+                                </c:if>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -335,7 +361,7 @@
                 <div class="content">
                     <div class="signup">
                         <h2>Cadastrar Supervisor</h2>
-                        <form action="../empresa/cadastrar">
+                        <form action="../supervisor/cadastrar">
                             <div class="form-field-flex">
                                 <div class="form-field">
                                     <label for="supervisor-nome">Nome</label>
@@ -346,6 +372,32 @@
                             </div>
                             <input type="submit" name="" value="Cadastrar">
                         </form>
+                    </div>
+                    <div class="students-list-wrapper">
+                        <h2 class="title">Todos os Supervisores</h2>
+                        <table class="list">
+                            <c:if test="${not empty listaSupervisores}">
+                                <tr>
+                                    <th>Nome</th>
+                                    <th class="student-remove">Alterar</th>
+                                    <th class="student-remove">Remover</th>
+                                </tr>
+                                <c:forEach var="supervisor" items="${listaSupervisores}">
+                                    <tr>
+                                        <td>${supervisor.nome}</td>
+                                        <td class="student-remove">
+                                            <a href="../supervisor/alterar/${supervisor.id}"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="16px" height="16px" viewBox="0 0 528.899 528.899" style="enable-background:new 0 0 528.899 528.899;" xml:space="preserve"><path d="M328.883,89.125l107.59,107.589l-272.34,272.34L56.604,361.465L328.883,89.125z M518.113,63.177l-47.981-47.981   c-18.543-18.543-48.653-18.543-67.259,0l-45.961,45.961l107.59,107.59l53.611-53.611   C532.495,100.753,532.495,77.559,518.113,63.177z M0.3,512.69c-1.958,8.812,5.998,16.708,14.811,14.565l119.891-29.069   L27.473,390.597L0.3,512.69z" data-original="#000000" class="active-path" data-old_color="#000000" fill="#111832"/></svg></a>
+                                        </td>
+                                        <td class="student-remove">
+                                            <a href="../supervisor/rejeitar/${supervisor.id}"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="16px" height="16px" viewBox="0 0 459 459" style="enable-background:new 0 0 459 459;" xml:space="preserve"><path d="M76.5,408c0,28.05,22.95,51,51,51h204c28.05,0,51-22.95,51-51V102h-306V408z M408,25.5h-89.25L293.25,0h-127.5l-25.5,25.5    H51v51h357V25.5z" data-original="#000000" class="active-path" data-old_color="#000000" fill="#C5C8CD"/></svg></a>
+                                        </td>
+                                    </tr>
+                                </c:forEach>
+                            </c:if>
+                            <c:if test="${empty listaSupervisores}">
+                                <p>Não há supervisores cadastrados.</p>
+                            </c:if>
+                        </table>
                     </div>
                 </div>
             </div>

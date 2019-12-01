@@ -89,6 +89,7 @@ body {
     -webkit-box-shadow: 2px 2px 52px 0px #bdbdbd45;
     -moz-box-shadow: 2px 2px 52px 0px #bdbdbd45;
     box-shadow: 2px 2px 52px 0px #bdbdbd45;
+    box-sizing: border-box;
 }
 
 .dashboard .content-right .content-menu-top .setup {
@@ -115,7 +116,7 @@ body {
 /* Students */
 
 .dashboard .students-list-wrapper {
-    padding: 30px;
+    padding: 30px 20px 30px;
 }
 
 .dashboard .students-list-wrapper .title {
@@ -177,11 +178,12 @@ body {
     -webkit-box-shadow: 2px 2px 52px 0px #bdbdbd45;
     -moz-box-shadow: 2px 2px 52px 0px #bdbdbd45;
     box-shadow: 2px 2px 52px 0px #bdbdbd45;
+    margin: 20px;
 }
 
 .dashboard .signup h2 {
     background-color: #112142;
-    padding: 10px 20px 20px;
+    padding: 20px;
     font-size: 18px;
     color: #ffffff;
     border-left: 5px solid #678dec;
@@ -245,4 +247,64 @@ body {
 
 .dashboard .signup .form-field {
     margin-bottom: 12px;
+}
+
+
+/*Home*/
+.dashboard .home-dash .home-dash-title {
+    background-color: #112142;
+    padding: 20px;
+    font-size: 18px;
+    color: #ffffff;
+    border-left: 5px solid #678dec;
+}
+
+.dashboard .home-dash .home-dash-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
+.dashboard .home-dash .home-dash-control {
+    background-color: #ffffff;
+    width: calc((100% - 30px) / 3);
+    min-width: 262px;
+    margin-right: 15px;
+    margin-bottom: 20px;
+    padding: 20px;
+    box-sizing: border-box;
+    border: 1px solid #bbbbbb40;
+}
+
+.dashboard .home-dash .home-dash-control:last-child {
+    margin-right: 0;
+}
+
+.dashboard .home-dash .home-dash-control .control-title {
+    color: #585d68;
+    font-weight: bold;
+    padding-bottom: 9px;
+    border-bottom: 1px solid #717c8e66;
+}
+
+.dashboard .home-dash .home-dash-control p strong {
+    color: #E57E46;
+}
+
+.dashboard .home-dash .home-dash-control button {
+    color: #ffffff;
+    text-transform: uppercase;
+    background-color: #112142;
+    border-radius: 20px;
+    border: none;
+    font-weight: bold;
+    padding: 10px 20px;
+    display: inline-block;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.dashboard .home-dash .home-dash-control button:hover {
+    background-color: #111832;
+    transition: all 0.3s ease-in-out;
 }
