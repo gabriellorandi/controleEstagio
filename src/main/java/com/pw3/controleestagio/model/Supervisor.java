@@ -6,19 +6,10 @@ import javax.persistence.*;
 public class Supervisor extends Usuario {
 	
 	private String nome;
-	private boolean valido = false;
 
 	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "aluno_id")
 	private Aluno aluno;
-
-	public boolean isValido() {
-		return valido;
-	}
-
-	public void setValido(boolean valido) {
-		this.valido = valido;
-	}
 
 	public String getNome() {
 		return nome;

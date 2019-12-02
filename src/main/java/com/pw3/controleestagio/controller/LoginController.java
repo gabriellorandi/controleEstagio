@@ -1,9 +1,7 @@
 package com.pw3.controleestagio.controller;
 
-import com.pw3.controleestagio.model.Aluno;
-import com.pw3.controleestagio.model.Empresa;
-import com.pw3.controleestagio.model.Supervisor;
-import com.pw3.controleestagio.model.Usuario;
+import com.pw3.controleestagio.model.*;
+import com.pw3.controleestagio.repository.AdministradorRepository;
 import com.pw3.controleestagio.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,14 +15,28 @@ import javax.servlet.http.HttpSession;
 public class LoginController {
 
     private final UsuarioRepository usuarioRepository;
+    private final AdministradorRepository administradorRepository;
 
     @Autowired
-    public LoginController(UsuarioRepository usuarioRepository) {
+    public LoginController(UsuarioRepository usuarioRepository, AdministradorRepository administradorRepository) {
         this.usuarioRepository = usuarioRepository;
+        this.administradorRepository = administradorRepository;
     }
 
     @RequestMapping("/")
+    @Transactional
     public String home() {
+
+        Usuario usuariodb = usuarioRepository.getByLoginAndSenha("admin", "1234");
+        if(usuariodb == null) {
+            Administrador admin = new Administrador();
+            admin.setNome("Administrador");
+            admin.setLogin("admin");
+            admin.setSenha("1234");
+
+            administradorRepository.add(admin);
+
+        }
 
         return "login";
 
@@ -50,26 +62,24 @@ public class LoginController {
 
             session.setAttribute("usuario", usuariodb);
 
-            if(usuariodb.isAdmin()) {
+            if(Usuario.isAdmin(usuariodb)) {
                 return "redirect:administrador/iniciarPaginaAdmin";
             }
 
-            if(usuariodb.isAluno()) {
+            if(Usuario.isAluno(usuariodb)) {
                 if(((Aluno) usuariodb).isValido()){
                     return "paginaAluno";
                 }
             }
 
-            if(usuariodb.isEmpresa()) {
+            if(Usuario.isEmpresa(usuariodb)) {
                 if(((Empresa) usuariodb).isValido()) {
                     return "paginaEmpresa";
                 }
             }
 
-            if (usuariodb.isSupervisor()){
-                if (((Supervisor) usuariodb).isValido()){
-                    return "paginaSupervisor";
-                }
+            if (Usuario.isSupervisor(usuariodb)){
+                return "paginaSupervisor";
             }
 
         }

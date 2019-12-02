@@ -33,6 +33,11 @@ public class AdministradorController {
 
     @RequestMapping("/iniciarPaginaAdmin")
     public String iniciarPaginaAdmin(HttpSession session, Model model){
+        Object usuario = session.getAttribute("usuario");
+        if(!Usuario.isAdmin(usuario)) {
+            return "acessoNegado";
+        }
+
         List<Aluno> listaAlunosValidar = alunoRepository.getAllValidar();
         List<Empresa> listaEmpresasValidar = empresaRepository.getAllValidar();
         List<Relatorio> listaRelatoriosValidar = relatorioRepository.getAllValidar();
@@ -49,7 +54,6 @@ public class AdministradorController {
         model.addAttribute("listaRelatorios", listaRelatorios);
         model.addAttribute("listaSupervisores", listaSupervisores);
 
-        Usuario usuario = (Usuario) session.getAttribute("usuario");
         if (usuario instanceof Administrador)
             model.addAttribute("admin", usuario);
 
@@ -58,12 +62,11 @@ public class AdministradorController {
 
     @RequestMapping("/cadastrarAdmin")
     public String cadastrarAdmin(HttpSession session) {
-        Usuario usuario = (Usuario) session.getAttribute("usuario");
-
-        if(usuario.isAdmin()) {
+        Object usuario = session.getAttribute("usuario");
+        if(Usuario.isAdmin(usuario)) {
             return "redirect:cadastrarAdministrador";
         }
-        return "redirect:login";
+        return "redirect:acessoNegado";
     }
 
     @Transactional

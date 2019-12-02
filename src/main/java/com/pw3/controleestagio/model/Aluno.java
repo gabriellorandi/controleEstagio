@@ -15,11 +15,11 @@ public class Aluno extends Usuario {
             mappedBy = "aluno")
 	private Curriculo curriculo; 
 	
-	@OneToOne(fetch = FetchType.LAZY)
+	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
     @JoinColumn(name = "estagio_id")
 	private Estagio estagio;
 
-	@OneToOne(fetch = FetchType.LAZY)
+	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
 	@JoinColumn(name = "supervisor_id")
 	private Supervisor supervisor;
 

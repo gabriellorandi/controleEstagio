@@ -11,11 +11,11 @@ public class Estagio extends VagaEstagio {
 	private ZonedDateTime dataFim;
 	private int duracao;
 	
-	@OneToMany(cascade = CascadeType.ALL )
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL )
 	private List<Relatorio> relatorios;
 	
 	@OneToOne(fetch = FetchType.EAGER,
-            mappedBy = "estagio")
+            mappedBy = "estagio", cascade = CascadeType.REFRESH)
 	private Aluno aluno;
 		
 	public ZonedDateTime getDataInicio() {

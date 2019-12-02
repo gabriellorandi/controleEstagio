@@ -25,14 +25,12 @@ public class CurriculoController {
     @RequestMapping("/cadastrar")
     public String cadastra(Curriculo curriculo, HttpSession session) {
 
-        Usuario usuario = (Usuario) session.getAttribute("usuario");
-
-        if(usuario.isAluno()) {
-
-            curriculoRepository.add(curriculo);
-
-            return "";
+        Object usuario = session.getAttribute("usuario");
+        if(!Usuario.isAluno(usuario)) {
+            return "redirect:acessoNegado";
         }
+
+        curriculoRepository.add(curriculo);
 
         return "";
     }

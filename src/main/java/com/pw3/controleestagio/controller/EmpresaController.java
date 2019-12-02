@@ -9,8 +9,11 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpSession;
+import java.lang.invoke.MethodType;
+import java.lang.reflect.Method;
 import java.util.List;
 
 @Controller
@@ -37,43 +40,62 @@ public class EmpresaController {
     }
 
     @Transactional
-    @RequestMapping("/listar")
-    public String getAll(HttpSession session, Model model) {
+    @RequestMapping(value = "/deletar/{empresaId}")
+    public String deletar(HttpSession session, @PathVariable int empresaId) {
 
-        Usuario usuario = (Usuario) session.getAttribute("usuario");
-
-        if(usuario.isAdmin()) {
-
-            List<Empresa> empresas = empresaRepository.getAll();
-
-            model.addAttribute("empresas", empresas);
-
-            return "";
+        Object usuario = session.getAttribute("usuario");
+        if(!Usuario.isAdmin(usuario)) {
+            return "redirect:acessoNegado";
         }
 
-        return "";
+        Empresa empresa = empresaRepository.get(empresaId);
+
+        empresaRepository.remove(empresa);
+
+        return "redirect:/administrador/iniciarPaginaAdmin";
+    }
+
+    @Transactional
+    @RequestMapping(value = "/alterar/{empresaId}", method = RequestMethod.POST)
+    public String alterar(HttpSession httpSession, Empresa empresa, @PathVariable int empresaId) {
+
+        Object usuario = httpSession.getAttribute("usuario");
+        if(!Usuario.isAdmin(usuario)) {
+            return "redirect:acessoNegado";
+        }
+
+        Empresa update = empresaRepository.get(empresaId);
+
+        update.setCnpj(empresa.getCnpj());
+        update.setNomeFantasia(empresa.getNomeFantasia());
+        update.setRazaoSocial(empresa.getRazaoSocial());
+
+        empresaRepository.add(update);
+        return "redirect:/administrador/iniciarPaginaAdmin";
     }
 
     @Transactional
     @RequestMapping("/validar/{empresaId}")
     public String validarEmpresa(HttpSession session, @PathVariable int empresaId) {
-        Usuario usuario = (Usuario) session.getAttribute("usuario");
-        if(usuario.isAdmin()) {
-            Empresa empresa = empresaRepository.get(empresaId);
-            empresa.setValido(true);
-            empresaRepository.add(empresa);
+        Object usuario = session.getAttribute("usuario");
+        if(!Usuario.isAdmin(usuario)) {
+            return "redirect:acessoNegado";
         }
+        Empresa empresa = empresaRepository.get(empresaId);
+        empresa.setValido(true);
+        empresaRepository.add(empresa);
         return "redirect:/administrador/iniciarPaginaAdmin";
     }
 
     @Transactional
     @RequestMapping("/rejeitar/{empresaId}")
     public String rejeitarEmpresa(HttpSession session, @PathVariable int empresaId){
-        Usuario usuario = (Usuario) session.getAttribute("usuario");
-        if(usuario.isAdmin()) {
-            Empresa empresa = empresaRepository.get(empresaId);
-            empresaRepository.remove(empresa);
+        Object usuario = session.getAttribute("usuario");
+        if(!Usuario.isAdmin(usuario)) {
+            return "redirect:acessoNegado";
         }
+        Empresa empresa = empresaRepository.get(empresaId);
+        empresaRepository.remove(empresa);
         return "redirect:/administrador/iniciarPaginaAdmin";
     }
 }
