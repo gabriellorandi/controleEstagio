@@ -427,17 +427,20 @@
                             <c:if test="${not empty listaSupervisores}">
                                 <tr>
                                     <th>Nome</th>
-                                    <th class="student-remove">Alterar</th>
-                                    <th class="student-remove">Remover</th>
+                                    <th>Aluno associado</th>
+                                    <th class="student-remove">Associar</th>
                                 </tr>
                                 <c:forEach var="supervisor" items="${listaSupervisores}">
                                     <tr>
                                         <td>${supervisor.nome}</td>
+                                        <c:if test="${empty supervisor.aluno}">
+                                            <td>Nenhum aluno associado</td>
+                                        </c:if>
+                                        <c:if test="${not empty supervisor.aluno}">
+                                            <td>${supervisor.aluno.nome}</td>
+                                        </c:if>
                                         <td class="student-remove">
-                                            <a href="../supervisor/alterar/${supervisor.id}"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="16px" height="16px" viewBox="0 0 528.899 528.899" style="enable-background:new 0 0 528.899 528.899;" xml:space="preserve"><path d="M328.883,89.125l107.59,107.589l-272.34,272.34L56.604,361.465L328.883,89.125z M518.113,63.177l-47.981-47.981   c-18.543-18.543-48.653-18.543-67.259,0l-45.961,45.961l107.59,107.59l53.611-53.611   C532.495,100.753,532.495,77.559,518.113,63.177z M0.3,512.69c-1.958,8.812,5.998,16.708,14.811,14.565l119.891-29.069   L27.473,390.597L0.3,512.69z" data-original="#000000" class="active-path" data-old_color="#000000" fill="#111832"/></svg></a>
-                                        </td>
-                                        <td class="student-remove">
-                                            <a href="../supervisor/rejeitar/${supervisor.id}"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="16px" height="16px" viewBox="0 0 459 459" style="enable-background:new 0 0 459 459;" xml:space="preserve"><path d="M76.5,408c0,28.05,22.95,51,51,51h204c28.05,0,51-22.95,51-51V102h-306V408z M408,25.5h-89.25L293.25,0h-127.5l-25.5,25.5    H51v51h357V25.5z" data-original="#000000" class="active-path" data-old_color="#000000" fill="#C5C8CD"/></svg></a>
+                                            <span class="edit" id="supervisor-${supervisor.id}"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="16px" height="16px" viewBox="0 0 528.899 528.899" style="enable-background:new 0 0 528.899 528.899;" xml:space="preserve"><path d="M328.883,89.125l107.59,107.589l-272.34,272.34L56.604,361.465L328.883,89.125z M518.113,63.177l-47.981-47.981   c-18.543-18.543-48.653-18.543-67.259,0l-45.961,45.961l107.59,107.59l53.611-53.611   C532.495,100.753,532.495,77.559,518.113,63.177z M0.3,512.69c-1.958,8.812,5.998,16.708,14.811,14.565l119.891-29.069   L27.473,390.597L0.3,512.69z" data-original="#000000" class="active-path" data-old_color="#000000" fill="#111832"/></svg></span>
                                         </td>
                                     </tr>
                                 </c:forEach>
@@ -479,6 +482,40 @@
                 </form>
             </div>
         </div>
+        <c:forEach var="supervisor" items="${listaSupervisores}">
+            <div class="modal" id="supervisor-${supervisor.id}modal">
+                <div class="modal-content">
+                    <span class="close"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="16px" height="16px" viewBox="0 0 348.333 348.334" style="enable-background:new 0 0 348.333 348.334;" xml:space="preserve"><path d="M336.559,68.611L231.016,174.165l105.543,105.549c15.699,15.705,15.699,41.145,0,56.85   c-7.844,7.844-18.128,11.769-28.407,11.769c-10.296,0-20.581-3.919-28.419-11.769L174.167,231.003L68.609,336.563   c-7.843,7.844-18.128,11.769-28.416,11.769c-10.285,0-20.563-3.919-28.413-11.769c-15.699-15.698-15.699-41.139,0-56.85   l105.54-105.549L11.774,68.611c-15.699-15.699-15.699-41.145,0-56.844c15.696-15.687,41.127-15.687,56.829,0l105.563,105.554   L279.721,11.767c15.705-15.687,41.139-15.687,56.832,0C352.258,27.466,352.258,52.912,336.559,68.611z" data-original="#000000" class="active-path" data-old_color="#000000" fill="#000000"/></svg></span>
+                    <h2 class="title">Supervisor: ${supervisor.nome}</h2>
+                    <div class="content">
+                        <div class="students-list-wrapper">
+                            <table class="list">
+                                <c:if test="${not empty listaAlunos}">
+                                    <tr>
+                                        <th>Aluno</th>
+                                        <th>RA</th>
+                                        <th class="student-remove">Associar</th>
+                                    </tr>
+                                    <c:forEach var="aluno" items="${listaAlunos}">
+                                        <tr>
+                                            <td>${aluno.nome}</td>
+                                            <td>${aluno.ra}</td>
+                                            <td class="student-remove">
+                                                <a href="../supervisor/${supervisor.id}/associar/${aluno.id}"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="16px" height="16px" viewBox="0 0 442.533 442.533" style="enable-background:new 0 0 442.533 442.533;" xml:space="preserve" class=""><path d="M434.539,98.499l-38.828-38.828c-5.324-5.328-11.799-7.993-19.41-7.993c-7.618,0-14.093,2.665-19.417,7.993L169.59,247.248   l-83.939-84.225c-5.33-5.33-11.801-7.992-19.412-7.992c-7.616,0-14.087,2.662-19.417,7.992L7.994,201.852   C2.664,207.181,0,213.654,0,221.269c0,7.609,2.664,14.088,7.994,19.416l103.351,103.349l38.831,38.828   c5.327,5.332,11.8,7.994,19.414,7.994c7.611,0,14.084-2.669,19.414-7.994l38.83-38.828L434.539,137.33   c5.325-5.33,7.994-11.802,7.994-19.417C442.537,110.302,439.864,103.829,434.539,98.499z" data-original="#000000" class="active-path" data-old_color="#000000" fill="#207649"/></svg></a>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    </c:forEach>
+                                </c:if>
+                                <c:if test="${empty listaAlunos}">
+                                    <p>Não há alunos para associar</p>
+                                </c:if>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </c:forEach>
         <c:forEach var="aluno" items="${listaAlunos}">
             <div class="modal" id="student-${aluno.id}modal">
                 <div class="modal-content">
@@ -491,7 +528,7 @@
                                 <input type="text" value="${aluno.nome}" name="nome" id="student-nome${aluno.id}"/>
                             </div>
                             <div class="form-field">
-                                <label for="student-ra${aluno.id}">Nome</label>
+                                <label for="student-ra${aluno.id}">RA</label>
                                 <input type="text" value="${aluno.ra}" name="ra" id="student-ra${aluno.id}"/>
                             </div>
                             <div class="form-field">

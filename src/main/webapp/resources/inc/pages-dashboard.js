@@ -75,6 +75,9 @@ document.querySelectorAll(".edit").forEach(function (value) {
         else if (value.id.includes("company")){
             document.querySelector("#" + value.id + "modal").style.display = "block";
         }
+        else if(value.id.includes("supervisor")) {
+            document.querySelector("#" + value.id + "modal").style.display = "block";
+        }
     })
 });
 
