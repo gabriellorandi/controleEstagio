@@ -12,7 +12,6 @@ public class Curriculo {
 	private String experienciaProfissional;
 	
 	@OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "aluno_id")
 	private Aluno aluno;
 	
 	public int getId() {

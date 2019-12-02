@@ -60,7 +60,7 @@ public class SupervisorController {
             supervisorRepository.add(supervisor);
         }
 
-        return "paginaAdmin";
+        return "redirect:/administrador/iniciarPaginaAdmin";
     }
 
     @Transactional

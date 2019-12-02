@@ -15,13 +15,8 @@ public class Aluno extends Usuario {
             mappedBy = "aluno")
 	private Curriculo curriculo; 
 	
-	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
-    @JoinColumn(name = "estagio_id")
+	@OneToOne(fetch = FetchType.LAZY)
 	private Estagio estagio;
-
-	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
-	@JoinColumn(name = "supervisor_id")
-	private Supervisor supervisor;
 
 	public String getNome() {
 		return nome;
@@ -63,11 +58,4 @@ public class Aluno extends Usuario {
 		this.estagio = estagio;
 	}
 
-	public Supervisor getSupervisor() {
-		return supervisor;
-	}
-
-	public void setSupervisor(Supervisor supervisor) {
-		this.supervisor = supervisor;
-	}
 }

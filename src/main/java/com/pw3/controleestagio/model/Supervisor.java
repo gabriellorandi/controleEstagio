@@ -8,7 +8,6 @@ public class Supervisor extends Usuario {
 	private String nome;
 
 	@OneToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "aluno_id")
 	private Aluno aluno;
 
 	public String getNome() {
