@@ -15,7 +15,7 @@ public class Estagio extends VagaEstagio {
 	private List<Relatorio> relatorios;
 	
 	@OneToOne(fetch = FetchType.EAGER,
-            mappedBy = "estagio", cascade = CascadeType.REFRESH)
+            mappedBy = "estagio")
 	private Aluno aluno;
 		
 	public ZonedDateTime getDataInicio() {

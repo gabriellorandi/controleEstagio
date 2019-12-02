@@ -22,6 +22,7 @@ public class AlunoRepository {
     }
 
     public void remove(Aluno aluno) {
+        this.entityManager.createQuery("UPDATE supervisor s SET s.aluno = null WHERE s.aluno = aluno").executeUpdate();
         this.entityManager.remove(aluno);
     }
 
