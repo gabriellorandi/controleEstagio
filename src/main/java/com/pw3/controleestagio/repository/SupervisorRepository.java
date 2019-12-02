@@ -28,7 +28,7 @@ public class SupervisorRepository {
     }
 
     public List<Supervisor> getAll() {
-        Query query = this.entityManager.createQuery("SELECT s FROM supervisor s WHERE s.valido = true");
+        Query query = this.entityManager.createQuery("SELECT s FROM supervisor s ");
         return query.getResultList();
     }
 }
