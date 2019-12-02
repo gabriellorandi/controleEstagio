@@ -74,6 +74,6 @@ public class EmpresaController {
             Empresa empresa = empresaRepository.get(empresaId);
             empresaRepository.remove(empresa);
         }
-        return "redirect:administrador/iniciarPaginaAdmin";
+        return "redirect:/administrador/iniciarPaginaAdmin";
     }
 }

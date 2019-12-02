@@ -1,13 +1,16 @@
 package com.pw3.controleestagio.model;
 
-import javax.persistence.DiscriminatorValue;
-import javax.persistence.Entity;
+import javax.persistence.*;
 
 @Entity(name = "supervisor")
 public class Supervisor extends Usuario {
 	
 	private String nome;
 	private boolean valido = false;
+
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "aluno_id")
+	private Aluno aluno;
 
 	public boolean isValido() {
 		return valido;
@@ -23,5 +26,13 @@ public class Supervisor extends Usuario {
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+
+	public Aluno getAluno() {
+		return aluno;
+	}
+
+	public void setAluno(Aluno aluno) {
+		this.aluno = aluno;
 	}
 }

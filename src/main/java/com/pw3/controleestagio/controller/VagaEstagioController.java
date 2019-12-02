@@ -33,10 +33,10 @@ public class VagaEstagioController {
 
             vagaEstagioRepository.add(vagaEstagio);
 
-            return "";
+            return "redirect:/administrador/iniciarPaginaAdmin";
         }
 
-        return "";
+        return "redirect:/administrador/iniciarPaginaAdmin";
     }
 
     @Transactional
