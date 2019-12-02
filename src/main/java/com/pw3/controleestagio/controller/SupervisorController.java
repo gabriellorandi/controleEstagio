@@ -79,6 +79,6 @@ public class SupervisorController {
 
         supervisorRepository.add(supervisor);
 
-        return "paginaSupervisor";
+        return "redirect:/administrador/iniciarPaginaAdmin";
     }
 }
