@@ -115,65 +115,65 @@ body {
 
 /* Students */
 
-.dashboard .students-list-wrapper {
+.students-list-wrapper {
     padding: 30px 20px 30px;
 }
 
-.dashboard .students-list-wrapper .title {
+.students-list-wrapper .title {
     font-size: 18px;
     color: #0B1126;
 }
 
-.dashboard .list {
+.list {
     width: 100%;
     background-color: #ffffff;
 }
 
-.dashboard .list tr {
+.list tr {
     display: flex;
     justify-content: space-between;
     border-bottom: 1px solid #717c8e66;
     padding: 19px 20px;
 }
 
-.dashboard .list tr:last-child {
+.list tr:last-child {
     border-bottom: none;
 }
 
-.dashboard .list tr th {
+.list tr th {
     text-transform: uppercase;
     font-weight: bold;
     color: #717c8e;
     font-size: 16px;
 }
 
-.dashboard .list tr td {
+.list tr td {
     color: #0B1126;
 }
 
-.dashboard .list tr td,
-.dashboard .list tr th {
+.list tr td,
+.list tr th {
     width: 20%;
     display: block;
     text-align: left;
 }
 
-.dashboard .list.validation-students tr td,
-.dashboard .list.validation-students tr th {
+.list.validation-students tr td,
+.list.validation-students tr th {
     width: 20%;
 }
 
-.dashboard .list.validation-companies tr td,
-.dashboard .list.validation-companies tr th {
+.list.validation-companies tr td,
+.list.validation-companies tr th {
     width: 16.6%;
 }
 
-.dashboard .list .student-remove {
+.list .student-remove {
     text-align: center;
     border-left: 1px solid #717c8e66;
 }
 
-.dashboard .list .student-remove .edit {
+.list .student-remove .edit {
     cursor: pointer;
 }
 
