@@ -1,5 +1,6 @@
 package com.pw3.controleestagio.controller;
 
+import com.pw3.controleestagio.model.Empresa;
 import com.pw3.controleestagio.model.Estagio;
 import com.pw3.controleestagio.model.Usuario;
 import com.pw3.controleestagio.model.VagaEstagio;
@@ -34,9 +35,11 @@ public class VagaEstagioController {
             return "redirect:acessoNegado";
         }
 
+        vagaEstagio.setEmpresa((Empresa) usuario);
+
         vagaEstagioRepository.add(vagaEstagio);
 
-        return "redirect:/administrador/iniciarPaginaAdmin";
+        return "redirect:/administrador/iniciarPaginaEmpresa";
     }
 
     @Transactional

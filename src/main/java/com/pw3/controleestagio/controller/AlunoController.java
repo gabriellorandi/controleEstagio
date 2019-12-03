@@ -1,8 +1,9 @@
 package com.pw3.controleestagio.controller;
 
-import com.pw3.controleestagio.model.Aluno;
-import com.pw3.controleestagio.model.Usuario;
+import com.pw3.controleestagio.model.*;
 import com.pw3.controleestagio.repository.AlunoRepository;
+import com.pw3.controleestagio.repository.CurriculoRepository;
+import com.pw3.controleestagio.repository.VagaEstagioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,10 +20,32 @@ import java.util.List;
 public class AlunoController {
 
     private final AlunoRepository alunoRepository;
+    private final CurriculoRepository curriculoRepository;
+    private final VagaEstagioRepository vagaEstagioRepository;
 
     @Autowired
-    public AlunoController(AlunoRepository alunoRepository) {
+    public AlunoController(AlunoRepository alunoRepository, CurriculoRepository curriculoRepository, VagaEstagioRepository vagaEstagioRepository) {
         this.alunoRepository = alunoRepository;
+        this.curriculoRepository = curriculoRepository;
+        this.vagaEstagioRepository = vagaEstagioRepository;
+    }
+
+
+    @RequestMapping("/iniciarPaginaAluno")
+    public String iniciarPaginaAdmin(HttpSession session, Model model){
+        Object usuario = session.getAttribute("usuario");
+        if(!Usuario.isAluno(usuario)) {
+            return "acessoNegado";
+        }
+
+        Curriculo curriculo = curriculoRepository.getByAluno( (Aluno) usuario  );
+        List<VagaEstagio> vagasEstagio = vagaEstagioRepository.getAll();
+
+        model.addAttribute("aluno", usuario);
+        model.addAttribute("curriculo", curriculo);
+        model.addAttribute("vagas-estagio", vagasEstagio);
+
+        return "paginaAluno";
     }
 
     @Transactional

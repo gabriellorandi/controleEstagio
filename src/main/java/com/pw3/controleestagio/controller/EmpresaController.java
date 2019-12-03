@@ -1,7 +1,10 @@
 package com.pw3.controleestagio.controller;
 
+import com.pw3.controleestagio.model.Aluno;
+import com.pw3.controleestagio.model.Curriculo;
 import com.pw3.controleestagio.model.Empresa;
 import com.pw3.controleestagio.model.Usuario;
+import com.pw3.controleestagio.repository.CurriculoRepository;
 import com.pw3.controleestagio.repository.EmpresaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,8 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpSession;
-import java.lang.invoke.MethodType;
-import java.lang.reflect.Method;
 import java.util.List;
 
 @Controller
@@ -21,11 +22,29 @@ import java.util.List;
 public class EmpresaController {
 
     private final EmpresaRepository empresaRepository;
+    private final CurriculoRepository curriculoRepository;
 
     @Autowired
-    public EmpresaController(EmpresaRepository empresaRepository) {
+    public EmpresaController(EmpresaRepository empresaRepository, CurriculoRepository curriculoRepository) {
         this.empresaRepository = empresaRepository;
+        this.curriculoRepository = curriculoRepository;
     }
+
+    @RequestMapping("/iniciarPaginaEmpresa")
+    public String iniciarPaginaAdmin(HttpSession session, Model model){
+        Object usuario = session.getAttribute("usuario");
+        if(!Usuario.isEmpresa(usuario)) {
+            return "acessoNegado";
+        }
+
+        List<Curriculo> curriculos = curriculoRepository.getAll();
+
+        model.addAttribute("empresa", usuario);
+        model.addAttribute("curriculos", curriculos);
+
+        return "paginaEmpresa";
+    }
+
 
     @Transactional
     @RequestMapping("/cadastrar")

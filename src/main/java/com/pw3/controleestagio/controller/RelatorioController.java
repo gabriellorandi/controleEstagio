@@ -62,7 +62,7 @@ public class RelatorioController {
     public String alterar(HttpSession httpSession, Model model, Relatorio relatorio, @PathVariable int relatorioId) {
 
         Object usuario = httpSession.getAttribute("usuario");
-        if(!Usuario.isSupervisor(usuario)) {
+        if(!Usuario.isAdmin(usuario)) {
             return "redirect:acessoNegado";
         }
 
@@ -71,6 +71,21 @@ public class RelatorioController {
         update.setDescricao(relatorio.getDescricao());
 
         relatorioRepository.add(update);
+        return "redirect:/administrador/iniciarPaginaAdmin";
+    }
+
+    @Transactional
+    @RequestMapping("/remover/{relatorioId}")
+    public String remover(HttpSession httpSession, Model model, @PathVariable int relatorioId) {
+
+        Object usuario = httpSession.getAttribute("usuario");
+        if(!Usuario.isAdmin(usuario)) {
+            return "redirect:acessoNegado";
+        }
+
+        Relatorio relatorio = relatorioRepository.get(relatorioId);
+
+        relatorioRepository.remove(relatorio);
         return "redirect:/administrador/iniciarPaginaAdmin";
     }
 
