@@ -21,15 +21,17 @@ public class AdministradorController {
     private final RelatorioRepository relatorioRepository;
     private final SupervisorRepository supervisorRepository;
     private final EstagioRepository estagioRepository;
+    private final VagaEstagioRepository vagaEstagioRepository;
 
     @Autowired
-    public AdministradorController(AdministradorRepository administradorRepository, AlunoRepository alunoRepository, EmpresaRepository empresaRepository, RelatorioRepository relatorioRepository, SupervisorRepository supervisorRepository, EstagioRepository estagioRepository) {
+    public AdministradorController(AdministradorRepository administradorRepository, AlunoRepository alunoRepository, EmpresaRepository empresaRepository, RelatorioRepository relatorioRepository, SupervisorRepository supervisorRepository, EstagioRepository estagioRepository, VagaEstagioRepository vagaEstagioRepository) {
         this.administradorRepository = administradorRepository;
         this.alunoRepository = alunoRepository;
         this.empresaRepository = empresaRepository;
         this.relatorioRepository = relatorioRepository;
         this.supervisorRepository = supervisorRepository;
         this.estagioRepository = estagioRepository;
+        this.vagaEstagioRepository = vagaEstagioRepository;
     }
 
     @RequestMapping("/iniciarPaginaAdmin")

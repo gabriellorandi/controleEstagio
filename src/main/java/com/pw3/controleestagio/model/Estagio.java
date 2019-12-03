@@ -5,18 +5,14 @@ import java.time.ZonedDateTime;
 import java.util.List;
 
 @Entity(name = "estagio")
-public class Estagio extends VagaEstagio {
+public class Estagio extends VagaEstagio{
 
 	private ZonedDateTime dataInicio;
 	private ZonedDateTime dataFim;
 	private int duracao;
-	
+
 	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL )
 	private List<Relatorio> relatorios;
-	
-	@OneToOne(fetch = FetchType.EAGER,
-            mappedBy = "estagio")
-	private Aluno aluno;
 		
 	public ZonedDateTime getDataInicio() {
 		return dataInicio;
@@ -49,6 +45,5 @@ public class Estagio extends VagaEstagio {
 	public void setRelatorios(List<Relatorio> relatorios) {
 		this.relatorios = relatorios;
 	}
-
 
 }

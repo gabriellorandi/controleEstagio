@@ -31,4 +31,9 @@ public class VagaEstagioRepository {
         return query.getResultList();
     }
 
+    public List<VagaEstagio> getAllCandidatos() {
+        Query query = this.entityManager.createQuery("SELECT v FROM VagaEstagio v WHERE v.aluno != null");
+        return query.getResultList();
+    }
+
 }

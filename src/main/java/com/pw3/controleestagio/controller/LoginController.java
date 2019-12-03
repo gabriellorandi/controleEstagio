@@ -68,18 +68,18 @@ public class LoginController {
 
             if(Usuario.isAluno(usuariodb)) {
                 if(((Aluno) usuariodb).isValido()){
-                    return "paginaAluno";
+                    return "redirect:aluno/iniciarPaginaAluno";
                 }
             }
 
             if(Usuario.isEmpresa(usuariodb)) {
                 if(((Empresa) usuariodb).isValido()) {
-                    return "paginaEmpresa";
+                    return "redirect:empresa/iniciarPaginaEmpresa";
                 }
             }
 
             if (Usuario.isSupervisor(usuariodb)){
-                return "paginaSupervisor";
+                return "redirect:supervisor/iniciarPaginaSupervisor";
             }
 
         }
