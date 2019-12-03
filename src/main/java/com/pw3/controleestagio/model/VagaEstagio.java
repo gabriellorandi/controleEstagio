@@ -1,8 +1,6 @@
 package com.pw3.controleestagio.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class VagaEstagio {
@@ -14,6 +12,10 @@ public class VagaEstagio {
 	private String descricao;
 	private String requisitosObrigatorios;
 	private String requisitosDesejaveis;
+
+	@ManyToOne
+	@JoinColumn(name = "empresa_id")
+	private Empresa empresa;
 	
 	public int getId() {
 		return id;
@@ -47,4 +49,11 @@ public class VagaEstagio {
 		this.requisitosDesejaveis = requisitosDesejaveis;
 	}
 
+	public Empresa getEmpresa() {
+		return empresa;
+	}
+
+	public void setEmpresa(Empresa empresa) {
+		this.empresa = empresa;
+	}
 }

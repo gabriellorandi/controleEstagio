@@ -9,7 +9,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -21,14 +20,16 @@ public class AdministradorController {
     private final EmpresaRepository empresaRepository;
     private final RelatorioRepository relatorioRepository;
     private final SupervisorRepository supervisorRepository;
+    private final EstagioRepository estagioRepository;
 
     @Autowired
-    public AdministradorController(AdministradorRepository administradorRepository, AlunoRepository alunoRepository, EmpresaRepository empresaRepository, RelatorioRepository relatorioRepository, SupervisorRepository supervisorRepository) {
+    public AdministradorController(AdministradorRepository administradorRepository, AlunoRepository alunoRepository, EmpresaRepository empresaRepository, RelatorioRepository relatorioRepository, SupervisorRepository supervisorRepository, EstagioRepository estagioRepository) {
         this.administradorRepository = administradorRepository;
         this.alunoRepository = alunoRepository;
         this.empresaRepository = empresaRepository;
         this.relatorioRepository = relatorioRepository;
         this.supervisorRepository = supervisorRepository;
+        this.estagioRepository = estagioRepository;
     }
 
     @RequestMapping("/iniciarPaginaAdmin")
@@ -49,10 +50,12 @@ public class AdministradorController {
         List<Empresa> listaEmpresas = empresaRepository.getAll();
         List<Relatorio> listaRelatorios = relatorioRepository.getAll();
         List<Supervisor> listaSupervisores = supervisorRepository.getAll();
+        List<Estagio> listaEstagios = estagioRepository.getAll();
         model.addAttribute("listaAlunos", listaAlunos);
         model.addAttribute("listaEmpresas", listaEmpresas);
         model.addAttribute("listaRelatorios", listaRelatorios);
         model.addAttribute("listaSupervisores", listaSupervisores);
+        model.addAttribute("listaEstagio", listaEstagios);
 
         if (usuario instanceof Administrador)
             model.addAttribute("admin", usuario);

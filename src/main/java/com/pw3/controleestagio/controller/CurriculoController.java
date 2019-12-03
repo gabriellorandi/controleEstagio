@@ -1,5 +1,6 @@
 package com.pw3.controleestagio.controller;
 
+import com.pw3.controleestagio.model.Aluno;
 import com.pw3.controleestagio.model.Curriculo;
 import com.pw3.controleestagio.model.Usuario;
 import com.pw3.controleestagio.repository.CurriculoRepository;
@@ -30,9 +31,19 @@ public class CurriculoController {
             return "redirect:acessoNegado";
         }
 
-        curriculoRepository.add(curriculo);
+        Curriculo curriculoDb = curriculoRepository.getByAluno((Aluno) usuario);
 
-        return "";
+        if(curriculoDb == null) {
+            curriculoRepository.add(curriculo);
+            return "redirect:/aluno/iniciarPaginaAluno";
+        }
+
+        curriculoDb.setFormacaoAcademica(curriculo.getFormacaoAcademica());
+        curriculoDb.setExperienciaProfissional(curriculo.getExperienciaProfissional());
+
+        curriculoRepository.add(curriculoDb);
+
+        return "redirect:/aluno/iniciarPaginaAluno";
     }
 
 
