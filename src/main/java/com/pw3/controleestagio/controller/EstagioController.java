@@ -1,10 +1,10 @@
 package com.pw3.controleestagio.controller;
 
-import com.pw3.controleestagio.model.Aluno;
 import com.pw3.controleestagio.model.Estagio;
-import com.pw3.controleestagio.model.Relatorio;
 import com.pw3.controleestagio.model.Usuario;
+import com.pw3.controleestagio.model.VagaEstagio;
 import com.pw3.controleestagio.repository.EstagioRepository;
+import com.pw3.controleestagio.repository.VagaEstagioRepository;
 import com.sun.faces.action.RequestMapping;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,12 +19,36 @@ import javax.servlet.http.HttpSession;
 public class EstagioController {
 
     private final EstagioRepository estagioRepository;
+    private final VagaEstagioRepository vagaEstagioRepository;
 
     @Autowired
-    public EstagioController(EstagioRepository estagioRepository) {
+    public EstagioController(EstagioRepository estagioRepository, VagaEstagioRepository vagaEstagioRepository) {
         this.estagioRepository = estagioRepository;
+        this.vagaEstagioRepository = vagaEstagioRepository;
     }
 
+    @Transactional
+    @RequestMapping("/cadastrar/{vagaEstagioId}")
+    public String cadastrar(HttpSession httpSession, Model model, Estagio estagio, @PathVariable int vagaEstagioId) {
+
+        Object usuario = httpSession.getAttribute("usuario");
+        if(!Usuario.isAdmin(usuario)) {
+            return "redirect:acessoNegado";
+        }
+
+        VagaEstagio vagaEstagio = vagaEstagioRepository.get(vagaEstagioId);
+
+        estagio.setDescricao( vagaEstagio.getDescricao() );
+        estagio.setAluno( vagaEstagio.getAluno() );
+        estagio.setEmpresa( vagaEstagio.getEmpresa() );
+        estagio.setRequisitosDesejaveis( vagaEstagio.getRequisitosDesejaveis() );
+        estagio.setRequisitosObrigatorios( vagaEstagio.getRequisitosObrigatorios() );
+
+        estagioRepository.add(estagio);
+        vagaEstagioRepository.remove(vagaEstagio);
+
+        return "redirect:/administrador/iniciarPaginaAdmin";
+    }
 
     @Transactional
     @RequestMapping("/alterar/{estagioId}")

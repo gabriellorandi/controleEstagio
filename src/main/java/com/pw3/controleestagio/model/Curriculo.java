@@ -11,7 +11,7 @@ public class Curriculo {
 	private String formacaoAcademica;
 	private String experienciaProfissional;
 	
-	@OneToOne(fetch = FetchType.LAZY)
+	@OneToOne(fetch = FetchType.EAGER)
 	private Aluno aluno;
 	
 	public int getId() {

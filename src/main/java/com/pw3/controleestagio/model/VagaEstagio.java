@@ -13,6 +13,9 @@ public class VagaEstagio {
 	private String requisitosObrigatorios;
 	private String requisitosDesejaveis;
 
+	@OneToOne
+	private Aluno aluno;
+
 	@ManyToOne
 	@JoinColumn(name = "empresa_id")
 	private Empresa empresa;
@@ -55,5 +58,13 @@ public class VagaEstagio {
 
 	public void setEmpresa(Empresa empresa) {
 		this.empresa = empresa;
+	}
+
+	public Aluno getAluno() {
+		return aluno;
+	}
+
+	public void setAluno(Aluno candidato) {
+		this.aluno = candidato;
 	}
 }

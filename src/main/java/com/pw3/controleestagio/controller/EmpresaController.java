@@ -1,11 +1,12 @@
 package com.pw3.controleestagio.controller;
 
-import com.pw3.controleestagio.model.Aluno;
 import com.pw3.controleestagio.model.Curriculo;
 import com.pw3.controleestagio.model.Empresa;
 import com.pw3.controleestagio.model.Usuario;
+import com.pw3.controleestagio.model.VagaEstagio;
 import com.pw3.controleestagio.repository.CurriculoRepository;
 import com.pw3.controleestagio.repository.EmpresaRepository;
+import com.pw3.controleestagio.repository.VagaEstagioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,11 +24,13 @@ public class EmpresaController {
 
     private final EmpresaRepository empresaRepository;
     private final CurriculoRepository curriculoRepository;
+    private final VagaEstagioRepository vagaEstagioRepository;
 
     @Autowired
-    public EmpresaController(EmpresaRepository empresaRepository, CurriculoRepository curriculoRepository) {
+    public EmpresaController(EmpresaRepository empresaRepository, CurriculoRepository curriculoRepository, VagaEstagioRepository vagaEstagioRepository) {
         this.empresaRepository = empresaRepository;
         this.curriculoRepository = curriculoRepository;
+        this.vagaEstagioRepository = vagaEstagioRepository;
     }
 
     @RequestMapping("/iniciarPaginaEmpresa")
@@ -38,9 +41,11 @@ public class EmpresaController {
         }
 
         List<Curriculo> curriculos = curriculoRepository.getAll();
+        List<VagaEstagio> vagasEstagio = vagaEstagioRepository.getAll();
 
         model.addAttribute("empresa", usuario);
-        model.addAttribute("curriculos", curriculos);
+        model.addAttribute("listaCurriculos", curriculos);
+        model.addAttribute("listaVagasEstagio",vagasEstagio);
 
         return "paginaEmpresa";
     }

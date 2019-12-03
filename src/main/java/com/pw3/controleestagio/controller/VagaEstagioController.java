@@ -1,9 +1,6 @@
 package com.pw3.controleestagio.controller;
 
-import com.pw3.controleestagio.model.Empresa;
-import com.pw3.controleestagio.model.Estagio;
-import com.pw3.controleestagio.model.Usuario;
-import com.pw3.controleestagio.model.VagaEstagio;
+import com.pw3.controleestagio.model.*;
 import com.pw3.controleestagio.repository.VagaEstagioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -39,7 +36,7 @@ public class VagaEstagioController {
 
         vagaEstagioRepository.add(vagaEstagio);
 
-        return "redirect:/administrador/iniciarPaginaEmpresa";
+        return "redirect:/empresa/iniciarPaginaEmpresa";
     }
 
     @Transactional
@@ -58,6 +55,23 @@ public class VagaEstagioController {
         return "redirect:/administrador/iniciarPaginaAdmin";
     }
 
+    @Transactional
+    @RequestMapping("/candidatar/{vagaEstagioId}")
+    public String candidatar(HttpSession session, Model model, @PathVariable int vagaEstagioId) {
 
+        Object usuario = session.getAttribute("usuario");
+        if(!Usuario.isAluno(usuario)) {
+            return "redirect:acessoNegado";
+        }
+
+        VagaEstagio vagaEstagio = vagaEstagioRepository.get(vagaEstagioId);
+
+
+        vagaEstagio.setAluno( (Aluno) usuario );
+
+        vagaEstagioRepository.add(vagaEstagio);
+
+        return "redirect:/aluno/iniciarPaginaAluno";
+    }
 
 }
