@@ -40,11 +40,6 @@ public class RelatorioRepository {
 
     public List<Relatorio> getAllBySupervisor(Supervisor supervisor) {
 
-        Query query = this.entityManager.createQuery("SELECT r FROM Relatorio r " +
-                                                        " INNER JOIN Aluno a ON a.supervisor = :supervisor " +
-                                                        " INNER JOIN Estagio e ON e.aluno = a " +
-                                                        " INNER JOIN Relatorio r ON r.estagio = e " );
-
         return new ArrayList<>();
 
     }
