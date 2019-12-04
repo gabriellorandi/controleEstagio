@@ -16,7 +16,7 @@ public class VagaEstagio {
 	@OneToOne
 	private Aluno aluno;
 
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "empresa_id")
 	private Empresa empresa;
 	
