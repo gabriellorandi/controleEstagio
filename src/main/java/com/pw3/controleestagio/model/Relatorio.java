@@ -14,7 +14,7 @@ public class Relatorio {
 
 	private boolean valido = false;
 
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "fk_estagio")
 	private Estagio estagio;
 

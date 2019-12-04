@@ -1,6 +1,7 @@
 package com.pw3.controleestagio.model;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity(name = "aluno")
 public class Aluno extends Usuario {
@@ -17,6 +18,9 @@ public class Aluno extends Usuario {
 	
 	@OneToOne(fetch = FetchType.LAZY)
 	private Estagio estagio;
+
+	@ManyToMany(mappedBy = "alunos")
+	private List<VagaEstagio> vagaEstagios;
 
 	public String getNome() {
 		return nome;
@@ -58,4 +62,11 @@ public class Aluno extends Usuario {
 		this.estagio = estagio;
 	}
 
+	public List<VagaEstagio> getVagaEstagios() {
+		return vagaEstagios;
+	}
+
+	public void setVagaEstagios(List<VagaEstagio> vagaEstagios) {
+		this.vagaEstagios = vagaEstagios;
+	}
 }

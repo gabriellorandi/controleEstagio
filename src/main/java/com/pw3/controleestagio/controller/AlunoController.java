@@ -39,11 +39,11 @@ public class AlunoController {
         }
 
         Curriculo curriculo = curriculoRepository.getByAluno( (Aluno) usuario  );
-        List<VagaEstagio> vagasEstagio = vagaEstagioRepository.getAll();
+        List<VagaEstagio> listaVagasEstagio = vagaEstagioRepository.getAllAvailable((Aluno) usuario);
 
         model.addAttribute("aluno", usuario);
         model.addAttribute("curriculo", curriculo);
-        model.addAttribute("vagas-estagio", vagasEstagio);
+        model.addAttribute("listaVagasEstagio", listaVagasEstagio);
 
         return "paginaAluno";
     }
@@ -122,23 +122,4 @@ public class AlunoController {
 
         return "redirect:/";
     }
-
-//    @Transactional
-//    @RequestMapping("/listar")
-//    public String getAll(HttpSession session, Model model) {
-//
-//        Usuario usuario = (Usuario) session.getAttribute("usuario");
-//
-//        if(usuario.isEmpresa() || usuario.isAdmin()) {
-//
-//            List<Aluno> alunos = alunoRepository.getAll();
-//
-//            model.addAttribute("alunos", alunos);
-//
-//            return "";
-//
-//        }
-//
-//        return "redirect:acessoNegado";
-//    }
 }

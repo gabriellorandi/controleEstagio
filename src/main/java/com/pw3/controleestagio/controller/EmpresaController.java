@@ -41,7 +41,7 @@ public class EmpresaController {
         }
 
         List<Curriculo> curriculos = curriculoRepository.getAll();
-        List<VagaEstagio> vagasEstagio = vagaEstagioRepository.getAll();
+        List<VagaEstagio> vagasEstagio = vagaEstagioRepository.getAllByEmpresa((Empresa) usuario);
 
         model.addAttribute("empresa", usuario);
         model.addAttribute("listaCurriculos", curriculos);

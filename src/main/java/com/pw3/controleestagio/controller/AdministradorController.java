@@ -48,6 +48,9 @@ public class AdministradorController {
         model.addAttribute("listaEmpresasValidar", listaEmpresasValidar);
         model.addAttribute("listaRelatoriosValidar", listaRelatoriosValidar);
 
+        List<VagaEstagio> vagaEstagios = vagaEstagioRepository.getAllWithCandidatos();
+        model.addAttribute("listaVagaEstagio",vagaEstagios);
+
         List<Aluno> listaAlunos = alunoRepository.getAll();
         List<Empresa> listaEmpresas = empresaRepository.getAll();
         List<Relatorio> listaRelatorios = relatorioRepository.getAll();

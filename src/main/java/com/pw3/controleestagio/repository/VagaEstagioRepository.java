@@ -1,5 +1,7 @@
 package com.pw3.controleestagio.repository;
 
+import com.pw3.controleestagio.model.Aluno;
+import com.pw3.controleestagio.model.Empresa;
 import com.pw3.controleestagio.model.VagaEstagio;
 import org.springframework.stereotype.Repository;
 
@@ -26,14 +28,22 @@ public class VagaEstagioRepository {
         return this.entityManager.find(VagaEstagio.class, id);
     }
 
-    public List<VagaEstagio> getAll() {
-        Query query = this.entityManager.createQuery("SELECT v FROM VagaEstagio v ");
+    public List<VagaEstagio> getAllAvailable(Aluno aluno) {
+        Query query = this.entityManager.createQuery("SELECT v FROM vagaestagio v LEFT JOIN v.alunos a WHERE a.id != :id OR a.id IS NULL ");
+        query.setParameter("id",aluno.getId());
         return query.getResultList();
     }
 
-    public List<VagaEstagio> getAllCandidatos() {
-        Query query = this.entityManager.createQuery("SELECT v FROM VagaEstagio v WHERE v.aluno != null");
+    public List<VagaEstagio> getAllByEmpresa(Empresa empresa) {
+        Query query = this.entityManager.createQuery("SELECT v FROM vagaestagio v WHERE v.empresa = :empresa ");
+        query.setParameter("empresa",empresa);
         return query.getResultList();
     }
 
+    public List<VagaEstagio> getAllWithCandidatos() {
+
+        Query query = this.entityManager.createQuery("SELECT v FROM vagaestagio v INNER JOIN v.alunos a  WHERE a.id IS NOT NULL ");
+        return query.getResultList();
+
+    }
 }

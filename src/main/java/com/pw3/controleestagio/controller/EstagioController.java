@@ -1,8 +1,10 @@
 package com.pw3.controleestagio.controller;
 
+import com.pw3.controleestagio.model.Aluno;
 import com.pw3.controleestagio.model.Estagio;
 import com.pw3.controleestagio.model.Usuario;
 import com.pw3.controleestagio.model.VagaEstagio;
+import com.pw3.controleestagio.repository.AlunoRepository;
 import com.pw3.controleestagio.repository.EstagioRepository;
 import com.pw3.controleestagio.repository.VagaEstagioRepository;
 import com.sun.faces.action.RequestMapping;
@@ -20,16 +22,19 @@ public class EstagioController {
 
     private final EstagioRepository estagioRepository;
     private final VagaEstagioRepository vagaEstagioRepository;
+    private final AlunoRepository alunoRepository;
 
     @Autowired
-    public EstagioController(EstagioRepository estagioRepository, VagaEstagioRepository vagaEstagioRepository) {
+    public EstagioController(EstagioRepository estagioRepository, VagaEstagioRepository vagaEstagioRepository, AlunoRepository alunoRepository) {
         this.estagioRepository = estagioRepository;
         this.vagaEstagioRepository = vagaEstagioRepository;
+        this.alunoRepository = alunoRepository;
     }
 
     @Transactional
-    @RequestMapping("/cadastrar/{vagaEstagioId}")
-    public String cadastrar(HttpSession httpSession, Model model, Estagio estagio, @PathVariable int vagaEstagioId) {
+    @RequestMapping("/cadastrar/{vagaEstagioId}/aluno/{alunoId}")
+    public String cadastrar(HttpSession httpSession, Model model, Estagio estagio,
+                            @PathVariable int vagaEstagioId, @PathVariable int alunoId) {
 
         Object usuario = httpSession.getAttribute("usuario");
         if(!Usuario.isAdmin(usuario)) {
@@ -37,9 +42,10 @@ public class EstagioController {
         }
 
         VagaEstagio vagaEstagio = vagaEstagioRepository.get(vagaEstagioId);
+        Aluno aluno = alunoRepository.get(alunoId);
 
         estagio.setDescricao( vagaEstagio.getDescricao() );
-        estagio.setAluno( vagaEstagio.getAluno() );
+        estagio.setEstagiario( aluno );
         estagio.setEmpresa( vagaEstagio.getEmpresa() );
         estagio.setRequisitosDesejaveis( vagaEstagio.getRequisitosDesejaveis() );
         estagio.setRequisitosObrigatorios( vagaEstagio.getRequisitosObrigatorios() );
