@@ -404,3 +404,9 @@ body {
 .modal .form-field {
     margin-bottom: 12px;
 }
+
+
+/*Empresa*/
+.content.empresa .list tr td, .content.empresa  .list tr th {
+    width: 33%;
+}
