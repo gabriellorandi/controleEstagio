@@ -21,7 +21,8 @@ public class EstagioRepository {
 
     public void remove(Estagio estagio) {
 
-        this.entityManager.createQuery("UPDATE estagio e SET e.aluno = null WHERE e.id = estagio .id").executeUpdate();
+        Query query = this.entityManager.createQuery("UPDATE estagio e SET e.aluno = null WHERE e.id = :id");
+        query.setParameter("id",estagio.getId());
         this.entityManager.remove(estagio);
     }
 

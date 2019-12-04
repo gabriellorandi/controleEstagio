@@ -1,8 +1,9 @@
 package com.pw3.controleestagio.model;
 
 import javax.persistence.*;
+import java.util.List;
 
-@Entity
+@Entity(name = "vagaestagio")
 public class VagaEstagio {
 	
 	@Id
@@ -13,8 +14,11 @@ public class VagaEstagio {
 	private String requisitosObrigatorios;
 	private String requisitosDesejaveis;
 
-	@OneToOne
-	private Aluno aluno;
+	@ManyToMany
+	@JoinTable(name = "vagaestagio_aluno",
+			joinColumns = @JoinColumn(name = "vagaestagio_id"),
+			inverseJoinColumns = @JoinColumn(name = "aluno_id"))
+	private List<Aluno> alunos;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "empresa_id")
@@ -60,11 +64,11 @@ public class VagaEstagio {
 		this.empresa = empresa;
 	}
 
-	public Aluno getAluno() {
-		return aluno;
+	public List<Aluno> getAlunos() {
+		return alunos;
 	}
 
-	public void setAluno(Aluno candidato) {
-		this.aluno = candidato;
+	public void setAlunos(List<Aluno> alunos) {
+		this.alunos = alunos;
 	}
 }

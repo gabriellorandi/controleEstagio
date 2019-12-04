@@ -15,6 +15,12 @@ public class SupervisorRepository {
     @PersistenceContext
     private EntityManager entityManager;
 
+    public boolean existLogin(Supervisor supervisor) {
+        Query query = this.entityManager.createQuery("SELECT s FROM supervisor s WHERE s.login LIKE :login");
+        query.setParameter("login",supervisor.getLogin());
+        return (query.getResultList().size() > 0 )?true:false;
+    }
+
     public void add(Supervisor supervisor) {
         this.entityManager.persist(supervisor);
     }
