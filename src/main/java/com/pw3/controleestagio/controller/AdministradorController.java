@@ -78,7 +78,7 @@ public class AdministradorController {
     @RequestMapping("/cadastrar")
     public String cadastra(Administrador administrador, String senhaRepetida) {
 
-        if(administrador.getSenha().equals(senhaRepetida)) {
+        if(administrador.getSenha().equals(senhaRepetida) && !administradorRepository.existLogin(administrador)) {
             administradorRepository.add(administrador);
         }
 

@@ -2,7 +2,6 @@ package com.pw3.controleestagio.repository;
 
 
 import com.pw3.controleestagio.model.Empresa;
-import com.pw3.controleestagio.model.Usuario;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -15,6 +14,12 @@ public class EmpresaRepository {
 
     @PersistenceContext
     private EntityManager entityManager;
+
+    public boolean existLogin(Empresa empresa) {
+        Query query = this.entityManager.createQuery("SELECT e FROM empresa e WHERE e.login LIKE :login");
+        query.setParameter("login",empresa.getLogin());
+        return (query.getResultList().size() > 0 )?true:false;
+    }
 
     public void add(Empresa empresa) {
         this.entityManager.persist(empresa);

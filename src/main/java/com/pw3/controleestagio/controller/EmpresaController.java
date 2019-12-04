@@ -55,11 +55,11 @@ public class EmpresaController {
     @RequestMapping("/cadastrar")
     public String cadastra(Empresa empresa, String senhaRepetida, Model model) {
 
-        if(empresa.getSenha().equals(senhaRepetida)) {
+        if(empresa.getSenha().equals(senhaRepetida) && !empresaRepository.existLogin(empresa)) {
             empresaRepository.add(empresa);
+            model.addAttribute("mensagem", "Cadastro realizado com sucesso. Aguarde até que o administrador valide o seu cadastro.");
         }
 
-        model.addAttribute("mensagem", "Cadastro realizado com sucesso. Aguarde até que o administrador valide o seu cadastro.");
         return "redirect:/";
     }
 

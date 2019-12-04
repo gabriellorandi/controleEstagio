@@ -56,7 +56,7 @@ public class SupervisorController {
             return "redirect:acessoNegado";
         }
 
-        if(supervisor.getSenha().equals(senhaRepetida)) {
+        if(supervisor.getSenha().equals(senhaRepetida) && !supervisorRepository.existLogin(supervisor)) {
             supervisorRepository.add(supervisor);
         }
 

@@ -115,11 +115,11 @@ public class AlunoController {
     @RequestMapping("/cadastrar")
     public String cadastra(Aluno aluno, String senhaRepetida, Model model) {
 
-        if(aluno.getSenha().equals(senhaRepetida)) {
+        if(aluno.getSenha().equals(senhaRepetida) && !alunoRepository.existLogin(aluno)) {
             alunoRepository.add(aluno);
+            model.addAttribute("mensagem", "Cadastro realizado com sucesso. Aguarde até que o administrador valide o seu cadastro.");
         }
 
-        model.addAttribute("mensagem", "Cadastro realizado com sucesso. Aguarde até que o administrador valide o seu cadastro.");
         return "redirect:/";
     }
 
