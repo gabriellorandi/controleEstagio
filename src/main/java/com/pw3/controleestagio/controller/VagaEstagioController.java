@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -40,22 +41,6 @@ public class VagaEstagioController {
     }
 
     @Transactional
-    @RequestMapping("/listar")
-    public String getAll(HttpSession session, Model model) {
-
-        Object usuario = session.getAttribute("usuario");
-        if(!Usuario.isAluno(usuario)) {
-            return "redirect:acessoNegado";
-        }
-
-        List<VagaEstagio> vagaEstagios = vagaEstagioRepository.getAll();
-
-        model.addAttribute("vagaEstagios", vagaEstagios);
-
-        return "redirect:/administrador/iniciarPaginaAdmin";
-    }
-
-    @Transactional
     @RequestMapping("/candidatar/{vagaEstagioId}")
     public String candidatar(HttpSession session, Model model, @PathVariable int vagaEstagioId) {
 
@@ -66,8 +51,11 @@ public class VagaEstagioController {
 
         VagaEstagio vagaEstagio = vagaEstagioRepository.get(vagaEstagioId);
 
+        if(vagaEstagio.getAlunos() == null) {
+            vagaEstagio.setAlunos(new ArrayList<>());
+        }
 
-        vagaEstagio.setAluno( (Aluno) usuario );
+        vagaEstagio.getAlunos().add( (Aluno) usuario );
 
         vagaEstagioRepository.add(vagaEstagio);
 

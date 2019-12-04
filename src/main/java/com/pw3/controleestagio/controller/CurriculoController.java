@@ -34,6 +34,7 @@ public class CurriculoController {
         Curriculo curriculoDb = curriculoRepository.getByAluno((Aluno) usuario);
 
         if(curriculoDb == null) {
+            curriculo.setAluno((Aluno) usuario);
             curriculoRepository.add(curriculo);
             return "redirect:/aluno/iniciarPaginaAluno";
         }

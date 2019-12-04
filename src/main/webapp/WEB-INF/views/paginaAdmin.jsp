@@ -365,7 +365,7 @@
                                 </tr>
                                 <c:forEach var="relatorio" items="${listaRelatoriosValidar}">
                                     <tr>
-                                        <td>aluno tal</td>
+                                        <td>${relatorio.estagio.aluno.nome}</td>
                                         <td>${relatorio.descricao}</td>
                                         <td>${relatorio.observacoes}</td>
                                         <td class="student-remove">

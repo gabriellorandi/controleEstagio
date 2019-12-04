@@ -29,9 +29,13 @@ public class CurriculoRepository {
     }
 
     public Curriculo getByAluno(Aluno aluno) {
-        Query query = this.entityManager.createQuery("SELECT c FROM Curriculo c WHERE c.aluno = aluno ");
-        Object o = query.getSingleResult();
-        return (o != null)?(Curriculo) query.getSingleResult():null;
+        try {
+            Query query = this.entityManager.createQuery("SELECT c FROM Curriculo c WHERE c.aluno = :aluno ");
+            query.setParameter("aluno",aluno);
+            return (Curriculo) query.getSingleResult();
+        } catch (Exception e) {
+            return null;
+        }
     }
 
     public List<Curriculo> getAll() {
