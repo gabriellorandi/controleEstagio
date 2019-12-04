@@ -37,11 +37,11 @@ public class Curriculo {
 	public void setExperienciaProfissional(String experienciaProfissional) {
 		this.experienciaProfissional = experienciaProfissional;
 	}
-	private Aluno getAluno() {
+	public Aluno getAluno() {
 		return aluno;
 	}
 
-	private void setAluno(Aluno aluno) {
+	public void setAluno(Aluno aluno) {
 		this.aluno = aluno;
 	}
 

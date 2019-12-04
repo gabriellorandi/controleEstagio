@@ -12,7 +12,7 @@ public class Aluno extends Usuario {
 	
 	@OneToOne(fetch = FetchType.EAGER,
             cascade =  CascadeType.ALL,
-            mappedBy = "aluno")
+            mappedBy = "aluno", orphanRemoval = true)
 	private Curriculo curriculo; 
 	
 	@OneToOne(fetch = FetchType.LAZY)

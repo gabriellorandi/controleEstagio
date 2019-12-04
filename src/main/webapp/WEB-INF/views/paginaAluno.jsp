@@ -42,10 +42,6 @@
                         <h2>Cadastrar Currículo</h2>
                         <form action="../curriculo/cadastrar" method="post">
                             <div class="form-field">
-                                <label for="nome">Nome</label>
-                                <input type="text" name="nome"  id="nome">
-                            </div>
-                            <div class="form-field">
                                 <label for="formacao-academica">Formação Acadêmica</label>
                                 <input type="text" name="formacaoAcademica" id="formacao-academica" />
                             </div>
@@ -61,12 +57,12 @@
                 <c:if test="${not empty curriculo}">
                     <table class="list">
                         <tr>
-                            <th>Nome</th>
+                            <th>Identificação</th>
                             <th>Formação Acadêmica</th>
                             <th>Experiência Profissional</th>
                         </tr>
                         <tr>
-                            <td>${curriculo.nome}</td>
+                            <td>${curriculo.aluno.ra}</td>
                             <td>${curriculo.formacaoAcademica}</td>
                             <td>${curriculo.experienciaProfissional}</td>
                         </tr>
