@@ -1,9 +1,6 @@
 package com.pw3.controleestagio.model;
 
-import javax.persistence.CascadeType;
-import javax.persistence.DiscriminatorValue;
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity(name = "empresa")
@@ -15,8 +12,9 @@ public class Empresa extends Usuario {
 
 	private boolean valido = false;
 
-	@OneToMany(cascade = CascadeType.ALL )
-	private List<Estagio> estagios;
+	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "empresa")
+	private List<VagaEstagio> vagaEstagios;
+
 
 	public String getRazaoSocial() {
 		return razaoSocial;
@@ -42,20 +40,19 @@ public class Empresa extends Usuario {
 		this.cnpj = cnpj;
 	}
 
-	public List<Estagio> getEstagios() {
-		return estagios;
-	}
-
-	public void setEstagios(List<Estagio> estagios) {
-		this.estagios = estagios;
-	}
-
-
 	public boolean isValido() {
 		return valido;
 	}
 
 	public void setValido(boolean valido) {
 		this.valido = valido;
+	}
+
+	public List<VagaEstagio> getVagaEstagios() {
+		return vagaEstagios;
+	}
+
+	public void setVagaEstagios(List<VagaEstagio> vagaEstagios) {
+		this.vagaEstagios = vagaEstagios;
 	}
 }
