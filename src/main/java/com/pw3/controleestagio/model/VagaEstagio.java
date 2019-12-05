@@ -14,7 +14,7 @@ public class VagaEstagio {
 	private String requisitosObrigatorios;
 	private String requisitosDesejaveis;
 
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "vagaestagio_aluno",
 			joinColumns = @JoinColumn(name = "vagaestagio_id"),
 			inverseJoinColumns = @JoinColumn(name = "aluno_id"))

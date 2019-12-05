@@ -42,7 +42,7 @@ public class VagaEstagioRepository {
 
     public List<VagaEstagio> getAllWithCandidatos() {
 
-        Query query = this.entityManager.createQuery("SELECT v FROM vagaestagio v INNER JOIN v.alunos a  WHERE a.id IS NOT NULL ");
+        Query query = this.entityManager.createQuery("SELECT DISTINCT  v FROM vagaestagio v INNER JOIN v.alunos a  WHERE a.id IS NOT NULL ");
         return query.getResultList();
 
     }
