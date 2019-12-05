@@ -60,7 +60,7 @@ public class AdministradorController {
         model.addAttribute("listaEmpresas", listaEmpresas);
         model.addAttribute("listaRelatorios", listaRelatorios);
         model.addAttribute("listaSupervisores", listaSupervisores);
-        model.addAttribute("listaEstagio", listaEstagios);
+        model.addAttribute("listaEstagios", listaEstagios);
 
         if (usuario instanceof Administrador)
             model.addAttribute("admin", usuario);
