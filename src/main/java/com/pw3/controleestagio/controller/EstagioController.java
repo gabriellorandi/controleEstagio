@@ -7,12 +7,12 @@ import com.pw3.controleestagio.model.VagaEstagio;
 import com.pw3.controleestagio.repository.AlunoRepository;
 import com.pw3.controleestagio.repository.EstagioRepository;
 import com.pw3.controleestagio.repository.VagaEstagioRepository;
-import com.sun.faces.action.RequestMapping;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpSession;
 
@@ -33,7 +33,7 @@ public class EstagioController {
 
     @Transactional
     @RequestMapping("/cadastrar/{vagaEstagioId}/aluno/{alunoId}")
-    public String cadastrar(HttpSession httpSession, Model model, Estagio estagio,
+    public String cadastrar(HttpSession httpSession,
                             @PathVariable int vagaEstagioId, @PathVariable int alunoId) {
 
         Object usuario = httpSession.getAttribute("usuario");
@@ -43,6 +43,8 @@ public class EstagioController {
 
         VagaEstagio vagaEstagio = vagaEstagioRepository.get(vagaEstagioId);
         Aluno aluno = alunoRepository.get(alunoId);
+
+        Estagio estagio = new Estagio();
 
         estagio.setDescricao( vagaEstagio.getDescricao() );
         estagio.setEstagiario( aluno );
@@ -75,7 +77,7 @@ public class EstagioController {
     }
 
     @Transactional
-    @RequestMapping("/deletar/{alunoId}")
+    @RequestMapping("/deletar/{estagioId}")
     public String deletar(HttpSession session, @PathVariable int estagioId) {
 
         Object usuario = session.getAttribute("usuario");

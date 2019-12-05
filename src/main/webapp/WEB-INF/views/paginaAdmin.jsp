@@ -281,7 +281,6 @@
                         <table class="list">
                             <c:if test="${not empty listaEstagios}">
                                 <tr>
-                                    <th>RA do Aluno</th>
                                     <th>Duração</th>
                                     <th>Descrição</th>
                                     <th>Data de Início</th>
@@ -291,7 +290,6 @@
                                 </tr>
                                 <c:forEach var="estagio" items="${listaEstagios}">
                                     <tr>
-                                        <td>${estagio.aluno}</td>
                                         <td>${estagio.duracao}</td>
                                         <td>${estagio.descricao}</td>
                                         <td>${estagio.dataInicio}</td>
