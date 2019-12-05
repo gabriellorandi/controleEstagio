@@ -85,6 +85,6 @@ public class AdministradorController {
             administradorRepository.add(administrador);
         }
 
-        return "login";
+        return "redirect:cadastrarAdministrador";
     }
 }

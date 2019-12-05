@@ -295,7 +295,7 @@
                                         <td>${estagio.dataInicio}</td>
                                         <td>${estagio.dataFim}</td>
                                         <td class="student-remove">
-                                            <a href="../estagio/alterar/${estagio.id}"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="16px" height="16px" viewBox="0 0 528.899 528.899" style="enable-background:new 0 0 528.899 528.899;" xml:space="preserve"><path d="M328.883,89.125l107.59,107.589l-272.34,272.34L56.604,361.465L328.883,89.125z M518.113,63.177l-47.981-47.981   c-18.543-18.543-48.653-18.543-67.259,0l-45.961,45.961l107.59,107.59l53.611-53.611   C532.495,100.753,532.495,77.559,518.113,63.177z M0.3,512.69c-1.958,8.812,5.998,16.708,14.811,14.565l119.891-29.069   L27.473,390.597L0.3,512.69z" data-original="#000000" class="active-path" data-old_color="#000000" fill="#111832"/></svg></a>
+                                            <span class="edit" id="estagio-${estagio.id}"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="16px" height="16px" viewBox="0 0 528.899 528.899" style="enable-background:new 0 0 528.899 528.899;" xml:space="preserve"><path d="M328.883,89.125l107.59,107.589l-272.34,272.34L56.604,361.465L328.883,89.125z M518.113,63.177l-47.981-47.981   c-18.543-18.543-48.653-18.543-67.259,0l-45.961,45.961l107.59,107.59l53.611-53.611   C532.495,100.753,532.495,77.559,518.113,63.177z M0.3,512.69c-1.958,8.812,5.998,16.708,14.811,14.565l119.891-29.069   L27.473,390.597L0.3,512.69z" data-original="#000000" class="active-path" data-old_color="#000000" fill="#111832"/></svg></span>
                                         </td>
                                         <td class="student-remove">
                                             <a href="../estagio/rejeitar/${estagio.id}"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="16px" height="16px" viewBox="0 0 459 459" style="enable-background:new 0 0 459 459;" xml:space="preserve"><path d="M76.5,408c0,28.05,22.95,51,51,51h204c28.05,0,51-22.95,51-51V102h-306V408z M408,25.5h-89.25L293.25,0h-127.5l-25.5,25.5    H51v51h357V25.5z" data-original="#000000" class="active-path" data-old_color="#000000" fill="#C5C8CD"/></svg></a>
@@ -331,14 +331,14 @@
                                 </tr>
                                 <c:forEach var="relatorio" items="${listaRelatorios}">
                                     <tr>
-                                        <td>${relatorio.aluno.nome}</td>
+                                        <td>${relatorio.estagio.estagiario.nome}</td>
                                         <td>${relatorio.descricao}</td>
                                         <td>${relatorio.observacoes}</td>
                                         <td class="student-remove">
-                                            <a href="../relatorio/alterar/${relatorio.id}"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="16px" height="16px" viewBox="0 0 528.899 528.899" style="enable-background:new 0 0 528.899 528.899;" xml:space="preserve"><path d="M328.883,89.125l107.59,107.589l-272.34,272.34L56.604,361.465L328.883,89.125z M518.113,63.177l-47.981-47.981   c-18.543-18.543-48.653-18.543-67.259,0l-45.961,45.961l107.59,107.59l53.611-53.611   C532.495,100.753,532.495,77.559,518.113,63.177z M0.3,512.69c-1.958,8.812,5.998,16.708,14.811,14.565l119.891-29.069   L27.473,390.597L0.3,512.69z" data-original="#000000" class="active-path" data-old_color="#000000" fill="#111832"/></svg></a>
+                                            <span class="edit" id="relatorio-${relatorio.id}"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="16px" height="16px" viewBox="0 0 528.899 528.899" style="enable-background:new 0 0 528.899 528.899;" xml:space="preserve"><path d="M328.883,89.125l107.59,107.589l-272.34,272.34L56.604,361.465L328.883,89.125z M518.113,63.177l-47.981-47.981   c-18.543-18.543-48.653-18.543-67.259,0l-45.961,45.961l107.59,107.59l53.611-53.611   C532.495,100.753,532.495,77.559,518.113,63.177z M0.3,512.69c-1.958,8.812,5.998,16.708,14.811,14.565l119.891-29.069   L27.473,390.597L0.3,512.69z" data-original="#000000" class="active-path" data-old_color="#000000" fill="#111832"/></svg></span>
                                         </td>
                                         <td class="student-remove">
-                                            <a href="../relatorio/rejeitar/${relatorio.id}"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="16px" height="16px" viewBox="0 0 459 459" style="enable-background:new 0 0 459 459;" xml:space="preserve"><path d="M76.5,408c0,28.05,22.95,51,51,51h204c28.05,0,51-22.95,51-51V102h-306V408z M408,25.5h-89.25L293.25,0h-127.5l-25.5,25.5    H51v51h357V25.5z" data-original="#000000" class="active-path" data-old_color="#000000" fill="#C5C8CD"/></svg></a>
+                                            <a href="../relatorio/remover/${relatorio.id}"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="16px" height="16px" viewBox="0 0 459 459" style="enable-background:new 0 0 459 459;" xml:space="preserve"><path d="M76.5,408c0,28.05,22.95,51,51,51h204c28.05,0,51-22.95,51-51V102h-306V408z M408,25.5h-89.25L293.25,0h-127.5l-25.5,25.5    H51v51h357V25.5z" data-original="#000000" class="active-path" data-old_color="#000000" fill="#C5C8CD"/></svg></a>
                                         </td>
                                     </tr>
                                 </c:forEach>
@@ -577,6 +577,27 @@
                 </div>
             </div>
         </c:forEach>
+        <c:forEach var="relatorio" items="${listaRelatorios}">
+            <div class="modal" id="relatorio-${relatorio.id}modal">
+                <div class="modal-content">
+                    <span class="close"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="16px" height="16px" viewBox="0 0 348.333 348.334" style="enable-background:new 0 0 348.333 348.334;" xml:space="preserve"><path d="M336.559,68.611L231.016,174.165l105.543,105.549c15.699,15.705,15.699,41.145,0,56.85   c-7.844,7.844-18.128,11.769-28.407,11.769c-10.296,0-20.581-3.919-28.419-11.769L174.167,231.003L68.609,336.563   c-7.843,7.844-18.128,11.769-28.416,11.769c-10.285,0-20.563-3.919-28.413-11.769c-15.699-15.698-15.699-41.139,0-56.85   l105.54-105.549L11.774,68.611c-15.699-15.699-15.699-41.145,0-56.844c15.696-15.687,41.127-15.687,56.829,0l105.563,105.554   L279.721,11.767c15.705-15.687,41.139-15.687,56.832,0C352.258,27.466,352.258,52.912,336.559,68.611z" data-original="#000000" class="active-path" data-old_color="#000000" fill="#000000"/></svg></span>
+                    <h2 class="title">Relatorio: ${relatorio.id}</h2>
+                    <form action="../relatorio/alterar/${relatorio.id}" method="post">
+                        <div class="form-field-flex">
+                            <div class="form-field">
+                                <label for="relatorio-descricao${relatorio.id}">Descrição</label>
+                                <input type="text" value="${relatorio.descricao}" name="descricao" id="relatorio-descricao${relatorio.id}"/>
+                            </div>
+                            <div class="form-field">
+                                <label for="relatorio-observacoes${relatorio.id}">Observações</label>
+                                <input type="text" value="${relatorio.observacoes}" name="observacoes" id="relatorio-observacoes${relatorio.id}"/>
+                            </div>
+                        </div>
+                        <input type="submit" value="Alterar" />
+                    </form>
+                </div>
+            </div>
+        </c:forEach>
         <c:forEach var="empresa" items="${listaEmpresas}">
             <div class="modal" id="company-${empresa.id}modal">
                 <div class="modal-content">
@@ -601,6 +622,35 @@
                             <div class="form-field">
                                 <label for="company-cnpj${empresa.id}">CNPJ</label>
                                 <input type="text" value="${empresa.cnpj}" name="razao" id="company-cnpj${empresa.id}"/>
+                            </div>
+                        </div>
+                        <input type="submit" value="Alterar" />
+                    </form>
+                </div>
+            </div>
+        </c:forEach>
+        <c:forEach var="estagio" items="${listaEstagios}">
+            <div class="modal" id="estagio-${estagio.id}modal">
+                <div class="modal-content">
+                    <span class="close"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="16px" height="16px" viewBox="0 0 348.333 348.334" style="enable-background:new 0 0 348.333 348.334;" xml:space="preserve"><path d="M336.559,68.611L231.016,174.165l105.543,105.549c15.699,15.705,15.699,41.145,0,56.85   c-7.844,7.844-18.128,11.769-28.407,11.769c-10.296,0-20.581-3.919-28.419-11.769L174.167,231.003L68.609,336.563   c-7.843,7.844-18.128,11.769-28.416,11.769c-10.285,0-20.563-3.919-28.413-11.769c-15.699-15.698-15.699-41.139,0-56.85   l105.54-105.549L11.774,68.611c-15.699-15.699-15.699-41.145,0-56.844c15.696-15.687,41.127-15.687,56.829,0l105.563,105.554   L279.721,11.767c15.705-15.687,41.139-15.687,56.832,0C352.258,27.466,352.258,52.912,336.559,68.611z" data-original="#000000" class="active-path" data-old_color="#000000" fill="#000000"/></svg></span>
+                    <h2 class="title">Estagio: ${estagio.descricao}</h2>
+                    <form action="../estagio/alterar/${estagio.id}" method="post">
+                        <div class="form-field-flex">
+                            <div class="form-field">
+                                <label for="estagio-duracao${estagio.id}">Duracao</label>
+                                <input type="number" value="${estagio.duracao}" min="1" name="duracao" id="estagio-duracao${estagio.id}"/>
+                            </div>
+                        </div>
+                        <div class="form-field-flex">
+                            <div class="form-field">
+                                <label for="estagio-data-inicio${estagio.id}">Data Inicio</label>
+                                <input type="date" value="${estagio.dataInicio}" name="dataInicio" id="estagio-data-inicio${estagio.id}"/>
+                            </div>
+                        </div>
+                        <div class="form-field-flex">
+                            <div class="form-field">
+                                <label for="estagio-data-fim${estagio.id}">Data Fim</label>
+                                <input type="date" value="${estagio.dataFim}" name="dataFim" id="estagio-data-fim${estagio.id}"/>
                             </div>
                         </div>
                         <input type="submit" value="Alterar" />

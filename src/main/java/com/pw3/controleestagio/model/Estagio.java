@@ -2,13 +2,14 @@ package com.pw3.controleestagio.model;
 
 import javax.persistence.*;
 import java.time.ZonedDateTime;
+import java.util.Date;
 import java.util.List;
 
 @Entity(name = "estagio")
 public class Estagio extends VagaEstagio{
 
-	private ZonedDateTime dataInicio;
-	private ZonedDateTime dataFim;
+	private Date dataInicio;
+	private Date dataFim;
 	private int duracao;
 
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL )
@@ -19,19 +20,19 @@ public class Estagio extends VagaEstagio{
 			mappedBy = "estagio")
 	private Aluno estagiario;
 		
-	public ZonedDateTime getDataInicio() {
+	public Date getDataInicio() {
 		return dataInicio;
 	}
 
-	public void setDataInicio(ZonedDateTime dataInicio) {
+	public void setDataInicio(Date dataInicio) {
 		this.dataInicio = dataInicio;
 	}
 
-	public ZonedDateTime getDataFim() {
+	public Date getDataFim() {
 		return dataFim;
 	}
 
-	public void setDataFim(ZonedDateTime dataFim) {
+	public void setDataFim(Date dataFim) {
 		this.dataFim = dataFim;
 	}
 
