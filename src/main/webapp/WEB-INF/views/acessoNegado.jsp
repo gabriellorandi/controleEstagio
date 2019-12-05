@@ -17,7 +17,7 @@
                 <p class="container">Instituto Federal de Educação, Ciência e Tecnologia de São Paulo – IFSP </p>
             </div>
             <div class="login-right">
-                <p class="title">Acesso negado</p>
+                <p class="title">Acesso Negado</p>
             </div>
         </div>
 
