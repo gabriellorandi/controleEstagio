@@ -59,7 +59,7 @@ public class RelatorioController {
 
     @Transactional
     @RequestMapping("/alterar/{relatorioId}")
-    public String alterar(HttpSession httpSession, Model model, Relatorio relatorio, @PathVariable int relatorioId) {
+    public String alterar(HttpSession httpSession, Relatorio relatorio, @PathVariable int relatorioId) {
 
         Object usuario = httpSession.getAttribute("usuario");
         if(!Usuario.isAdmin(usuario)) {

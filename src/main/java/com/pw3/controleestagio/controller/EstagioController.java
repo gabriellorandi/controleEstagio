@@ -8,13 +8,16 @@ import com.pw3.controleestagio.repository.AlunoRepository;
 import com.pw3.controleestagio.repository.EstagioRepository;
 import com.pw3.controleestagio.repository.VagaEstagioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpSession;
+import java.text.ParseException;
+import java.util.Date;
 
 @Controller
 @RequestMapping("/estagio")
@@ -59,18 +62,18 @@ public class EstagioController {
     }
 
     @Transactional
-    @RequestMapping("/alterar/{estagioId}")
-    public String alterar(HttpSession httpSession, Model model, Estagio estagio, @PathVariable int estagioId) {
+    @RequestMapping(value = "/alterar/{estagioId}", method = RequestMethod.POST)
+    public String alterar(HttpSession httpSession, @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date dataInicio,
+                          @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date dataFim, int duracao, @PathVariable int estagioId) throws ParseException {
 
         Object usuario = httpSession.getAttribute("usuario");
         if(!Usuario.isAdmin(usuario)) {
             return "redirect:acessoNegado";
         }
-
         Estagio update = estagioRepository.get(estagioId);
-        update.setDuracao(estagio.getDuracao());
-        update.setDataInicio(estagio.getDataInicio());
-        update.setDataFim(estagio.getDataFim());
+        update.setDuracao(duracao);
+        update.setDataInicio(dataInicio);
+        update.setDataFim(dataFim);
 
         estagioRepository.add(update);
         return "redirect:/administrador/iniciarPaginaAdmin";
