@@ -13,7 +13,7 @@
         <div class="dashboard">
             <div class="menu-left">
                 <div class="logo">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="30px" height="30px" viewBox="0 0 379 461"><defs><style>.cls-1 {fill: #fff;}.cls-2{fill: #678dec;}</style></defs><rect id="Retângulo_Arredondado_1" data-name="Retângulo Arredondado 1" class="cls-1" x="29" y="236" width="97" height="97" rx="10" ry="10"/><rect id="Retângulo_Arredondado_1_copiar_4" data-name="Retângulo Arredondado 1 copiar 4" class="cls-1" x="29" y="352" width="97" height="97" rx="10" ry="10"/><rect id="Retângulo_Arredondado_1_copiar" data-name="Retângulo Arredondado 1 copiar" class="cls-1" x="145" y="236" width="97" height="97" rx="10" ry="10"/><rect id="Retângulo_Arredondado_1_copiar_5" data-name="Retângulo Arredondado 1 copiar 5" class="cls-1" x="29" y="120" width="97" height="97" rx="10" ry="10"/> <rect id="Retângulo_Arredondado_1_copiar_5-2" data-name="Retângulo Arredondado 1 copiar 5" class="cls-1" x="145" y="120" width="97" height="97" rx="10" ry="10"/><rect id="Retângulo_Arredondado_1_copiar_6" data-name="Retângulo Arredondado 1 copiar 6" class="cls-1" x="145" y="5" width="97" height="97" rx="10" ry="10"/><rect id="Retângulo_Arredondado_1_copiar_6-2" data-name="Retângulo Arredondado 1 copiar 6" class="cls-1" x="261" y="5" width="97" height="97" rx="10" ry="10"/><circle id="Elipse_1" data-name="Elipse 1" class="cls-2" cx="77" cy="53" r="53"/><rect id="Retângulo_Arredondado_1_copiar_3" data-name="Retângulo Arredondado 1 copiar 3" class="cls-1" x="145" y="352" width="97" height="97" rx="10" ry="10"/><rect id="Retângulo_Arredondado_1_copiar_2" data-name="Retângulo Arredondado 1 copiar 2" class="cls-1" x="261" y="236" width="97" height="97" rx="10" ry="10"/></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30px" height="30px" viewBox="0 0 379 461"><defs><style>.cls-1 {fill: #fff6fe;}  .cls-2{fill: #e4ece2;}</style></defs><rect id="Retângulo_Arredondado_1" data-name="Retângulo Arredondado 1" class="cls-1" x="29" y="236" width="97" height="97" rx="10" ry="10"/><rect id="Retângulo_Arredondado_1_copiar_4" data-name="Retângulo Arredondado 1 copiar 4" class="cls-1" x="29" y="352" width="97" height="97" rx="10" ry="10"/><rect id="Retângulo_Arredondado_1_copiar" data-name="Retângulo Arredondado 1 copiar" class="cls-1" x="145" y="236" width="97" height="97" rx="10" ry="10"/><rect id="Retângulo_Arredondado_1_copiar_5" data-name="Retângulo Arredondado 1 copiar 5" class="cls-1" x="29" y="120" width="97" height="97" rx="10" ry="10"/> <rect id="Retângulo_Arredondado_1_copiar_5-2" data-name="Retângulo Arredondado 1 copiar 5" class="cls-1" x="145" y="120" width="97" height="97" rx="10" ry="10"/><rect id="Retângulo_Arredondado_1_copiar_6" data-name="Retângulo Arredondado 1 copiar 6" class="cls-1" x="145" y="5" width="97" height="97" rx="10" ry="10"/><rect id="Retângulo_Arredondado_1_copiar_6-2" data-name="Retângulo Arredondado 1 copiar 6" class="cls-1" x="261" y="5" width="97" height="97" rx="10" ry="10"/><circle id="Elipse_1" data-name="Elipse 1" class="cls-2" cx="77" cy="53" r="53"/><rect id="Retângulo_Arredondado_1_copiar_3" data-name="Retângulo Arredondado 1 copiar 3" class="cls-1" x="145" y="352" width="97" height="97" rx="10" ry="10"/><rect id="Retângulo_Arredondado_1_copiar_2" data-name="Retângulo Arredondado 1 copiar 2" class="cls-1" x="261" y="236" width="97" height="97" rx="10" ry="10"/></svg>
                     <p>Controle De Estágio</p>
                 </div>
                 <ul class="menu-content">
@@ -427,18 +427,26 @@
                                     <th class="student-remove">Associar</th>
                                 </tr>
                                 <c:forEach var="supervisor" items="${listaSupervisores}">
-                                    <tr>
+                                    <c:if test="${not empty supervisor.alunos}">
+                                        <c:forEach var="aluno" items="${supervisor.alunos}">
+                                        <tr>
                                         <td>${supervisor.nome}</td>
-                                        <c:if test="${empty supervisor.aluno}">
-                                            <td>Nenhum aluno associado</td>
-                                        </c:if>
-                                        <c:if test="${not empty supervisor.aluno}">
-                                            <td>${supervisor.aluno.nome}</td>
-                                        </c:if>
+                                        <td>${aluno.nome}</td>
                                         <td class="student-remove">
                                             <span class="edit" id="supervisor-${supervisor.id}"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="16px" height="16px" viewBox="0 0 528.899 528.899" style="enable-background:new 0 0 528.899 528.899;" xml:space="preserve"><path d="M328.883,89.125l107.59,107.589l-272.34,272.34L56.604,361.465L328.883,89.125z M518.113,63.177l-47.981-47.981   c-18.543-18.543-48.653-18.543-67.259,0l-45.961,45.961l107.59,107.59l53.611-53.611   C532.495,100.753,532.495,77.559,518.113,63.177z M0.3,512.69c-1.958,8.812,5.998,16.708,14.811,14.565l119.891-29.069   L27.473,390.597L0.3,512.69z" data-original="#000000" class="active-path" data-old_color="#000000" fill="#111832"/></svg></span>
                                         </td>
-                                    </tr>
+                                        </tr>
+                                        </c:forEach>
+                                    </c:if>
+                                    <c:if test="${empty supervisor.alunos}">
+                                        <tr>
+                                            <td>${supervisor.nome}</td>
+                                            <td>Nenhum aluno associado</td>
+                                            <td class="student-remove">
+                                                <span class="edit" id="supervisor-${supervisor.id}"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="16px" height="16px" viewBox="0 0 528.899 528.899" style="enable-background:new 0 0 528.899 528.899;" xml:space="preserve"><path d="M328.883,89.125l107.59,107.589l-272.34,272.34L56.604,361.465L328.883,89.125z M518.113,63.177l-47.981-47.981   c-18.543-18.543-48.653-18.543-67.259,0l-45.961,45.961l107.59,107.59l53.611-53.611   C532.495,100.753,532.495,77.559,518.113,63.177z M0.3,512.69c-1.958,8.812,5.998,16.708,14.811,14.565l119.891-29.069   L27.473,390.597L0.3,512.69z" data-original="#000000" class="active-path" data-old_color="#000000" fill="#111832"/></svg></span>
+                                            </td>
+                                        </tr>
+                                    </c:if>
                                 </c:forEach>
                             </c:if>
                             <c:if test="${empty listaSupervisores}">

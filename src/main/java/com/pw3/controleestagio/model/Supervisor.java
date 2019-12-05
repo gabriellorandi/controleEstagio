@@ -1,14 +1,15 @@
 package com.pw3.controleestagio.model;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity(name = "supervisor")
 public class Supervisor extends Usuario {
 	
 	private String nome;
 
-	@OneToOne(fetch = FetchType.EAGER)
-	private Aluno aluno;
+	@OneToMany(fetch = FetchType.EAGER)
+	private List<Aluno> alunos;
 
 	public String getNome() {
 		return nome;
@@ -18,11 +19,15 @@ public class Supervisor extends Usuario {
 		this.nome = nome;
 	}
 
-	public Aluno getAluno() {
-		return aluno;
+	public List<Aluno> getAlunos() {
+		return alunos;
+	}
+
+	public void setAlunos(List<Aluno> alunos) {
+		this.alunos = alunos;
 	}
 
 	public void setAluno(Aluno aluno) {
-		this.aluno = aluno;
+		this.alunos.add(aluno);
 	}
 }
