@@ -248,34 +248,32 @@
                     <a href="${pageContext.request.contextPath}/"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve" width="20px" height="20px"><path d="M510.371,226.513c-1.088-2.603-2.645-4.971-4.629-6.955l-63.979-63.979c-8.341-8.32-21.824-8.32-30.165,0     c-8.341,8.341-8.341,21.845,0,30.165l27.584,27.584H320.013c-11.797,0-21.333,9.557-21.333,21.333s9.536,21.333,21.333,21.333     h119.168l-27.584,27.584c-8.341,8.341-8.341,21.845,0,30.165c4.16,4.181,9.621,6.251,15.083,6.251s10.923-2.069,15.083-6.251     l63.979-63.979c1.984-1.963,3.541-4.331,4.629-6.955C512.525,237.606,512.525,231.718,510.371,226.513z" data-original="#000000" class="active-path" data-old_color="#000000" fill="#0B1126"/><path d="M362.68,298.667c-11.797,0-21.333,9.557-21.333,21.333v106.667h-85.333V85.333c0-9.408-6.187-17.728-15.211-20.437     l-74.091-22.229h174.635v106.667c0,11.776,9.536,21.333,21.333,21.333s21.333-9.557,21.333-21.333v-128     C384.013,9.557,374.477,0,362.68,0H21.347c-0.768,0-1.451,0.32-2.197,0.405c-1.003,0.107-1.92,0.277-2.88,0.512     c-2.24,0.576-4.267,1.451-6.165,2.645c-0.469,0.299-1.045,0.32-1.493,0.661C8.44,4.352,8.376,4.587,8.205,4.715     C5.88,6.549,3.939,8.789,2.531,11.456c-0.299,0.576-0.363,1.195-0.597,1.792c-0.683,1.621-1.429,3.2-1.685,4.992     c-0.107,0.64,0.085,1.237,0.064,1.856c-0.021,0.427-0.299,0.811-0.299,1.237V448c0,10.176,7.189,18.923,17.152,20.907     l213.333,42.667c1.387,0.299,2.795,0.427,4.181,0.427c4.885,0,9.685-1.685,13.525-4.843c4.928-4.053,7.808-10.091,7.808-16.491     v-21.333H362.68c11.797,0,21.333-9.557,21.333-21.333V320C384.013,308.224,374.477,298.667,362.68,298.667z" data-original="#000000" class="active-path" data-old_color="#000000" fill="#0B1126"/></svg></a>
                 </div>
                 <div class="content">
-                    <div class="signup">
+                    <div class="students-list-wrapper">
                         <h2>Cadastrar Estágio</h2>
-                        <form action="">
-                            <div class="form-field-flex">
-                                <div class="form-field">
-                                    <label for="aluno">RA do Aluno</label>
-                                    <input type="text" name="aluno"  id="aluno">
-                                </div>
-                                <div class="form-field">
-                                    <label for="duracao">Duração</label>
-                                    <input type="text" name="duracao" id="duracao">
-                                </div>
-                            </div>
-                            <div class="form-field">
-                                <label for="descricao-estagio">Descrição</label>
-                                <textarea name="descricao" id="descricao-estagio"></textarea>
-                            </div>
-                            <div class="form-field-flex">
-                                <div class="form-field">
-                                    <label for="data-inicio">Data Início</label>
-                                    <input type="date" name="inicio" id="data-inicio">
-                                </div>
-                                <div class="form-field">
-                                    <label for="data-termino">Data Término</label>
-                                    <input type="date" name="termino" id="data-termino">
-                                </div>
-                            </div>
-                            <input type="submit" name="" value="Cadastrar">
+                            <table class="list">
+                                <c:if test="${not empty listaVagaEstagio}">
+                                    <tr>
+                                        <th>Descricao</th>
+                                        <th>Requisitos Obrigatórios</th>
+                                        <th>Requisitos Desejaveis</th>
+                                        <th class="student-remove">Cadastrar Estagio</th>
+                                    </tr>
+                                    <c:forEach var="vagaestagio" items="${listaVagaEstagio}">
+                                        <tr>
+                                            <td>${vagaestagio.descricao}</td>
+                                            <td>${vagaestagio.requisitosObrigatorios}</td>
+                                            <td>${vagaestagio.requisitosDesejaveis}</td>
+                                            <td class="student-remove">
+                                                <span class="edit" id="vagaestagio-${vagaestagio.id}"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="16px" height="16px" viewBox="0 0 528.899 528.899" style="enable-background:new 0 0 528.899 528.899;" xml:space="preserve"><path d="M328.883,89.125l107.59,107.589l-272.34,272.34L56.604,361.465L328.883,89.125z M518.113,63.177l-47.981-47.981   c-18.543-18.543-48.653-18.543-67.259,0l-45.961,45.961l107.59,107.59l53.611-53.611   C532.495,100.753,532.495,77.559,518.113,63.177z M0.3,512.69c-1.958,8.812,5.998,16.708,14.811,14.565l119.891-29.069   L27.473,390.597L0.3,512.69z" data-original="#000000" class="active-path" data-old_color="#000000" fill="#111832"/></svg></span>
+                                            </td>
+                                        </tr>
+                                    </c:forEach>
+                                </c:if>
+                                <c:if test="${empty listaVagaEstagio}">
+                                    <p>Não há vagas de estágios disponiveis.</p>
+                                </c:if>
+                            </table>
+
                         </form>
                     </div>
                     <div class="students-list-wrapper">
@@ -482,6 +480,39 @@
                 </form>
             </div>
         </div>
+        <c:forEach var="vagaEstagio" items="${listaVagaEstagio}">
+            <div class="modal" id="vagaestagio-${vagaEstagio.id}modal">
+                <div class="modal-content">
+                    <span class="close"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="16px" height="16px" viewBox="0 0 348.333 348.334" style="enable-background:new 0 0 348.333 348.334;" xml:space="preserve"><path d="M336.559,68.611L231.016,174.165l105.543,105.549c15.699,15.705,15.699,41.145,0,56.85   c-7.844,7.844-18.128,11.769-28.407,11.769c-10.296,0-20.581-3.919-28.419-11.769L174.167,231.003L68.609,336.563   c-7.843,7.844-18.128,11.769-28.416,11.769c-10.285,0-20.563-3.919-28.413-11.769c-15.699-15.698-15.699-41.139,0-56.85   l105.54-105.549L11.774,68.611c-15.699-15.699-15.699-41.145,0-56.844c15.696-15.687,41.127-15.687,56.829,0l105.563,105.554   L279.721,11.767c15.705-15.687,41.139-15.687,56.832,0C352.258,27.466,352.258,52.912,336.559,68.611z" data-original="#000000" class="active-path" data-old_color="#000000" fill="#000000"/></svg></span>
+                    <h2 class="title">Vaga estágio: ${vagaEstagio.descricao}</h2>
+                    <div class="content">
+                        <div class="students-list-wrapper">
+                            <table class="list">
+                                <c:if test="${not empty vagaEstagio.alunos}">
+                                    <tr>
+                                        <th>Aluno</th>
+                                        <th>RA</th>
+                                        <th class="student-remove">Associar</th>
+                                    </tr>
+                                    <c:forEach var="aluno" items="${vagaEstagio.alunos}">
+                                        <tr>
+                                            <td>${aluno.nome}</td>
+                                            <td>${aluno.ra}</td>
+                                            <td class="student-remove">
+                                                <a href="../estagio/cadastrar/${vagaEstagio.id}/aluno/${aluno.id}"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="16px" height="16px" viewBox="0 0 442.533 442.533" style="enable-background:new 0 0 442.533 442.533;" xml:space="preserve" class=""><path d="M434.539,98.499l-38.828-38.828c-5.324-5.328-11.799-7.993-19.41-7.993c-7.618,0-14.093,2.665-19.417,7.993L169.59,247.248   l-83.939-84.225c-5.33-5.33-11.801-7.992-19.412-7.992c-7.616,0-14.087,2.662-19.417,7.992L7.994,201.852   C2.664,207.181,0,213.654,0,221.269c0,7.609,2.664,14.088,7.994,19.416l103.351,103.349l38.831,38.828   c5.327,5.332,11.8,7.994,19.414,7.994c7.611,0,14.084-2.669,19.414-7.994l38.83-38.828L434.539,137.33   c5.325-5.33,7.994-11.802,7.994-19.417C442.537,110.302,439.864,103.829,434.539,98.499z" data-original="#000000" class="active-path" data-old_color="#000000" fill="#207649"/></svg></a>
+                                            </td>
+                                        </tr>
+                                    </c:forEach>
+                                </c:if>
+                                <c:if test="${empty vagaEstagio.alunos}">
+                                    <p>Não há alunos para associar</p>
+                                </c:if>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </c:forEach>
         <c:forEach var="supervisor" items="${listaSupervisores}">
             <div class="modal" id="supervisor-${supervisor.id}modal">
                 <div class="modal-content">
