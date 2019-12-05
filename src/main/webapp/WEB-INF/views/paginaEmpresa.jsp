@@ -70,7 +70,7 @@
                     <c:if test="${not empty listaCurriculos}">
                         <tr>
                             <th>Nome</th>
-                            <th>Formação Académica</th>
+                            <th>Formação Acadêmica</th>
                             <th>Experiência Profissional</th>
                         </tr>
                         <c:forEach var="curriculo" items="${listaCurriculos}">
@@ -98,7 +98,7 @@
                 <table class="list">
                     <c:if test="${not empty listaVagasEstagio}">
                         <tr>
-                            <th>Descricao</th>
+                            <th>Descrição</th>
                             <th>Requisitos Obrigatórios</th>
                             <th>Requisitos Desejáveis</th>
                         </tr>
