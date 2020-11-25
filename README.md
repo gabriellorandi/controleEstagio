@@ -3,6 +3,10 @@
 O Controle de estágio é um sistema Web onde permite um cadastro de um aluno e seu curriculo em uma vaga de emprego, 
 essa é administrada por um supervisor dentro de uma determinada empresa. O sistema permite tanto do aluno quando do supervisor além de geração de estágios.
 
+## Objetivo
+
+Demonstrar os conhecimentos de Java no framework Spiing Boot e banco de dados Postgresql, utilizando conhecimentos como Clean Code e MVC.
+
 ## Tecnológias utilizadas
 
 - [Java 8](https://www.java.com)
